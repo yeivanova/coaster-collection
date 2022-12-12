@@ -3,16 +3,17 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { HomePage } from "../../pages/home/home";
 import { AboutPage } from "../../pages/about/about";
 import { StatisticsPage } from "../../pages/statistics/statistics";
+import { NotFoundPage } from "../../pages/404/404";
 import { Header } from "../header/header";
 
 export const Main: FC = () => {
-  // const history = useNavigate();
 
   return (
     <div className="app">
       <Header />
-      <main>
+      <main className="main">
         <Routes>
+          <Route path='*' element={<NotFoundPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="statistics" element={<StatisticsPage />} />

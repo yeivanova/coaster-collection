@@ -69,3 +69,16 @@ body {
     background-size: 300% auto;
   }
 }
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+
+  @media (max-width: 767px) {
+    padding-top: 30px;
+  }
+}
