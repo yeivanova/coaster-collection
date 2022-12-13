@@ -20,9 +20,5 @@ export const HomePage: FC = () => {
       });
   }, []);
 
-  return <>{isLoading ? <Preloader /> : 
-  <>
-	{data}
-  </>
-  }</>;
+  return <>{isLoading ? <Preloader /> : <></>}</>;
 };

@@ -4,7 +4,12 @@ import logo from "../../images/logo.svg";
 import styles from "./header.module.scss";
 import cn from "classnames";
 
-export const Header: FC = () => {
+
+type THeaderProps = {
+  openModal: () => void;
+};
+
+export const Header: FC<THeaderProps> = ({openModal}) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
   const [isSticky, setIsSticky] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
@@ -67,18 +72,7 @@ export const Header: FC = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="/about"
-                  className={({ isActive, isPending }) => {
-                    return isActive
-                      ? styles.active
-                      : isPending
-                      ? styles.pending
-                      : styles.link;
-                  }}
-                >
-                  О проекте
-                </NavLink>
+                <button className={styles.link} onClick={openModal}>О проекте</button>
               </li>
             </ul>
           </nav>

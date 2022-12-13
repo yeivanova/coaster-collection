@@ -101,7 +101,13 @@
   }
 }
 
-.navigation_list a {
+.link {
+  background: var(--lightColor);
+  border: none;
+  cursor: pointer;
+}
+
+.navigation_list a, .link {
   font-size: 16px;
   line-height: 1.2;
   color: var(--textColor);
