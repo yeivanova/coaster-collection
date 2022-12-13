@@ -4,11 +4,21 @@ import { HomePage } from "../../pages/home/home";
 import { StatisticsPage } from "../../pages/statistics/statistics";
 import { NotFoundPage } from "../../pages/404/404";
 import { Header } from "../header/header";
+import { Sidebar } from "../sidebar/sidebar";
 import { Modal } from "../modal/modal";
 import { AnimatePresence } from "framer-motion";
 
 export const Main: FC = () => {
+  const [sidebarIsOpened, setSidebarIsOpened] = useState(false);
   const [modalIsOpened, setModalIsOpened] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarIsOpened(!sidebarIsOpened);
+  };
+
+  const closeSidebar = () => {
+    setSidebarIsOpened(false);
+  };
 
   const openModal = () => {
     setModalIsOpened(true);
@@ -21,7 +31,14 @@ export const Main: FC = () => {
   return (
     <>
       <div className="app">
-        <Header openModal={openModal} />
+        <Header toggleSidebar={toggleSidebar} openModal={openModal} />
+        <AnimatePresence
+          initial={false}
+          exitBeforeEnter={true}
+          onExitComplete={() => null}
+        >
+          {sidebarIsOpened && <Sidebar closeSidebar={closeSidebar} />}
+        </AnimatePresence>
         <main className="main">
           <Routes>
             <Route path="*" element={<NotFoundPage />} />
@@ -36,7 +53,7 @@ export const Main: FC = () => {
         onExitComplete={() => null}
       >
         {modalIsOpened && (
-          <Modal openModal={openModal} closeModal={closeModal} />
+          <Modal closeModal={closeModal} />
         )}
       </AnimatePresence>
     </>

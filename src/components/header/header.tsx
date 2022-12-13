@@ -6,10 +6,11 @@ import cn from "classnames";
 
 
 type THeaderProps = {
+  toggleSidebar: () => void;
   openModal: () => void;
 };
 
-export const Header: FC<THeaderProps> = ({openModal}) => {
+export const Header: FC<THeaderProps> = ({toggleSidebar, openModal}) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
   const [isSticky, setIsSticky] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
@@ -31,10 +32,11 @@ export const Header: FC<THeaderProps> = ({openModal}) => {
 
   const openMenu = () => {
     setIsOpened((current) => !current);
+    toggleSidebar();
   };
 
   return (
-    <header className={cn(styles.header, isSticky && styles.is_sticky)}>
+    <header className={cn(styles.header, isOpened && styles.is_opened, isSticky && styles.is_sticky)}>
       <div className={styles.logo_wrapper}>
         <Link to="/">
           <img className={styles.logo} src={logo} alt="На главную" />

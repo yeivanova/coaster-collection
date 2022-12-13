@@ -1,0 +1,24 @@
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 290px;
+	padding: 60px 25px 40px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	color: var(--textColor);
+	background-color: var(--lightColor);
+	z-index: 0;
+
+	@media (max-width: 767px) {
+		max-width: none;
+		padding: 40px 20px 20px;
+	}
+}
+
+.h2 {
+	font-weight: normal;
+	font-size: 24px;
+}

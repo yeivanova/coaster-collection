@@ -31,11 +31,10 @@ const dropIn = {
 };
 
 type TModalProps = {
-  openModal: () => void;
   closeModal: () => void;
 };
 
-export const Modal: FC<TModalProps> = ({ openModal, closeModal }) => {
+export const Modal: FC<TModalProps> = ({ closeModal }) => {
   const closeMe = useCallback(() => {
     closeModal();
     document.body.classList.remove("no-scroll");
