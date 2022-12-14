@@ -31,7 +31,7 @@ export const Main: FC = () => {
   return (
     <>
       <div className="app">
-        <Header toggleSidebar={toggleSidebar} openModal={openModal} />
+        <Header toggleSidebar={toggleSidebar} openModal={openModal} sidebarIsOpened={sidebarIsOpened}/>
         <AnimatePresence
           initial={false}
           exitBeforeEnter={true}

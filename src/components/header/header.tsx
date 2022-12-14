@@ -8,9 +8,10 @@ import cn from "classnames";
 type THeaderProps = {
   toggleSidebar: () => void;
   openModal: () => void;
+  sidebarIsOpened: boolean
 };
 
-export const Header: FC<THeaderProps> = ({toggleSidebar, openModal}) => {
+export const Header: FC<THeaderProps> = ({toggleSidebar, openModal, sidebarIsOpened}) => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
   const [isSticky, setIsSticky] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
@@ -45,7 +46,7 @@ export const Header: FC<THeaderProps> = ({toggleSidebar, openModal}) => {
       <div className={styles.header_inner}>
         <div className={styles.button_wrapper}>
           <button
-            className={cn(styles.filter_button, isOpened && styles.menu_open)}
+            className={cn(styles.filter_button, sidebarIsOpened && styles.menu_open)}
             onClick={openMenu}
           >
             <span className={styles.icon}>
