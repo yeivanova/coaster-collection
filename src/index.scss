@@ -58,27 +58,4 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background: var(--backgroundColor) url("./images/wood-bg.png") repeat-y top center;
-  background-size: 100% auto;
-
-  @media (max-width: 1199px) {
-    background-size: 200% auto;
-  }
-
-  @media (max-width: 767px) {
-    background-size: 300% auto;
-  }
-}
-
-.main {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-top: 40px;
-
-  @media (max-width: 767px) {
-    padding-top: 30px;
-  }
 }

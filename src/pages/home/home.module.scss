@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  background: var(--backgroundColor) url("../../images/wood-bg.jpg") repeat top
+    center;
+  background-size: 512px auto;
+
+  @media (max-width: 767px) {
+    padding-top: 30px;
+  }
+}

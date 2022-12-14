@@ -39,13 +39,13 @@ export const Main: FC = () => {
         >
           {sidebarIsOpened && <Sidebar closeSidebar={closeSidebar} />}
         </AnimatePresence>
-        <main className="main">
+        
           <Routes>
             <Route path="*" element={<NotFoundPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="statistics" element={<StatisticsPage />} />
           </Routes>
-        </main>
+
       </div>
       <AnimatePresence
         initial={false}

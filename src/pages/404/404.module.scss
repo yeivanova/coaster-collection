@@ -1,13 +1,55 @@
-.h1 {
-	color: var(--lightColor);
-	margin-bottom: 25px;
+.main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  background-color: var(--backgroundColor);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  @media (min-width: 768px) {
+    background-image: url("../../images/404.jpg");
+  }
+
+  @media (max-width: 767px) {
+    justify-content: flex-end;
+    padding-top: 30px;
+    background-image: url("../../images/404-mobile.jpg");
+  }
 }
 
 .text {
-	text-align: center;
+  margin-top: 20%;
+  text-align: center;
+
+  @media (max-width: 767px) {
+    margin: 0 auto 20%;
+  }
 }
 
 .link {
-	font-size: 18px;
-	color: var(--activeColor);
+  font-size: 36px;
+  line-height: 1.2;
+  color: var(--textColor);
+  background-color: var(--lightColor);
+  text-decoration: none;
+  padding: 13px 30px 18px 30px;
+  border: 2px solid var(--textColor);
+  box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  transition: color 0.3s ease, font-size 0.7s ease;
+
+  @media (max-width: 767px) {
+    font-size: 24px;
+    padding: 8px 20px 10px 20px;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--activeColor);
+  }
 }
