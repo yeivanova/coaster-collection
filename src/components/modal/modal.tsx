@@ -55,7 +55,7 @@ export const Modal: FC<TModalProps> = ({ closeModal }) => {
   }, [closeModal]);
 
   return ReactDOM.createPortal(
-    <Overlay onClick={closeModal}>
+    <Overlay onClick={closeModal} transparent={false}>
       <motion.div
         className={styles.modal_window}
         variants={dropIn}

@@ -1,13 +1,19 @@
 import React, { FC, useCallback, useEffect, ReactNode } from "react";
 import styles from "./overlay.module.scss";
 import { motion } from "framer-motion";
+import cn from "classnames";
 
 type TModalProps = {
   children: ReactNode;
   onClick: () => void;
+  transparent: boolean;
 };
 
-export const Overlay: FC<TModalProps> = ({ children, onClick }) => {
+export const Overlay: FC<TModalProps> = ({
+  children,
+  onClick,
+  transparent = 0,
+}) => {
   const closeModal = useCallback(() => {
     onClick();
     document.body.classList.remove("no-scroll");
@@ -30,7 +36,7 @@ export const Overlay: FC<TModalProps> = ({ children, onClick }) => {
   return (
     <motion.div
       id="overlay"
-      className={`${styles.overlay}`}
+      className={cn(styles.overlay, transparent && styles.transparent)}
       onClick={onClick}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

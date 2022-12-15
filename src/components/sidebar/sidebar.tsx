@@ -34,7 +34,7 @@ export const Sidebar: FC<TSidebarProps> = ({ closeSidebar }) => {
   };
 
   return (
-    <Overlay onClick={closeSidebar}>
+    <Overlay onClick={closeSidebar} transparent={true}>
       <motion.div
         className={styles.sidebar}
         variants={slideIn}

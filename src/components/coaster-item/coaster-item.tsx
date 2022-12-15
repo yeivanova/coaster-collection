@@ -93,7 +93,7 @@ export const Item: FC<TItemProps> = ({
 
   const frontVariants: Variants = {
 	flip: {
-	  rotateY: 0,
+	  rotateY: 180,
 	  opacity: 0,
 	  transition: {
 		ease: "easeInOut",
@@ -108,7 +108,7 @@ export const Item: FC<TItemProps> = ({
 	  }
 	},
 	hidden: {
-	  rotateY: 180,
+	  rotateY: 0,
 	  opacity: 1,
 	  transition: {
 		ease: "easeInOut",
