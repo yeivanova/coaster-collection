@@ -3,15 +3,16 @@ import front from "../../images/1_1.png";
 import back from "../../images/1_2.png";
 import styles from "./coaster-item.module.scss";
 import cn from "classnames";
+import { baseUrl } from "../../utils/api";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
 type TItemProps = {
-  category: string;
+  id: number;
   type: string;
   brand: string;
-  view?: string;
+  kind?: string;
   country?: string;
-  backSide: boolean;
+  reverse: boolean;
   shape: string;
 };
 
@@ -37,12 +38,12 @@ function useOutsideAlerter(
 }
 
 export const Item: FC<TItemProps> = ({
-  category,
+  id,
   type,
   brand,
-  view,
+  kind,
   country,
-  backSide,
+  reverse,
   shape,
 }) => {
   const [infoIsOpened, setInfoIsOpened] = useState(false);
@@ -165,20 +166,22 @@ export const Item: FC<TItemProps> = ({
       >
         <motion.img
           className={cn(styles.image, styles.front_image)}
-          src={front}
+          src={`${baseUrl}/${id}/image/`}
 		  variants={frontVariants}
 		  initial="hidden"
 		  animate={isFlip ? "flip" : "hidden"}
           alt=""
         />
+        {reverse && (
         <motion.img
           className={cn(styles.image, styles.back_image)}
-          src={back}
+          src={`${baseUrl}/${id}/image/?reverse=true`}
 		  variants={backVariants}
 		  initial="hidden"
 		  animate={isFlip ? "flip" : "hidden"}
           alt=""
         />
+        )}
       </motion.div>
       <div className={styles.details}>
         <button className={styles.more} onClick={openInfo}>
@@ -188,7 +191,7 @@ export const Item: FC<TItemProps> = ({
             <circle cx="22.5" cy="2.5" r="2.5" />
           </svg>
         </button>
-        {backSide && (
+        {reverse && (
           <button className={styles.turn} onClick={turnSide}>
             <svg width="24" height="25" viewBox="0 0 24 25" fill="white">
               <path d="M0.560812 17.9097C0.415706 18.0294 0.172668 18.2301 0.253109 18.6199C0.435033 19.3664 5.9053 22.7289 11.9276 24.0212C12.4609 24.0651 13.0317 23.7702 13.3454 23.306C13.59 22.4842 13.7406 21.631 13.8284 20.6775C14.2676 20.5395 14.6879 20.3827 15.1082 20.2258C19.3991 18.5697 21.9586 16.211 22.5231 13.8271C22.956 11.5876 23.0376 10.8912 22.9497 8.51995C22.7553 6.71953 22.7302 6.53133 22.4165 5.25159C22.291 4.82501 22.1279 4.27297 21.9774 3.82129C22.9811 6.92027 20.3275 10.3517 14.6189 12.5474C14.1923 12.7105 13.7657 12.861 13.3328 13.0053C13.107 11.7758 12.8184 10.5462 12.4734 9.32293C12.3918 9.14101 12.1346 8.57014 11.4069 8.73325C11.3508 8.75431 11.3051 8.77144 11.2617 8.79316C11.0724 8.88785 10.9268 9.06968 10.146 10.0444C9.21758 11.2112 6.41971 14.2976 0.566767 17.9047L0.560812 17.9097Z" />
@@ -212,9 +215,9 @@ export const Item: FC<TItemProps> = ({
             exit="exit"
           >
             <ul>
-              <li>Тип: {category}</li>
+              <li>Тип: {type}</li>
               <li>Марка: {brand}</li>
-              <li>Вид: {type}</li>
+              <li>Вид: {kind}</li>
               <li>Страна: {country}</li>
             </ul>
           </motion.div>
