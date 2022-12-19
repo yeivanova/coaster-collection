@@ -1,0 +1,16 @@
+.checkbox {
+  accent-color: var(--textColor);
+  padding: 4px 0;
+
+  label {
+    display: flex;
+    flex-direction: row;
+  }
+
+  input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    margin-right: 5px;
+  }
+}
