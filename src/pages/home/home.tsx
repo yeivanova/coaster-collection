@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useContext } from "react";
 import styles from "./home.module.scss";
 import { baseUrl } from "../../utils/api";
 import { Preloader } from "../../components/preloader/preloader";
 import { Item } from "../../components/coaster-item/coaster-item";
+import { DeviceContext } from "../../services/app-context";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -22,10 +23,11 @@ export const HomePage: FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState<TCoaster[]>([]);
   const [page, setPage] = useState(1);
+  const { isDesktop } = useContext(DeviceContext);
 
   const fetchData = () => {
     axios
-      .get(`${baseUrl}?PageNumber=${page}&PageSize=24`)
+      .get(`${baseUrl}?PageNumber=${page}&PageSize=${isDesktop ? 24 : 10}`)
       .then((res) => {
         setData([...data, ...res.data]);
         setPage(page + 1);

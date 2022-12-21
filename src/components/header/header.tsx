@@ -1,9 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../images/logo.svg";
 import styles from "./header.module.scss";
 import cn from "classnames";
-
+import { DeviceContext } from "../../services/app-context";
 
 type THeaderProps = {
   toggleSidebar: () => void;
@@ -12,14 +12,11 @@ type THeaderProps = {
 };
 
 export const Header: FC<THeaderProps> = ({toggleSidebar, openModal, sidebarIsOpened}) => {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
+  const { isDesktop } = useContext(DeviceContext);
   const [isSticky, setIsSticky] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("resize", () =>
-      setIsDesktop(window.innerWidth >= 768)
-    );
     window.addEventListener("scroll", isHeaderSticky);
     return () => {
       window.removeEventListener("scroll", isHeaderSticky);
