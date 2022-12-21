@@ -93,94 +93,95 @@ export const Item: FC<TItemProps> = ({
   };
 
   const frontVariants: Variants = {
-	flip: {
-	  rotateY: 180,
-	  opacity: 0,
-	  transition: {
-		ease: "easeInOut",
-		duration: 1,
-		opacity: {
-			delay: 0.25,
-			duration: 0.5
-		},
-		rotateY: {
-		  duration: 1
-		}
-	  }
-	},
-	hidden: {
-	  rotateY: 0,
-	  opacity: 1,
-	  transition: {
-		ease: "easeInOut",
-		duration: 1,
-		opacity: {
-			delay: 0.25,
-			duration: 0.5
-		},
-		rotateY: {
-		  duration: 1
-		}
-	  }
-	}
+    flip: {
+      rotateY: 180,
+      opacity: 0,
+      transition: {
+        ease: "easeInOut",
+        duration: 1,
+        opacity: {
+          delay: 0.25,
+          duration: 0.5,
+        },
+        rotateY: {
+          duration: 1,
+        },
+      },
+    },
+    hidden: {
+      rotateY: 0,
+      opacity: 1,
+      transition: {
+        ease: "easeInOut",
+        duration: 1,
+        opacity: {
+          delay: 0.25,
+          duration: 0.5,
+        },
+        rotateY: {
+          duration: 1,
+        },
+      },
+    },
   };
 
   const backVariants: Variants = {
-	flip: {
-	  rotateY: 0,
-	  opacity: 1,
-	  transition: {
-		ease: "easeInOut",
-		duration: 1,
-		opacity: {
-			delay: 0.25,
-			duration: 0.5
-		},
-		rotateY: {
-		  duration: 1
-		}
-	  }
-	},
-	hidden: {
-	  rotateY: 180,
-	  opacity: 0,
-	  transition: {
-		ease: "easeInOut",
-		duration: 1,
-		opacity: {
-			delay: 0.25,
-			duration: 0.5
-		},
-		rotateY: {
-		  duration: 1
-		}
-	  }
-	}
+    flip: {
+      rotateY: 0,
+      opacity: 1,
+      transition: {
+        ease: "easeInOut",
+        duration: 1,
+        opacity: {
+          delay: 0.25,
+          duration: 0.5,
+        },
+        rotateY: {
+          duration: 1,
+        },
+      },
+    },
+    hidden: {
+      rotateY: 180,
+      opacity: 0,
+      transition: {
+        ease: "easeInOut",
+        duration: 1,
+        opacity: {
+          delay: 0.25,
+          duration: 0.5,
+        },
+        rotateY: {
+          duration: 1,
+        },
+      },
+    },
   };
 
   return (
-    <div className={styles.item}>
-      <motion.div
-        className={styles.image_container}
-       
-      >
+    <li className={styles.item}>
+      <motion.div className={styles.image_container}>
         <motion.img
           className={cn(styles.image, styles.front_image)}
           src={`${baseUrl}/${id}/image/`}
-		  variants={frontVariants}
-		  initial="hidden"
-		  animate={isFlip ? "flip" : "hidden"}
+          variants={frontVariants}
+          initial="hidden"
+          animate={isFlip ? "flip" : "hidden"}
+          width="320"
+          height="320"
           alt=""
         />
         {reverse && (
-        <motion.img
-          className={cn(styles.image, styles.back_image)}
-          src={`${baseUrl}/${id}/image/?reverse=true`}
-		  variants={backVariants}
-		  initial="hidden"
-		  animate={isFlip ? "flip" : "hidden"}
-          alt=""
-        />
+          <motion.img
+            className={cn(styles.image, styles.back_image)}
+            src={`${baseUrl}/${id}/image/?reverse=true`}
+            variants={backVariants}
+            initial="hidden"
+            animate={isFlip ? "flip" : "hidden"}
+            width="320"
+            height="320"
+            alt=""
+          />
         )}
       </motion.div>
       <div className={styles.details}>
@@ -223,6 +224,6 @@ export const Item: FC<TItemProps> = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </li>
   );
 };
