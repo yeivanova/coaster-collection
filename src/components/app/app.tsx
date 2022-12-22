@@ -8,10 +8,18 @@ import { Sidebar } from "../sidebar/sidebar";
 import { Modal } from "../modal/modal";
 import { AnimatePresence } from "framer-motion";
 import { DeviceContext } from "../../services/app-context";
+import { useAppDispatch } from "../../hooks/hooks";
+import { fetchCoasters } from "../../services/fetchCoasters";
 
 export const Main: FC = () => {
   const [sidebarIsOpened, setSidebarIsOpened] = useState<boolean>(false);
   const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const loadData = () => dispatch(fetchCoasters(0));
+
+  useEffect(() => {
+    loadData();
+  }, [dispatch]);
 
   const toggleSidebar = () => {
     setSidebarIsOpened(!sidebarIsOpened);

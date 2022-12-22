@@ -4,6 +4,9 @@ import styles from "./modal.module.scss";
 import close from "../../images/close.svg";
 import { Overlay } from "../overlay/overlay";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { RootState } from "../../services/store";
+import { declension } from "../../utils/utils";
 
 const modalRoot = document.getElementById("react-modals") as
   | Element
@@ -35,6 +38,7 @@ type TModalProps = {
 };
 
 export const Modal: FC<TModalProps> = ({ closeModal }) => {
+  const quantity = useSelector((state: RootState) => state.coasters.items).length;
   const closeMe = useCallback(() => {
     closeModal();
     document.body.classList.remove("no-scroll");
@@ -74,7 +78,7 @@ export const Modal: FC<TModalProps> = ({ closeModal }) => {
             барам, то есть практически с рождения :)
           </p>
           <p>
-            Сейчас моя коллекция насчитывает 834 бирдекеля. И это не предел!
+            Сейчас моя коллекция насчитывает {declension(quantity, ["бирдекель", "бирдекеля", "бирдекелей"])}. И это не предел!
           </p>
           <p>
             Я безмерно признателем всем друзьям, которые со всех краев нашей
@@ -89,12 +93,12 @@ export const Modal: FC<TModalProps> = ({ closeModal }) => {
           <p>
             На сайте работает прекрасный фильтр на случай, если ты устанешь
             скролить до экзотических бирдекелей (а они есть).
-          </p>{" "}
+          </p>
           <p>
             Еще обязательно загляни в раздел статистики, чтобы поразиться
             количеству бирдекелей, которые пылятся (с любовью хранятся) в шкафу
             в картонной коробке.
-          </p>{" "}
+          </p>
           <p>Ах, да! Еще я варю пиво. Вот!</p>
         </div>
       </motion.div>

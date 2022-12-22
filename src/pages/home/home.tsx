@@ -1,52 +1,46 @@
 import React, { FC, useEffect, useState, useContext } from "react";
 import styles from "./home.module.scss";
-import { baseUrl } from "../../utils/api";
 import { Preloader } from "../../components/preloader/preloader";
 import { Item } from "../../components/coaster-item/coaster-item";
 import { DeviceContext } from "../../services/app-context";
-import axios from "axios";
+import { TCoaster } from "../../services/types";
+import { useSelector } from "react-redux";
+import { RootState } from "../../services/store";
+import { selectStatus } from "../../slices/coastersSlice";
+import { useTypedSelector } from "../../services/store";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-type TCoaster = {
-  id: number;
-  beerType: string[];
-  brand: string;
-  country?: string;
-  kind?: string;
-  category: string;
-  type: string;
-  reverse: string;
-  shape: string;
-};
-
 export const HomePage: FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const items = useSelector((state: RootState) => state.coasters.items);
   const [data, setData] = useState<TCoaster[]>([]);
   const [page, setPage] = useState(1);
   const { isDesktop } = useContext(DeviceContext);
+  const status = useTypedSelector(selectStatus);
 
-  const fetchData = () => {
-    axios
-      .get(`${baseUrl}?PageNumber=${page}&PageSize=${isDesktop ? 24 : 10}`)
-      .then((res) => {
-        setData([...data, ...res.data]);
-        setPage(page + 1);
-        setIsLoading(false);
-      });
+  const pageSize = isDesktop ? 24 : 10;
+
+  const sliceData = () => {
+    if (items.length > 0) {
+      setData([
+        ...data,
+        ...items.slice((page - 1) * pageSize, page * pageSize),
+      ]);
+      setPage(page + 1);
+    }
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    sliceData();
+  }, [items]);
 
   return (
     <main className={styles.main}>
-      {isLoading ? (
+      {status === "loading" ? (
         <Preloader />
       ) : (
         <InfiniteScroll
           dataLength={data.length}
-          next={() => fetchData()}
+          next={() => sliceData()}
           hasMore={true}
           loader={<Preloader />}
         >
