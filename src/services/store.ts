@@ -1,13 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { 
-	TypedUseSelectorHook, 
-	useSelector 
-  } from "react-redux";
-import coastersReducer from '../slices/coastersSlice';
+import { TypedUseSelectorHook, useSelector } from "react-redux";
+import coastersReducer from "../slices/coastersSlice";
 
-export const useTypedSelector: TypedUseSelectorHook<
-  RootState
-> = useSelector;
+export const useTypedSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const store = configureStore({
   reducer: {
@@ -15,5 +10,5 @@ export const store = configureStore({
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

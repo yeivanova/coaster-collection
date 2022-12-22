@@ -62,3 +62,19 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 5px;
+}
+ 
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: var(--scrollbarTrack);
+}
+ 
+::-webkit-scrollbar-thumb {
+  border: 2px solid var(--scrollbarTrack);
+  background-color: var(--scrollbarThumb);
+  border-radius: 5px;
+}

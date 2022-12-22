@@ -3,16 +3,35 @@ import { RootState } from "../services/store";
 import { TCoaster } from "../services/types";
 import { fetchCoasters } from "../services/fetchCoasters";
 
+type TParams =
+  | "type"
+  | "brand"
+  | "kind"
+  | "country"
+  | "shape"
+  | "reverse";
+
 export interface CoastersState {
   status: "loading" | "idle";
   error: string | null;
   items: ReadonlyArray<TCoaster>;
+  params: {
+    [param in TParams]: string[]
+  }
 }
 
 const initialState: CoastersState = {
   status: "idle",
   error: null,
   items: [],
+  params: {
+    type: [],
+    brand: [],
+    kind: [],
+    country: [],
+    shape: [],
+    reverse: [],
+  }
 };
 
 export const selectStatus = (state: RootState) => state.coasters.status;
@@ -29,6 +48,12 @@ export const coastersSlice = createSlice({
 
     builder.addCase(fetchCoasters.fulfilled, (state, { payload }) => {
       state.items = [...payload];
+      state.params.type = [...new Set(payload.map(item => item.type))];
+      state.params.brand = [...new Set(payload.map(item => item.brand).filter(item => item !== '-'))];
+      state.params.kind = [...new Set(payload.map(item => item.kind))];
+      state.params.country = [...new Set(payload.map(item => item.country).filter(item => item !== '-'))];
+      state.params.shape = [...new Set(payload.map(item => item.shape))];
+      state.params.reverse = [...new Set(payload.map(item => item.reverse))];
       state.status = "idle";
     });
 
