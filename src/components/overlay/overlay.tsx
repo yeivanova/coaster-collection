@@ -19,6 +19,11 @@ export const Overlay: FC<TModalProps> = ({
     document.body.classList.remove("no-scroll");
   }, [onClick]);
 
+  const handleClose = () => {
+    onClick();
+    document.body.classList.remove("no-scroll");
+  }
+
   useEffect(() => {
     document.body.classList.add("no-scroll");
   }, []);
@@ -37,7 +42,7 @@ export const Overlay: FC<TModalProps> = ({
     <motion.div
       id="overlay"
       className={cn(styles.overlay, transparent && styles.transparent)}
-      onClick={onClick}
+      onClick={handleClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
