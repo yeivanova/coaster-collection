@@ -11,15 +11,15 @@ import { Overlay } from "../overlay/overlay";
 type TSidebarProps = {
   isOpened: boolean;
   closeSidebar: () => void;
-  url: string;
-  setUrl: (value: string) => void;
+  paramsStr: string;
+  setParamsStr: (value: string) => void;
 };
 
 export const Sidebar: FC<TSidebarProps> = ({
   isOpened,
   closeSidebar,
-  url,
-  setUrl,
+  paramsStr,
+  setParamsStr,
 }) => {
   const params = useSelector((state: RootState) => state.coasters.params);
   const [reverse, setReverse] = useState(false);
@@ -31,11 +31,13 @@ export const Sidebar: FC<TSidebarProps> = ({
   const { isDesktop } = useContext(DeviceContext);
 
   useEffect(() => {
-    setTypes(new Array(params.type.length).fill(false));
-    setBrands(new Array(params.brand.length).fill(false));
-    setKinds(new Array(params.kind.length).fill(false));
-    setCountries(new Array(params.country.length).fill(false));
-    setShapes(new Array(params.shape.length).fill(false));
+    if (params.type.length > 0) {
+      setTypes(new Array(params.type.length).fill(false));
+      setBrands(new Array(params.brand.length).fill(false));
+      setKinds(new Array(params.kind.length).fill(false));
+      setCountries(new Array(params.country.length).fill(false));
+      setShapes(new Array(params.shape.length).fill(false));
+    }
   }, [params]);
 
   const handleOnChange = (
@@ -57,23 +59,24 @@ export const Sidebar: FC<TSidebarProps> = ({
     paramArr: string[],
     paramName: string
   ) => {
-    let currentUrl = new URL(url);
+    let currentParams = new URLSearchParams(paramsStr);
+    
     arr.forEach((currentValue, index) => {
       if (
         currentValue === true &&
-        !currentUrl.searchParams.getAll(paramName).includes(paramArr[index])
+        !currentParams.getAll(paramName).includes(paramArr[index])
       ) {
-        currentUrl.searchParams.append(paramName, paramArr[index]);
+        currentParams.append(paramName, paramArr[index]);
       }
 
       if (
         currentValue === false &&
-        currentUrl.searchParams.getAll(paramName).includes(paramArr[index])
+        currentParams.getAll(paramName).includes(paramArr[index])
       ) {
-        currentUrl.searchParams.delete(paramName);
+        currentParams.delete(paramName);
       }
     });
-    setUrl(currentUrl.toString());
+    setParamsStr(currentParams.toString());
   };
 
   const slideIn = {
@@ -130,7 +133,7 @@ export const Sidebar: FC<TSidebarProps> = ({
                         types,
                         setTypes,
                         params.type,
-                        "types"
+                        "type"
                       )
                     }
                   />
@@ -227,7 +230,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
         </motion.div>
-      </Overlay>
+      </Overlay> 
     );
   } else return <></>;
 };
