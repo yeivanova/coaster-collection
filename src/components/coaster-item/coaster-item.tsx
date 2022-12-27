@@ -1,6 +1,4 @@
 import React, { FC, useEffect, useState, useRef } from "react";
-import front from "../../images/1_1.png";
-import back from "../../images/1_2.png";
 import styles from "./coaster-item.module.scss";
 import cn from "classnames";
 import { baseUrl } from "../../utils/api";

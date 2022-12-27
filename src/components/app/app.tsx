@@ -10,10 +10,12 @@ import { AnimatePresence } from "framer-motion";
 import { DeviceContext } from "../../services/app-context";
 import { useAppDispatch } from "../../hooks/hooks";
 import { fetchCoasters } from "../../services/fetchCoasters";
+import { baseUrl } from "../../utils/api";
 
 export const Main: FC = () => {
   const [sidebarIsOpened, setSidebarIsOpened] = useState<boolean>(false);
   const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
+  const [filterUrl, setFilterUrl] = useState<string>(baseUrl);
   const dispatch = useAppDispatch();
   const loadData = () => dispatch(fetchCoasters(0));
 
@@ -23,6 +25,7 @@ export const Main: FC = () => {
 
   const toggleSidebar = () => {
     setSidebarIsOpened(!sidebarIsOpened);
+    console.log("app", !sidebarIsOpened);
   };
 
   const closeSidebar = () => {
@@ -45,14 +48,12 @@ export const Main: FC = () => {
           openModal={openModal}
           sidebarIsOpened={sidebarIsOpened}
         />
-        <AnimatePresence
-          initial={false}
-          exitBeforeEnter={true}
-          onExitComplete={() => null}
-        >
-          {sidebarIsOpened && <Sidebar closeSidebar={closeSidebar} />}
-        </AnimatePresence>
-
+        <Sidebar
+          isOpened={sidebarIsOpened}
+          closeSidebar={closeSidebar}
+          url={filterUrl}
+          setUrl={setFilterUrl}
+        />
         <Routes>
           <Route path="*" element={<NotFoundPage />} />
           <Route path="/" element={<HomePage />} />
@@ -95,7 +96,8 @@ export const App: FC = () => {
 
   return (
     <BrowserRouter>
-      <DeviceContext.Provider value={{ isDesktop: isDesktop, changeIsDesktop: setIsDesktop }}
+      <DeviceContext.Provider
+        value={{ isDesktop: isDesktop, changeIsDesktop: setIsDesktop }}
       >
         <Main />
       </DeviceContext.Provider>

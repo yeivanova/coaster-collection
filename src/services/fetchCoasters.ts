@@ -11,7 +11,7 @@ export const fetchCoasters = createAsyncThunk<
   number,
   { rejectValue: FetchCoastersError }
 >("coasters/fetch", async (limit: number, thunkApi) => {
-  const response = await fetch(`${baseUrl}/all`);
+  const response = await fetch(`${baseUrl}`);
   const data: TCoaster[] = await response.json();
   if (response.status !== 200) {
     return thunkApi.rejectWithValue({

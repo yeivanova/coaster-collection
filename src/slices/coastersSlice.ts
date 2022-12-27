@@ -50,7 +50,7 @@ export const coastersSlice = createSlice({
       state.items = [...payload];
       state.params.type = [...new Set(payload.map(item => item.type))];
       state.params.brand = [...new Set(payload.map(item => item.brand).filter(item => item !== '-'))];
-      state.params.kind = [...new Set(payload.map(item => item.kind))];
+      state.params.kind = [...new Set(payload.map(item => item.kind).filter(item => item !== '-'))];
       state.params.country = [...new Set(payload.map(item => item.country).filter(item => item !== '-'))];
       state.params.shape = [...new Set(payload.map(item => item.shape))];
       state.params.reverse = [...new Set(payload.map(item => item.reverse))];
