@@ -7,6 +7,8 @@ type TPanelProps = {
   children: ReactNode;
   title?: string;
   isMultiple?: boolean;
+  isOpen?: boolean;
+  setIsOpen?: (value: boolean) => void
 };
 
 const collapse = {
@@ -33,13 +35,10 @@ const collapse = {
   },
 };
 
-export const Panel: FC<TPanelProps> = ({ children, title, isMultiple = true }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  console.log("isOpen", isOpen);
-
+export const Panel: FC<TPanelProps> = ({ children, title, isMultiple = true, isOpen, setIsOpen }) => {
   return (
     <div className={cn(styles.panel, isMultiple ? styles.is_multiple : styles.is_single)}>
-      {title && (
+      {title && (typeof setIsOpen !== "undefined") && (
         <button
           className={cn(
             styles.button,

@@ -28,6 +28,7 @@ export const Sidebar: FC<TSidebarProps> = ({
   const [kinds, setKinds] = useState<boolean[]>();
   const [countries, setCountries] = useState<boolean[]>();
   const [shapes, setShapes] = useState<boolean[]>();
+  const [filterPanels, setFilterPanels] = useState<boolean[]>(new Array(5).fill(false));
   const { isDesktop } = useContext(DeviceContext);
 
   useEffect(() => {
@@ -39,6 +40,13 @@ export const Sidebar: FC<TSidebarProps> = ({
       setShapes(new Array(params.shape.length).fill(false));
     }
   }, [params]);
+
+  const handleOnOpen = (position: number) => {
+    const updatedOpenedState = filterPanels.map((item, index) =>
+      index === position ? !item : item
+    );
+    setFilterPanels(updatedOpenedState);
+  };
 
   const handleOnChange = (
     position: number,
@@ -120,7 +128,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             />
           </Panel>
           {types && (
-            <Panel title="Тип">
+            <Panel title="Тип" isOpen={filterPanels[0]} setIsOpen={() => handleOnOpen(0)}>
               {types.map((value, index) => {
                 return (
                   <Checkbox
@@ -142,7 +150,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
           {brands && (
-            <Panel title="Марка">
+            <Panel title="Марка" isOpen={filterPanels[1]} setIsOpen={() => handleOnOpen(1)}>
               {brands.map((value, index) => {
                 return (
                   <Checkbox
@@ -164,7 +172,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
           {kinds && (
-            <Panel title="Вид">
+            <Panel title="Вид" isOpen={filterPanels[2]} setIsOpen={() => handleOnOpen(2)}>
               {kinds.map((value, index) => {
                 return (
                   <Checkbox
@@ -186,7 +194,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
           {countries && (
-            <Panel title="Страна">
+            <Panel title="Страна" isOpen={filterPanels[3]} setIsOpen={() => handleOnOpen(3)}>
               {countries.map((value, index) => {
                 return (
                   <Checkbox
@@ -208,7 +216,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
           {shapes && (
-            <Panel title="Форма">
+            <Panel title="Форма" isOpen={filterPanels[4]} setIsOpen={() => handleOnOpen(4)}>
               {shapes.map((value, index) => {
                 return (
                   <Checkbox
