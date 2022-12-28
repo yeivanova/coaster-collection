@@ -1,19 +1,39 @@
 .panel {
-  padding: 10px 4px 10px 14px;
+  padding: 0;
   margin-bottom: 4px;
   border: 1px solid var(--borderColor);
   border-radius: 3px;
+  overflow: hidden;
 }
 
 .h3 {
   font-weight: 400;
   font-size: 16px;
   line-height: 1;
-  margin-bottom: 12px;
+}
+
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 4px 10px 14px;
+  border: none;
+  background-color: var(--lightColor);
+  transform: none;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.button_opened svg {
+  transform: translateY(-2px) rotateX(180deg);
+  transform-origin: center;
 }
 
 .panel_inner {
   max-height: 125px;
+  padding: 0 4px 0 14px;
+  margin-right: 4px;
   overflow-y: auto;
 
   &::-webkit-scrollbar {
@@ -31,4 +51,15 @@
     background-color: var(--scrollbarThumb);
     border-radius: 3px;
   }
+}
+
+.single {
+  font-size: 16px;
+  line-height: 1;
+  padding: 6px 4px 6px 14px;
+}
+
+.multiple {
+  font-size: 12px;
+  line-height: 14px;
 }

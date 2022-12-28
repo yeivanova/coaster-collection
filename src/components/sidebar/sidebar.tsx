@@ -104,12 +104,12 @@ export const Sidebar: FC<TSidebarProps> = ({
           className={styles.sidebar}
           variants={slideIn}
           initial="hidden"
-          animate={"visible"}
+          animate="visible"
           exit="exit"
           onClick={(e) => e.stopPropagation()}
         >
           {!isDesktop && <h2 className={styles.h2}>Фильтр</h2>}
-          <Panel className={styles.single}>
+          <Panel isMultiple={false}>
             <Checkbox
               label={"Оборот"}
               checked={reverse}
@@ -120,7 +120,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             />
           </Panel>
           {types && (
-            <Panel title="Тип" className={styles.multiple}>
+            <Panel title="Тип">
               {types.map((value, index) => {
                 return (
                   <Checkbox
@@ -142,7 +142,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
           {brands && (
-            <Panel title="Марка" className={styles.multiple}>
+            <Panel title="Марка">
               {brands.map((value, index) => {
                 return (
                   <Checkbox
@@ -164,7 +164,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
           {kinds && (
-            <Panel title="Вид" className={styles.multiple}>
+            <Panel title="Вид">
               {kinds.map((value, index) => {
                 return (
                   <Checkbox
@@ -186,7 +186,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
           {countries && (
-            <Panel title="Страна" className={styles.multiple}>
+            <Panel title="Страна">
               {countries.map((value, index) => {
                 return (
                   <Checkbox
@@ -208,7 +208,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             </Panel>
           )}
           {shapes && (
-            <Panel title="Форма" className={styles.multiple}>
+            <Panel title="Форма">
               {shapes.map((value, index) => {
                 return (
                   <Checkbox
