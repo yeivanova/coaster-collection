@@ -53,7 +53,7 @@ export const App: FC = () => {
   }, []);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/coaster-collection">
       <DeviceContext.Provider
         value={{ isDesktop: isDesktop, changeIsDesktop: setIsDesktop }}
       >
