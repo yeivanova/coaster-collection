@@ -4,6 +4,7 @@ import { Header } from "../../components/header/header";
 import { Sidebar } from "../../components/sidebar/sidebar";
 import { Preloader } from "../../components/preloader/preloader";
 import { Item } from "../../components/coaster-item/coaster-item";
+import { UpButton } from "../../components/upButton/upButton";
 import { DeviceContext } from "../../services/app-context";
 import { TCoaster } from "../../services/types";
 import { baseUrl } from "../../utils/api";
@@ -115,6 +116,7 @@ export const HomePage: FC = () => {
           </div>
         )}
       </main>
+      <UpButton />
     </>
   );
 };

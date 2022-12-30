@@ -43,9 +43,10 @@ export const Header: FC<THeaderProps> = ({
     scrollTop >= 100 ? setIsSticky(true) : setIsSticky(false);
   };
 
-  const openMenu = () => {
+  const toggleMenu = () => {
     setIsOpened((current) => !current);
     toggleSidebar && toggleSidebar();
+    document.body.classList.toggle("no-scroll");
   };
 
   return (
@@ -70,7 +71,7 @@ export const Header: FC<THeaderProps> = ({
                   styles.filter_button,
                   sidebarIsOpened && styles.menu_open
                 )}
-                onClick={openMenu}
+                onClick={toggleMenu}
               >
                 <span className={styles.icon}>
                   <span className={cn(styles.line, styles.line1)}></span>
