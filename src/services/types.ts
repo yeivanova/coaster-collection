@@ -9,3 +9,5 @@ export type TCoaster = {
 	reverse: string;
 	shape: string;
   };
+
+export type TParams = "type" | "brand" | "kind" | "country" | "shape" | "reverse";

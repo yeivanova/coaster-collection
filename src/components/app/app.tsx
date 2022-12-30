@@ -7,7 +7,6 @@ import { DeviceContext } from "../../services/app-context";
 import { useAppDispatch } from "../../hooks/hooks";
 import { fetchCoasters } from "../../services/fetchCoasters";
 
-
 export const Main: FC = () => {
   const dispatch = useAppDispatch();
   const loadData = () => dispatch(fetchCoasters(0));

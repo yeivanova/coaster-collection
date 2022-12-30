@@ -20,7 +20,7 @@ const collapse = {
     },
   },
   visible: {
-    maxHeight: 125,
+    maxHeight: 128,
     marginBottom: 10,
     transition: {
       duration: 0.15,

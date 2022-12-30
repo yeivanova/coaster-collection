@@ -13,4 +13,12 @@
     border-radius: 2px;
     margin-right: 5px;
   }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.label_disabled {
+  color: var(--disabledColor);
 }

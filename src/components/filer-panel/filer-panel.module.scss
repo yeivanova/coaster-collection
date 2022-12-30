@@ -1,4 +1,5 @@
 .panel {
+  flex-shrink: 0;
   padding: 0;
   margin-bottom: 4px;
   border: 1px solid var(--borderColor);
@@ -31,7 +32,7 @@
 }
 
 .panel_inner {
-  max-height: 125px;
+  max-height: 128px;
   padding: 0 4px 0 14px;
   margin-right: 4px;
   overflow-y: auto;
