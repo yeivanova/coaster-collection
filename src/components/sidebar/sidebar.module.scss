@@ -25,3 +25,14 @@
   line-height: 1;
   margin-bottom: 14px;
 }
+
+.clear_filter {
+  font-size: 12px;
+  line-height: 14px;
+  padding: 8px 4px 8px 14px;
+  border: 1px solid var(--borderColor);
+  border-radius: 3px;
+  background-color: var(--scrollbarTrack);
+  margin-bottom: 4px;
+  cursor: pointer;
+}

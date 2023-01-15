@@ -49,22 +49,26 @@ export const Sidebar: FC<TSidebarProps> = ({
   const [checkboxAction, setCheckboxAction] = useState<boolean>(false);
   const { isDesktop } = useContext(DeviceContext);
 
+  const initParams = () => {
+    setTypes(new Array(allParams.type.length).fill(false));
+    setBrands(new Array(allParams.brand.length).fill(false));
+    setKinds(new Array(allParams.kind.length).fill(false));
+    setCountries(new Array(allParams.country.length).fill(false));
+    setShapes(new Array(allParams.shape.length).fill(false));
+    setParamsActivity({
+      types: new Array(allParams.type.length).fill(true),
+      brands: new Array(allParams.brand.length).fill(true),
+      kinds: new Array(allParams.kind.length).fill(true),
+      countries: new Array(allParams.country.length).fill(true),
+      shapes: new Array(allParams.shape.length).fill(true),
+      reverse: new Array(allParams.reverse.length).fill(true),
+    });
+    setLastParams(allParams);
+}
+
   useEffect(() => {
     if (allParams.type.length > 0) {
-      setTypes(new Array(allParams.type.length).fill(false));
-      setBrands(new Array(allParams.brand.length).fill(false));
-      setKinds(new Array(allParams.kind.length).fill(false));
-      setCountries(new Array(allParams.country.length).fill(false));
-      setShapes(new Array(allParams.shape.length).fill(false));
-      setParamsActivity({
-        types: new Array(allParams.type.length).fill(true),
-        brands: new Array(allParams.brand.length).fill(true),
-        kinds: new Array(allParams.kind.length).fill(true),
-        countries: new Array(allParams.country.length).fill(true),
-        shapes: new Array(allParams.shape.length).fill(true),
-        reverse: new Array(allParams.reverse.length).fill(true),
-      });
-      setLastParams(currentParams);
+      initParams();
     }
   }, [allParams]);
 
@@ -75,6 +79,12 @@ export const Sidebar: FC<TSidebarProps> = ({
       }
     }
   }, [currentParams]);
+
+  const clearFilter = () => {
+    setParamsStr("");
+    setReverse(false);
+    initParams();
+  }
 
   const compareParams = (category: TParams) => {
     if (typeof paramsActivity !== "undefined") {
@@ -103,6 +113,7 @@ export const Sidebar: FC<TSidebarProps> = ({
             ? true
             : false;
       });
+      
       allParams.kind.forEach((kind, index) => {
         tempKinds[index] =
           category !== "kind" || checkboxAction
@@ -142,7 +153,6 @@ export const Sidebar: FC<TSidebarProps> = ({
       newParamsActivity.countries = tempCountries;
       newParamsActivity.shapes = tempShapes;
       newParamsActivity.reverse = tempReverse;
-
       setParamsActivity(newParamsActivity);
       const lastTemp = { ...currentParams };
       if (typeof lastParams !== "undefined") {
@@ -229,6 +239,7 @@ export const Sidebar: FC<TSidebarProps> = ({
           onClick={(e) => e.stopPropagation()}
         >
           {!isDesktop && <h2 className={styles.h2}>Фильтр</h2>}
+          <button className={styles.clear_filter} onClick={clearFilter}>Очистить фильтр</button>
           <Panel isMultiple={false}>
             <Checkbox
               label={"Оборот"}
