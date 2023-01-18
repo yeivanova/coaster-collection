@@ -1,0 +1,79 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  text-align: center;
+  color: var(--lightColor);
+  background-color: var(--backgroundColor);
+}
+
+h1, .h1 {
+  font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
+  margin-bottom: 20px;
+
+  @media (max-width: 1199px) {
+    max-width: 540px;
+    font-size: 36px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 300px;
+    font-size: 24px;
+  }
+}
+
+.subtext {
+  font: 900 72px/1 "Rubik", sans-serif;
+  text-transform: uppercase;
+
+  @media (max-width: 1199px) {
+    font-size: 48px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 26px;
+  }
+}
+
+.quantity {
+  font: 270px/0.8 "Rubik", sans-serif;
+  margin-top: -10px;
+  margin-bottom: -60px;
+
+  @media (max-width: 1199px) {
+    font-size: 180px;
+    height: 250px;
+    margin: -50px 0 -20px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 160px;
+    height: 200px;
+    margin: -105px 0 0px;
+  }
+
+  .text {
+    stroke: var(--lightColor);
+    stroke-width: 10;
+    stroke-linecap: round;
+
+    @media (max-width: 1199px) {
+      stroke-width: 6;
+    }
+
+    @media (max-width: 767px) {
+      stroke-width: 4;
+    }
+  }
+}
+
+.back_home {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  font-size: 20px;
+  color: var(--lightColor);
+}
