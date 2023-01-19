@@ -1,16 +1,24 @@
 .main {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  font-family: "Yanone Kaffeesatz", sans-serif;
+  font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
   text-align: center;
   color: var(--lightColor);
   background-color: var(--backgroundColor);
+
+  @media (max-width: 1199px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 24px;
+  }
 }
 
-h1, .h1 {
+.h1 {
   font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
   margin-bottom: 20px;
 
@@ -76,4 +84,68 @@ h1, .h1 {
   left: 20px;
   font-size: 20px;
   color: var(--lightColor);
+
+  @media (max-width: 767px) {
+    font-size: 14px;
+  }
+}
+
+.go {
+  margin: 40px auto 0;
+  cursor: pointer;
+
+  @media (max-width: 1199px) {
+    max-width: 150px;
+    max-height: 150px;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+
+.screen {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1180px;
+  min-height: 100vh;
+  margin: auto;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+.screen_1 {
+  flex-direction: column;
+}
+
+.screen_2 {
+  @media (max-width: 767px) {
+    justify-content: space-around;
+  }
+}
+
+.col_3 {
+  flex-basis: 33%;
+}
+
+.percent {
+  display: block;
+  font-size: 46px;
+  line-height: 1.2;
+  font-family: "Rubik", sans-serif;
+
+  @media (max-width: 1199px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 24px;
+  }
 }

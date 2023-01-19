@@ -16,3 +16,4 @@
 - TypeScript
 - Framer Motion
 - Sass
+- D3.js

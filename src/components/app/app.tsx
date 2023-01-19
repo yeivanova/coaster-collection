@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "../../pages/home/home";
-import { StatisticsPage } from "../../pages/statistics/statistics";
+import { StatisticsPage } from "../../pages/statistics/main";
 import { NotFoundPage } from "../../pages/404/404";
 import { DeviceContext } from "../../services/app-context";
 import { useAppDispatch } from "../../hooks/hooks";
