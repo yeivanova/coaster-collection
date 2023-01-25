@@ -4,10 +4,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
+  font: 200 48px/1 "Yanone Kaffeesatz", sans-serif;
   text-align: center;
   color: var(--lightColor);
-  background-color: var(--backgroundColor);
+  background: var(--backgroundColor) url("../../images/statistics-bg.jpg")
+    repeat top center;
+  background-attachment: fixed;
 
   @media (max-width: 1199px) {
     font-size: 36px;
@@ -95,14 +97,25 @@
   cursor: pointer;
 
   @media (max-width: 1199px) {
-    max-width: 150px;
-    max-height: 150px;
     margin-top: 20px;
   }
 
-  @media (max-width: 767px) {
-    max-width: 100px;
-    max-height: 100px;
+  img {
+    transition: transform 0.2s ease-in-out;
+
+    @media (max-width: 1199px) {
+      max-width: 150px;
+      max-height: 150px;
+    }
+
+    @media (max-width: 767px) {
+      max-width: 100px;
+      max-height: 100px;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 
@@ -114,6 +127,7 @@
   width: 100%;
   max-width: 1180px;
   min-height: 100vh;
+  gap: 30px;
   margin: auto;
 
   @media (max-width: 767px) {
@@ -132,20 +146,9 @@
 }
 
 .col_3 {
-  flex-basis: 33%;
-}
+  width: 100%;
 
-.percent {
-  display: block;
-  font-size: 46px;
-  line-height: 1.2;
-  font-family: "Rubik", sans-serif;
-
-  @media (max-width: 1199px) {
-    font-size: 36px;
-  }
-
-  @media (max-width: 767px) {
-    font-size: 24px;
+  @media (min-width: 768px) {
+    max-width: 33%;
   }
 }

@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
-import * as d3 from "d3";
 import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
+import { DonutChart } from "../../components/donut-chart/donut-chart";
 
 export const SectionTypes: FC = () => {
   const [ref, inView] = useInView({ threshold: 0.5 });
@@ -39,43 +39,80 @@ export const SectionTypes: FC = () => {
     }
   }, [items, quantity]);
 
-  useEffect(() => {
-    if (inView) {
-      countToPercent("#typeBeer", typeBeer);
-      countToPercent("#typeBar", typeBar);
-      countToPercent("#typeOthers", typeOthers);
-    }
-  }, [inView, typeBeer, typeBar, typeOthers]);
-
-  const countToPercent = (id: string, numberStr: string) => {
-    d3.select(id)
-      .transition()
-      .tween("text", () => {
-        const interpolator = d3.interpolateNumber(+numberStr / 2, +numberStr);
-        return function (t: number) {
-          d3.select(this).text(+interpolator(t).toFixed(2) + "%");
-        };
-      })
-      .duration(1000);
-  };
-
   return (
     <section
       id="section-2"
       className={cn(styles.screen, styles.screen_2)}
       ref={ref}
     >
-      <div className={styles.col_3}>
-        <span id="typeBeer" className={styles.percent}></span>
-        Пиво
+      <div
+        className={styles.col_3}
+        style={{
+          transform: inView ? "none" : "scale(0)",
+          opacity: inView ? 1 : 0,
+          transition:
+            "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
+        }}
+      >
+        <DonutChart percent={+typeBeer} inView={inView}>
+          <div
+            className={styles.label}
+            style={{
+              transform: inView ? "none" : "translateY(-100px)",
+              opacity: inView ? 1 : 0,
+              transition:
+                "transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.9s, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.9s",
+            }}
+          >
+            Пиво
+          </div>
+        </DonutChart>
       </div>
-      <div className={styles.col_3}>
-        <span id="typeBar" className={styles.percent}></span>
-        Заведение
+      <div
+        className={styles.col_3}
+        style={{
+          transform: inView ? "none" : "scale(0)",
+          opacity: inView ? 1 : 0,
+          transition:
+            "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s",
+        }}
+      >
+        <DonutChart percent={+typeBar} inView={inView}>
+          <div
+            className={styles.label}
+            style={{
+              transform: inView ? "none" : "translateY(-100px)",
+              opacity: inView ? 1 : 0,
+              transition:
+                "transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 1.1s, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 1.1s",
+            }}
+          >
+            Заведения
+          </div>
+        </DonutChart>
       </div>
-      <div className={styles.col_3}>
-        <span id="typeOthers" className={styles.percent}></span>
-        Остальное
+      <div
+        className={styles.col_3}
+        style={{
+          transform: inView ? "none" : "scale(0)",
+          opacity: inView ? 1 : 0,
+          transition:
+            "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.6s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.6s",
+        }}
+      >
+        <DonutChart percent={+typeOthers} inView={inView}>
+          <div
+            className={styles.label}
+            style={{
+              transform: inView ? "none" : "translateY(-100px)",
+              opacity: inView ? 1 : 0,
+              transition:
+                "transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 1.3s, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 1.3s",
+            }}
+          >
+            Остальное
+          </div>
+        </DonutChart>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Marmelad&family=Rubik:wght@900&family=Yanone+Kaffeesatz&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marmelad&family=Rubik:wght@900&family=Yanone+Kaffeesatz:wght@200&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -43,6 +43,7 @@ p, h1, h2, h3, h4, h5, h6 {
   --scrollbarTrack: #F1F1F1;
   --scrollbarThumb: #C1C1C1;
   --disabledColor: rgba(43, 23, 8, 0.3);
+  --chartColor: #F7AD2A;
 }
 
 body {
