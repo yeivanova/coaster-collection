@@ -201,7 +201,7 @@ export const Item: FC<TItemProps> = ({
       </div>
       <AnimatePresence
         initial={false}
-        exitBeforeEnter={true}
+        mode='wait'
         onExitComplete={() => null}
       >
         {infoIsOpened && (

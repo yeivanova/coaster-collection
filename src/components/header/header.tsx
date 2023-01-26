@@ -111,7 +111,7 @@ export const Header: FC<THeaderProps> = ({
       </header>
       <AnimatePresence
         initial={false}
-        exitBeforeEnter={true}
+        mode='wait'
         onExitComplete={() => null}
       >
         {modalIsOpened && <Modal closeModal={closeModal} />}
