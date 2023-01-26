@@ -6,13 +6,23 @@ import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
 import { DonutChart } from "../../components/donut-chart/donut-chart";
 
-export const SectionTypes: FC = () => {
+type TSectionTypesProps = {
+  setActiveSection: (value: string) => void;
+}
+
+export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
   const [ref, inView] = useInView({ threshold: 0.5 });
   const items = useSelector((state: RootState) => state.coasters.items);
   const quantity = items.length;
   const [typeBeer, setTypeBeer] = useState<string>("0");
   const [typeBar, setTypeBar] = useState<string>("0");
   const [typeOthers, setTypeOthers] = useState<string>("0");
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection("types");
+    }
+  }, [inView]);
 
   useEffect(() => {
     if (items.length > 0) {
@@ -41,7 +51,7 @@ export const SectionTypes: FC = () => {
 
   return (
     <section
-      id="section-2"
+      id="types"
       className={cn(styles.screen, styles.screen_2)}
       ref={ref}
     >

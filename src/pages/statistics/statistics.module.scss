@@ -20,6 +20,11 @@
   }
 }
 
+.header {
+  width: 100%;
+  max-width: 1180px;
+}
+
 .h1 {
   font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
   margin-bottom: 20px;
@@ -67,11 +72,11 @@
 
   .text {
     stroke: var(--lightColor);
-    stroke-width: 10;
+    stroke-width: 6;
     stroke-linecap: round;
 
     @media (max-width: 1199px) {
-      stroke-width: 6;
+      stroke-width: 5;
     }
 
     @media (max-width: 767px) {
@@ -93,15 +98,12 @@
 }
 
 .go {
-  margin: 40px auto 0;
+  margin: 20px auto 0;
   cursor: pointer;
 
-  @media (max-width: 1199px) {
-    margin-top: 20px;
-  }
-
   img {
-    transition: transform 0.2s ease-in-out;
+    animation: pulse 1.2s infinite;
+    animation-timing-function: ease-in-out;
 
     @media (max-width: 1199px) {
       max-width: 150px;
@@ -112,10 +114,18 @@
       max-width: 100px;
       max-height: 100px;
     }
+  }
+}
 
-    &:hover {
-      transform: scale(1.1);
-    }
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -128,6 +138,7 @@
   max-width: 1180px;
   min-height: 100vh;
   gap: 30px;
+  padding: 30px 0;
   margin: auto;
 
   @media (max-width: 767px) {

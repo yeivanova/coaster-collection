@@ -1,0 +1,38 @@
+.header {
+  position: fixed;
+  width: 100%;
+  max-width: 1180px;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar {
+  padding: 60px 0 0;
+}
+
+.navigation_list {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+  gap: 40px;
+  list-style-type: none;
+}
+
+.nav_link {
+  font: 900 30px/1 "Rubik", sans-serif;
+  letter-spacing: 0.05em;
+  color: var(--lightColor);
+  opacity: 0.3;
+  border: none;
+  background-color: transparent;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+
+  &.active {
+    font-size: 75px;
+    opacity: 1;
+  }
+}

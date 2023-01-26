@@ -3,9 +3,21 @@ import styles from "./statistics.module.scss";
 import cn from "classnames";
 import * as d3 from "d3";
 import { useInView } from "react-intersection-observer";
+import { HashLink } from "react-router-hash-link";
 
-export const SectionIntro: FC<{ quantity: number }> = ({ quantity }) => {
-  const [ref, inView] = useInView({ threshold: 0.5, triggerOnce: true });
+type TSectionIntroProps = {
+  quantity: number;
+  setActiveSection: (value: string) => void;
+}
+
+export const SectionIntro: FC<TSectionIntroProps> = ({ quantity, setActiveSection }) => {
+  const [ref, inView] = useInView({ threshold: 0.5 });
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection("intro");
+    }
+  }, [inView]);
 
   useEffect(() => {
     if (inView) {
@@ -24,7 +36,7 @@ export const SectionIntro: FC<{ quantity: number }> = ({ quantity }) => {
 
   return (
     <section
-      id="section-1"
+      id="intro"
       className={cn(styles.screen, styles.screen_1)}
       ref={ref}
     >
@@ -34,7 +46,7 @@ export const SectionIntro: FC<{ quantity: number }> = ({ quantity }) => {
             transform: inView ? "none" : "translateY(-50px)",
             opacity: inView ? 1 : 0,
             transition:
-              "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s, opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
+              "transform 0.3s ease-in-out 0.01s, opacity 0.3s ease-in-out 0.01s",
           }}
         >
           На данный момент эта коллекция насчитывает
@@ -46,7 +58,7 @@ export const SectionIntro: FC<{ quantity: number }> = ({ quantity }) => {
             transform: inView ? "none" : "translateY(-200px)",
             opacity: inView ? 1 : 0,
             transition:
-              "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.8s, opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.8s",
+              "transform 0.5s ease-in-out 0.05s, opacity 0.5s ease-in-out 0.05s",
           }}
         >
           <svg width="100%" height="320" viewBox="0 0 530 320">
@@ -67,7 +79,7 @@ export const SectionIntro: FC<{ quantity: number }> = ({ quantity }) => {
             transform: inView ? "none" : "translateY(-100px)",
             opacity: inView ? 1 : 0,
             transition:
-              "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 2s, opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 2s",
+              "transform 0.3s ease-in-out 0.6s, opacity 0.3s ease-in-out 0.6s",
           }}
         >
           бирдекелей
@@ -79,7 +91,7 @@ export const SectionIntro: FC<{ quantity: number }> = ({ quantity }) => {
           transform: inView ? "none" : "translateY(-100px)",
           opacity: inView ? 1 : 0,
           transition:
-            "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 2.6s, opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 2.6s",
+            "transform 0.3s ease-in-out 0.8s, opacity 0.3s ease-in-out 0.8s",
         }}
       >
         и вся статистика на этой странице рассчитана из этого числа
@@ -89,24 +101,20 @@ export const SectionIntro: FC<{ quantity: number }> = ({ quantity }) => {
         style={{
           transform: inView
             ? "none"
-            : "translateY(-200px) scale(0) rotate(1800deg)",
+            : "translateY(-200px) scale(0) rotate(-1800deg)",
           opacity: inView ? 1 : 0,
           transition:
-            "transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 3.6s, opacity 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 3.6s",
+            "transform 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s, opacity 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s",
         }}
       >
+        <HashLink to="#types" smooth>
         <img
-          onClick={() => {
-            const element = document.getElementById("section-2");
-            if (element) {
-              element.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
           src={require("../../images/gagarin.png")}
           width="200"
           height="200"
           alt="Поехали!"
         />
+        </HashLink>
       </div>
     </section>
   );
