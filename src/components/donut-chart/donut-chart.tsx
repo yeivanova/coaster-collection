@@ -2,7 +2,6 @@ import React, { FC, useRef, useEffect, ReactNode } from "react";
 import styles from "./donut-chart.module.scss";
 import { v4 as uuid } from "uuid";
 import * as d3 from "d3";
-import { PieArcDatum } from "d3";
 
 type TDonutChartProps = {
   children: ReactNode;
@@ -22,7 +21,7 @@ const countToPercent = (id: string, numberStr: number) => {
     .tween("text", () => {
       const interpolator = d3.interpolateNumber(numberStr / 2, numberStr);
       return function (t: number) {
-        d3.select(this).text(+interpolator(t).toFixed(2) + "%");
+        d3.select(this).text(+interpolator(t).toFixed(1) + "%");
       };
     })
     .duration(1000);
@@ -65,7 +64,7 @@ export const DonutChart: FC<TDonutChartProps> = ({
 
       const data_ready = pie([percent, 100 - percent]);
       const arc = d3
-        .arc<PieArcDatum<number | { valueOf(): number }>>()
+        .arc<d3.PieArcDatum<number | { valueOf(): number }>>()
         .innerRadius(radius * 0.8)
         .outerRadius(radius + margin / 2).startAngle(0);
 

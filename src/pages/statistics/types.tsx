@@ -29,13 +29,13 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
       setTypeBeer(
         Number(
           (items.filter((item) => item.type === "Пиво").length * 100) / quantity
-        ).toFixed(2)
+        ).toFixed(1)
       );
       setTypeBar(
         Number(
           (items.filter((item) => item.type === "Заведение").length * 100) /
             quantity
-        ).toFixed(2)
+        ).toFixed(1)
       );
       setTypeOthers(
         Number(
@@ -44,7 +44,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
           ).length *
             100) /
             quantity
-        ).toFixed(2)
+        ).toFixed(1)
       );
     }
   }, [items, quantity]);

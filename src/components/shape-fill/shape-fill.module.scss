@@ -1,0 +1,54 @@
+.percent {
+  display: block;
+  font-size: 60px;
+  line-height: 1.2;
+  font-family: "Rubik", sans-serif;
+  fill: var(--lightColor);
+
+  @media (max-width: 1199px) {
+    font-size: 56px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 45px;
+  }
+}
+
+.label {
+  font: 200 48px/1 "Yanone Kaffeesatz", sans-serif;
+
+  @media (max-width: 1199px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 24px;
+  }
+}
+
+.shape_svg {
+  margin: 0 auto 40px;
+
+  @media (max-width: 767px) {
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 20px;
+  }
+}
+
+.square {
+  @media (min-width: 768px) {
+    max-width: 90%;
+  }
+}
+
+.circle {
+  @media (min-width: 768px) {
+    max-width: 95%;
+  }
+}
+
+.masked_area {
+  transform: scaleY(-1);
+  transform-origin: center;
+}

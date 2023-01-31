@@ -7,7 +7,8 @@ import { Preloader } from "../../components/preloader/preloader";
 import { StatisticsHeader } from "../../components/statistics-header/statistics-header";
 import { SectionIntro } from "./intro";
 import { SectionTypes } from "./types";
-import { SectionReverse } from "./reverse";
+import { SectionReverse } from "./reverses";
+import { SectionShape } from "./shapes";
 import { motion, AnimatePresence } from "framer-motion";
 
 const fadeUp = {
@@ -81,6 +82,7 @@ export const StatisticsPage: FC = () => {
           />
           <SectionTypes setActiveSection={setActiveSection} />
           <SectionReverse setActiveSection={setActiveSection} />
+          <SectionShape setActiveSection={setActiveSection} />
         </>
       )}
     </main>

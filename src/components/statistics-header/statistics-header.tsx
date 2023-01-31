@@ -45,6 +45,19 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   Оборот
                 </HashLink>
               </li>
+              <li>
+                <HashLink
+                  to="#shape"
+                  className={
+                    activeSection === "shape"
+                      ? cn(styles.nav_link, styles.active)
+                      : styles.nav_link
+                  }
+                  smooth
+                >
+                  Форма
+                </HashLink>
+              </li>
             </ul>
           </nav>
         )}

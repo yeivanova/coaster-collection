@@ -21,20 +21,20 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
     if (inView) {
       setActiveSection("reverse");
     }
-  }, [inView]);
+  }, [inView, setActiveSection]);
 
   useEffect(() => {
     if (items.length > 0) {
       setWithReverse(
         Number(
           (items.filter((item) => item.reverse === "Да").length * 100) / quantity
-        ).toFixed(2)
+        ).toFixed(1)
       );
       setWithoutReverse(
         Number(
           (items.filter((item) => item.reverse === "Нет").length * 100) /
             quantity
-        ).toFixed(2)
+        ).toFixed(1)
       );
     }
   }, [items, quantity]);
