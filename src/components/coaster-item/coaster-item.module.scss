@@ -1,8 +1,20 @@
 .item {
 	position: relative;
 	flex-shrink: 0;
-	flex-basis: 320px;
+	flex: 0 0 calc(16.66%);
 	overflow: hidden;
+
+	@media (max-width: 1199px) {
+		flex: 0 0 calc(25%);
+	}
+
+	@media (max-width: 767px) {
+		flex: 0 0 calc(50%);
+	}
+
+	@media (max-width: 480px) {
+		flex: 0 0 100%;
+	}
 }
 
 .image_container {
@@ -11,12 +23,14 @@
 
 .front_image {
 	position: relative;
+	margin: auto;
 	z-index: 0;
 }
 
 .back_image {
 	position: absolute;
 	top: 0;
+	left: 50%;
 	z-index: 0;
 }
 

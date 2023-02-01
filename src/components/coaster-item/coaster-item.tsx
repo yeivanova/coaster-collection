@@ -126,6 +126,7 @@ export const Item: FC<TItemProps> = ({
   const backVariants: Variants = {
     flip: {
       rotateY: 0,
+      translateX: "-50%",
       opacity: 1,
       transition: {
         ease: "easeInOut",
@@ -141,6 +142,7 @@ export const Item: FC<TItemProps> = ({
     },
     hidden: {
       rotateY: 180,
+      translateX: "-50%",
       opacity: 0,
       transition: {
         ease: "easeInOut",
