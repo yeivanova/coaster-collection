@@ -64,7 +64,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
             "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
         }}
       >
-        <DonutChart percent={+typeBeer} inView={inView}>
+        <DonutChart percent={+typeBeer} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
@@ -87,7 +87,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
             "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s",
         }}
       >
-        <DonutChart percent={+typeBar} inView={inView}>
+        <DonutChart percent={+typeBar} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
@@ -110,7 +110,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
             "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.6s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.6s",
         }}
       >
-        <DonutChart percent={+typeOthers} inView={inView}>
+        <DonutChart percent={+typeOthers} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{

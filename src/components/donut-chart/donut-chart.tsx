@@ -6,13 +6,10 @@ import * as d3 from "d3";
 type TDonutChartProps = {
   children: ReactNode;
   percent: number;
+  radius: number;
+  strokeWidth: number;
   inView: boolean;
 };
-
-const width = 475,
-  height = 475,
-  margin = 40;
-const radius = Math.min(width, height) / 2 - margin;
 
 const countToPercent = (id: string, numberStr: number) => {
   d3.select(id)
@@ -30,10 +27,14 @@ const countToPercent = (id: string, numberStr: number) => {
 export const DonutChart: FC<TDonutChartProps> = ({
   children,
   percent,
+  radius,
+  strokeWidth,
   inView,
 }) => {
   const elementId = `text-${uuid().slice(0, 8)}`;
   const ref = useRef<SVGSVGElement>(null);
+  const innerRadius = radius - strokeWidth / 2;
+  const diameter = radius * 2 + strokeWidth;
 
   useEffect(() => {
     if (inView) {
@@ -46,15 +47,15 @@ export const DonutChart: FC<TDonutChartProps> = ({
       const svgElement = d3.select(ref.current);
 
       svgElement
-        .attr("viewBox", `0 0 ${width} ${height}`)
+        .attr("viewBox", `0 0 ${diameter} ${diameter}`)
         .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+        .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
         .append("circle")
         .attr("cx", 0)
         .attr("cy", 0)
-        .attr("r", radius * 0.96)
+        .attr("r", innerRadius)
         .attr("stroke", "#F7AD2A")
-        .style("stroke-width", "5px")
+        .style("stroke-width", `${Math.min(radius / 40, 5)}px`)
         .attr("fill", "transparent");
 
       const color = d3.scaleOrdinal().range(["#F7AD2A", "transparent"]);
@@ -65,13 +66,13 @@ export const DonutChart: FC<TDonutChartProps> = ({
       const data_ready = pie([percent, 100 - percent]);
       const arc = d3
         .arc<d3.PieArcDatum<number | { valueOf(): number }>>()
-        .innerRadius(radius * 0.8)
-        .outerRadius(radius + margin / 2).startAngle(0);
+        .innerRadius(innerRadius * 0.85)
+        .outerRadius(radius + strokeWidth / 2).startAngle(0);
 
       if (inView) {
         svgElement
           .append("g")
-          .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")")
+          .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
           .selectAll("allSlices")
           .data(data_ready)
           .enter()

@@ -54,7 +54,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
             "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
         }}
       >
-        <DonutChart percent={+withReverse} inView={inView}>
+        <DonutChart percent={+withReverse} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
@@ -77,7 +77,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
             "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s",
         }}
       >
-        <DonutChart percent={+withoutReverse} inView={inView}>
+        <DonutChart percent={+withoutReverse} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
