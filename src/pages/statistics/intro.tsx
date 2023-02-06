@@ -61,12 +61,13 @@ export const SectionIntro: FC<TSectionIntroProps> = ({ quantity, setActiveSectio
               "transform 0.5s ease-in-out 0.05s, opacity 0.5s ease-in-out 0.05s",
           }}
         >
-          <svg width="100%" height="320" viewBox="0 0 530 320">
+          <svg viewBox="0 0 600 280">
             <text
               id="text"
               className={styles.text}
               x="50%"
               y="50%"
+              fontSize="220px"
               fill="transparent"
               dominantBaseline="middle"
               textAnchor="middle"
