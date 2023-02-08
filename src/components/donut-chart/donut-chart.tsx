@@ -45,10 +45,11 @@ export const DonutChart: FC<TDonutChartProps> = ({
   useEffect(() => {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
-
+      svgElement.selectAll("g").remove();
       svgElement
         .attr("viewBox", `0 0 ${diameter} ${diameter}`)
         .append("g")
+        .attr("class", "chart")
         .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
         .append("circle")
         .attr("cx", 0)
@@ -71,7 +72,7 @@ export const DonutChart: FC<TDonutChartProps> = ({
 
       if (inView) {
         svgElement
-          .append("g")
+          .selectAll('.chart')
           .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
           .selectAll("allSlices")
           .data(data_ready)

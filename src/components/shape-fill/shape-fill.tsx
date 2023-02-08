@@ -52,15 +52,15 @@ export const ShapeFill: FC<TShapeFillProps> = ({
     }
   }, [inView, percent, elementId]);
 
-
   useEffect(() => {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
-
+      svgElement.selectAll("g").remove();
       if (heightFilledArea !== 0) {
         svgElement
           .attr("viewBox", `0 0 ${width} ${height}`)
-          .append("defs")
+          .append("g")
+          .attr("class", "shape")
           .append("mask")
           .attr("id", elementId)
           .attr("style", "mask-type:alpha")
@@ -91,7 +91,7 @@ export const ShapeFill: FC<TShapeFillProps> = ({
       if (inView) {
         if (shape === "square") {
           svgElement
-            .append("g")
+            .selectAll(".shape")
             .attr("mask", `url(#${elementId})`)
             .append("rect")
             .attr("x", strokeWidth / 2)
@@ -103,7 +103,7 @@ export const ShapeFill: FC<TShapeFillProps> = ({
         }
         if (shape === "circle") {
           svgElement
-            .append("g")
+            .selectAll(".shape")
             .attr("mask", `url(#${elementId})`)
             .append("circle")
             .attr("cx", width / 2)
@@ -113,11 +113,14 @@ export const ShapeFill: FC<TShapeFillProps> = ({
         }
         if (shape === "other") {
           svgElement
-          .append("g")
-          .attr("mask", `url(#${elementId})`)
-          .append("path")
-          .attr("d", "M184.427 10.3264C192.432 0.391628 207.568 0.39164 215.573 10.3265L279.894 90.1492C282.118 92.9083 285.034 95.0273 288.345 96.2891L384.137 132.795C396.06 137.339 400.737 151.734 393.762 162.418L337.723 248.257C335.785 251.224 334.671 254.653 334.495 258.192L329.376 360.577C328.739 373.32 316.494 382.216 304.178 378.884L205.223 352.113C201.802 351.188 198.198 351.188 194.777 352.113L95.8216 378.884C83.5055 382.216 71.2606 373.319 70.6236 360.577L65.5054 258.192C65.3285 254.653 64.2145 251.224 62.2775 248.257L6.23783 162.418C-0.736919 151.734 3.94023 137.339 15.8626 132.795L111.655 96.2891C114.966 95.0273 117.882 92.9083 120.106 90.1492L184.427 10.3264Z")
-          .attr("fill", color);
+            .selectAll(".shape")
+            .attr("mask", `url(#${elementId})`)
+            .append("path")
+            .attr(
+              "d",
+              "M184.427 10.3264C192.432 0.391628 207.568 0.39164 215.573 10.3265L279.894 90.1492C282.118 92.9083 285.034 95.0273 288.345 96.2891L384.137 132.795C396.06 137.339 400.737 151.734 393.762 162.418L337.723 248.257C335.785 251.224 334.671 254.653 334.495 258.192L329.376 360.577C328.739 373.32 316.494 382.216 304.178 378.884L205.223 352.113C201.802 351.188 198.198 351.188 194.777 352.113L95.8216 378.884C83.5055 382.216 71.2606 373.319 70.6236 360.577L65.5054 258.192C65.3285 254.653 64.2145 251.224 62.2775 248.257L6.23783 162.418C-0.736919 151.734 3.94023 137.339 15.8626 132.795L111.655 96.2891C114.966 95.0273 117.882 92.9083 120.106 90.1492L184.427 10.3264Z"
+            )
+            .attr("fill", color);
         }
       }
     }
@@ -130,7 +133,14 @@ export const ShapeFill: FC<TShapeFillProps> = ({
         viewBox={`0 0 ${width} ${height}`}
         fill="none"
         ref={ref}
-        className={cn(styles.shape_svg, shape === "square" ? styles.square : shape === "circle" ? styles.circle : styles.other)}
+        className={cn(
+          styles.shape_svg,
+          shape === "square"
+            ? styles.square
+            : shape === "circle"
+            ? styles.circle
+            : styles.other
+        )}
       >
         {shape === "square" && (
           <rect
