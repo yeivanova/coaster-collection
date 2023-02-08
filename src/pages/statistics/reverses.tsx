@@ -1,6 +1,7 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
+import { DeviceContext } from "../../services/app-context";
 import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
@@ -11,7 +12,8 @@ type TSectionReverseProps = {
 }
 
 export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) => {
-  const [ref, inView] = useInView({ threshold: 0.5 });
+  const { isDesktop } = useContext(DeviceContext);
+  const [ref, inView] = useInView({ threshold: 0.1 });
   const items = useSelector((state: RootState) => state.coasters.items);
   const quantity = items.length;
   const [withReverse, setWithReverse] = useState<string>("0");
@@ -48,10 +50,10 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
       <div
         className={styles.col_3}
         style={{
-          transform: inView ? "none" : "scale(0)",
+          transform: inView ? "none" : isDesktop ? "scale(0)" : "translateX(-100%)",
           opacity: inView ? 1 : 0,
           transition:
-            "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.2s",
+            `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.2s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.2s" : "0s"}`,
         }}
       >
         <DonutChart percent={+withReverse} inView={inView} radius={238} strokeWidth={40}>
@@ -61,7 +63,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
               transform: inView ? "none" : "translateY(-100px)",
               opacity: inView ? 1 : 0,
               transition:
-                "transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.9s, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 0.9s",
+                `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.9s" : "0s"}, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.9s" : "0s"}`,
             }}
           >
             С оборотом
@@ -71,10 +73,10 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
       <div
         className={styles.col_3}
         style={{
-          transform: inView ? "none" : "scale(0)",
+          transform: inView ? "none" : isDesktop ? "scale(0)" : "translateX(100%)",
           opacity: inView ? 1 : 0,
           transition:
-            "transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s",
+            `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.4s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.4s" : "0s"}`,
         }}
       >
         <DonutChart percent={+withoutReverse} inView={inView} radius={238} strokeWidth={40}>
@@ -84,7 +86,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
               transform: inView ? "none" : "translateY(-100px)",
               opacity: inView ? 1 : 0,
               transition:
-                "transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 1.1s, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) 1.1s",
+                `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "1.1s" : "0s"}, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "1.1s" : "0s"}`,
             }}
           >
             Без оборота
