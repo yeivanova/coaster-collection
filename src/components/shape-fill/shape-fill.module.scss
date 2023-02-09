@@ -29,7 +29,12 @@
 .shape_svg {
   margin: 0 auto 40px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1023px) {
+    max-width: 250px;
+    max-height: 250px;
+  }
+
+  @media (max-width: 763px) {
     max-width: 200px;
     max-height: 200px;
     margin-bottom: 20px;
@@ -38,12 +43,20 @@
 
 .square {
   @media (min-width: 768px) {
+    max-width: 220px;
+  }
+
+  @media (min-width: 1024px) {
     max-width: 90%;
   }
 }
 
 .circle {
   @media (min-width: 768px) {
+    max-width: 230px;
+  }
+
+  @media (min-width: 1024px) {
     max-width: 95%;
   }
 }

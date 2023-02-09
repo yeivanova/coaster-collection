@@ -52,39 +52,43 @@ export const StatisticsPage: FC = () => {
 
   return (
     <main className={styles.main}>
-      {isLoading ? (
-        <Preloader />
-      ) : (
-        <>
-          <Link to="/" className={styles.back_home}>
-            На главную
-          </Link>
-          <AnimatePresence
-            initial={false}
-            mode="wait"
-            onExitComplete={() => null}
-          >
-            {headerIsVisible && (
-              <motion.div
-                className={styles.header}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
+      <div className={styles.scroll_wrapper}>
+        <div className={styles.container}>
+          {isLoading ? (
+            <Preloader />
+          ) : (
+            <>
+              <Link to="/" className={styles.back_home}>
+                На главную
+              </Link>
+              <AnimatePresence
+                initial={false}
+                mode="wait"
+                onExitComplete={() => null}
               >
-                <StatisticsHeader activeSection={activeSection} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <SectionIntro
-            quantity={quantity}
-            setActiveSection={setActiveSection}
-          />
-          <SectionTypes setActiveSection={setActiveSection} />
-          <SectionReverse setActiveSection={setActiveSection} />
-          <SectionShape setActiveSection={setActiveSection} />
-        </>
-      )}
+                {headerIsVisible && (
+                  <motion.div
+                    className={styles.header}
+                    variants={fadeUp}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                  >
+                    <StatisticsHeader activeSection={activeSection} />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <SectionIntro
+                quantity={quantity}
+                setActiveSection={setActiveSection}
+              />
+              <SectionTypes setActiveSection={setActiveSection} />
+              <SectionReverse setActiveSection={setActiveSection} />
+              <SectionShape setActiveSection={setActiveSection} />
+            </>
+          )}
+        </div>
+      </div>
     </main>
   );
 };
