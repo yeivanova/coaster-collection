@@ -1,9 +1,9 @@
 import React, { FC, useRef, useEffect, ReactNode } from "react";
-import styles from "./donut-chart.module.scss";
+import styles from "./segment-chart.module.scss";
 import { v4 as uuid } from "uuid";
 import * as d3 from "d3";
 
-type TDonutChartProps = {
+type TSegmentChartProps = {
   children: ReactNode;
   percent: number;
   radius: number;
@@ -24,7 +24,7 @@ const countToPercent = (id: string, numberStr: number) => {
     .duration(1000);
 };
 
-export const DonutChart: FC<TDonutChartProps> = ({
+export const SegmentChart: FC<TSegmentChartProps> = ({
   children,
   percent,
   radius,

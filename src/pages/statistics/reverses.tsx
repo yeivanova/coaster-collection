@@ -5,7 +5,7 @@ import { DeviceContext } from "../../services/app-context";
 import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
-import { DonutChart } from "../../components/donut-chart/donut-chart";
+import { SegmentChart } from "../../components/segment-chart/segment-chart";
 
 type TSectionReverseProps = {
   setActiveSection: (value: string) => void;
@@ -56,7 +56,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
             `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.2s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.2s" : "0s"}`,
         }}
       >
-        <DonutChart percent={+withReverse} inView={inView} radius={238} strokeWidth={40}>
+        <SegmentChart percent={+withReverse} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
@@ -68,7 +68,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
           >
             С оборотом
           </div>
-        </DonutChart>
+        </SegmentChart>
       </div>
       <div
         className={styles.col_3}
@@ -79,7 +79,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
             `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.4s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.4s" : "0s"}`,
         }}
       >
-        <DonutChart percent={+withoutReverse} inView={inView} radius={238} strokeWidth={40}>
+        <SegmentChart percent={+withoutReverse} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
@@ -91,7 +91,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
           >
             Без оборота
           </div>
-        </DonutChart>
+        </SegmentChart>
       </div>
     </section>
   );

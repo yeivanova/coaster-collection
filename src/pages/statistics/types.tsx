@@ -5,7 +5,7 @@ import { DeviceContext } from "../../services/app-context";
 import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
-import { DonutChart } from "../../components/donut-chart/donut-chart";
+import { SegmentChart } from "../../components/segment-chart/segment-chart";
 
 type TSectionTypesProps = {
   setActiveSection: (value: string) => void;
@@ -66,7 +66,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
           `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.2s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.2s" : "0s"}`,
         }}
       >
-        <DonutChart percent={+typeBeer} inView={inView} radius={238} strokeWidth={40}>
+        <SegmentChart percent={+typeBeer} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
@@ -78,7 +78,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
           >
             Пиво
           </div>
-        </DonutChart>
+        </SegmentChart>
       </div>
       <div
         className={styles.col_3}
@@ -89,7 +89,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
             `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.4s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.4s" : "0s"}`,
         }}
       >
-        <DonutChart percent={+typeBar} inView={inView} radius={238} strokeWidth={40}>
+        <SegmentChart percent={+typeBar} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
@@ -101,7 +101,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
           >
             Заведения
           </div>
-        </DonutChart>
+        </SegmentChart>
       </div>
       <div
         className={styles.col_3}
@@ -112,7 +112,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
             `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.6s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.6s" : "0s"}`,
         }}
       >
-        <DonutChart percent={+typeOthers} inView={inView} radius={238} strokeWidth={40}>
+        <SegmentChart percent={+typeOthers} inView={inView} radius={238} strokeWidth={40}>
           <div
             className={styles.label}
             style={{
@@ -124,7 +124,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
           >
             Остальное
           </div>
-        </DonutChart>
+        </SegmentChart>
       </div>
     </section>
   );
