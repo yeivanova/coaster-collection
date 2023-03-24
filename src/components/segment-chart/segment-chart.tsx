@@ -11,8 +11,6 @@ type TSegmentChartProps = {
   inView: boolean;
 };
 
-const elementId = `text-${uuid().slice(0, 8)}`;
-
 const countToPercent = (id: string, numberStr: number) => {
   d3.select(id)
     .transition()
@@ -36,6 +34,7 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
   const ref = useRef<SVGSVGElement>(null);
   const innerRadius = radius - strokeWidth / 2;
   const diameter = radius * 2 + strokeWidth;
+  const elementId = `text-${uuid().slice(0, 8)}`;
 
   useEffect(() => {
     if (inView) {

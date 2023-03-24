@@ -146,7 +146,7 @@
   overflow: hidden;
 
   @media (min-width: 768px) {
-    scroll-snap-align: center;
+    scroll-snap-align: start;
   }
 
   @media (max-width: 1023px) {
