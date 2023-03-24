@@ -11,6 +11,8 @@ type TSegmentChartProps = {
   inView: boolean;
 };
 
+const elementId = `text-${uuid().slice(0, 8)}`;
+
 const countToPercent = (id: string, numberStr: number) => {
   d3.select(id)
     .transition()
@@ -31,7 +33,6 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
   strokeWidth,
   inView,
 }) => {
-  const elementId = `text-${uuid().slice(0, 8)}`;
   const ref = useRef<SVGSVGElement>(null);
   const innerRadius = radius - strokeWidth / 2;
   const diameter = radius * 2 + strokeWidth;
@@ -40,7 +41,7 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
     if (inView) {
       countToPercent("#" + elementId, percent);
     }
-  }, [inView, percent, elementId]);
+  }, [inView, percent]);
 
   useEffect(() => {
     if (ref.current) {
@@ -50,7 +51,10 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
         .attr("viewBox", `0 0 ${diameter} ${diameter}`)
         .append("g")
         .attr("class", "chart")
-        .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
+        .attr(
+          "transform",
+          "translate(" + diameter / 2 + "," + diameter / 2 + ")"
+        )
         .append("circle")
         .attr("cx", 0)
         .attr("cy", 0)
@@ -68,12 +72,16 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
       const arc = d3
         .arc<d3.PieArcDatum<number | { valueOf(): number }>>()
         .innerRadius(innerRadius * 0.85)
-        .outerRadius(radius + strokeWidth / 2).startAngle(0);
+        .outerRadius(radius + strokeWidth / 2)
+        .startAngle(0);
 
       if (inView) {
         svgElement
-          .selectAll('.chart')
-          .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
+          .selectAll(".chart")
+          .attr(
+            "transform",
+            "translate(" + diameter / 2 + "," + diameter / 2 + ")"
+          )
           .selectAll("allSlices")
           .data(data_ready)
           .enter()
@@ -92,9 +100,8 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
             };
           })
 
-          // @ts-ignore
-          .attr("fill", function (d) {
-            return color(d.data.toString());
+          .attr("fill", function (d): string {
+            return color(d.data.toString()) as string;
           });
       }
     }

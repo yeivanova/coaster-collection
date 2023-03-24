@@ -1,0 +1,36 @@
+.percent {
+  display: block;
+  font-size: 60px;
+  line-height: 1.2;
+  font-family: "Rubik", sans-serif;
+  fill: var(--lightColor);
+  transform: translateY(36px);
+}
+
+.donut_svg {
+  @media (max-width: 1023px) {
+    max-width: 250px;
+    margin: auto;
+  }
+
+  @media (max-width: 767px) {
+    max-width: 200px;
+  }
+}
+
+.percent_label {
+  font-weight: 200;
+  font-size: 56px;
+  line-height: 1;
+  fill: var(--lightColor);
+  transform: translateY(-36px);
+}
+
+.path {
+  opacity: 0.2;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.active {
+  opacity: 1;
+}

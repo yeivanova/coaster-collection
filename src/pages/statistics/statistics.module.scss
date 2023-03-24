@@ -164,6 +164,10 @@
   }
 }
 
+.col {
+  width: 100%;
+}
+
 .col_3 {
   width: 100%;
 
@@ -174,4 +178,28 @@
 
 .label {
   margin-top: 15px;
+}
+
+.label_large {
+  font-size: 80px;
+  color: var(--chartColor);
+
+  @media (max-width: 1199px) {
+    font-size: 60px;
+  }
+
+  @media (max-width: 1023px) {
+    font-size: 42px;
+  }
+}
+
+.chart_wrapper {
+  cursor: pointer;
+}
+
+.chart_wrapper_large {
+  @media (min-width: 1024px) {
+    max-width: 80%;
+    margin: auto;
+  }
 }

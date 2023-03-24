@@ -11,3 +11,8 @@ export type TCoaster = {
   };
 
 export type TParams = "type" | "brand" | "kind" | "country" | "shape" | "reverse";
+
+export type TDonutChartData = {
+	label: string;
+	value: number;
+};
