@@ -2,6 +2,7 @@ import React, { FC, useRef, useEffect, ReactNode } from "react";
 import styles from "./segment-chart.module.scss";
 import { v4 as uuid } from "uuid";
 import * as d3 from "d3";
+import { COLOR } from "../../utils/constants";
 
 type TSegmentChartProps = {
   children: ReactNode;
@@ -58,11 +59,11 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
         .attr("cx", 0)
         .attr("cy", 0)
         .attr("r", innerRadius)
-        .attr("stroke", "#F7AD2A")
+        .attr("stroke", COLOR)
         .style("stroke-width", `${Math.min(radius / 40, 5)}px`)
         .attr("fill", "transparent");
 
-      const color = d3.scaleOrdinal().range(["#F7AD2A", "transparent"]);
+      const color = d3.scaleOrdinal().range([COLOR, "transparent"]);
       const pie = d3.pie().value(function (d) {
         return +d;
       });

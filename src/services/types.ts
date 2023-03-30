@@ -12,7 +12,7 @@ export type TCoaster = {
 
 export type TParams = "type" | "brand" | "kind" | "country" | "shape" | "reverse";
 
-export type TDonutChartData = {
+export type TChartData = {
 	label: string;
 	value: number;
 };

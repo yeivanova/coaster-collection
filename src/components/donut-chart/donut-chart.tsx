@@ -2,12 +2,13 @@ import React, { FC, useRef, useEffect, ReactNode } from "react";
 import styles from "./donut-chart.module.scss";
 import { v4 as uuid } from "uuid";
 import * as d3 from "d3";
-import { TDonutChartData } from "../../services/types";
+import { COLOR, OUTLINE_WIDTH } from "../../utils/constants";
+import { TChartData } from "../../services/types";
 
 type TDonutChartProps = {
   children: ReactNode;
   percent: number;
-  data: TDonutChartData[];
+  data: TChartData[];
   radius: number;
   strokeWidth: number;
   inView: boolean;
@@ -20,7 +21,7 @@ function hightlightArc(thisArc: SVGPathElement) {
   d3.selectAll(`.${styles.path}`).classed(styles.active, false);
   d3.select(thisArc).classed(styles.active, true);
   const data = d3
-    .select<SVGPathElement, d3.PieArcDatum<TDonutChartData>>(thisArc)
+    .select<SVGPathElement, d3.PieArcDatum<TChartData>>(thisArc)
     .datum().data;
   d3.select("#" + elementLabelId).text(data.label);
   d3.select("#" + elementId).text(data.value + "%");
@@ -55,9 +56,9 @@ export const DonutChart: FC<TDonutChartProps> = ({
 
       const color = d3
         .scaleOrdinal()
-        .range(new Array(dataValues.length).fill("#F7AD2A"));
+        .range(new Array(dataValues.length).fill(COLOR));
       const pie = d3
-        .pie<TDonutChartData>()
+        .pie<TChartData>()
         .sort(null)
         .value(function (d) {
           return d.value;
@@ -65,7 +66,7 @@ export const DonutChart: FC<TDonutChartProps> = ({
 
       const data_ready = pie(data);
       const arc = d3
-        .arc<d3.PieArcDatum<TDonutChartData>>()
+        .arc<d3.PieArcDatum<TChartData>>()
         .innerRadius(innerRadius * 0.85)
         .outerRadius(radius + strokeWidth / 2);
 
@@ -83,7 +84,7 @@ export const DonutChart: FC<TDonutChartProps> = ({
           .attr("class", styles.path)
           .attr("d", arc)
           .attr("stroke", "#000000")
-          .style("stroke-width", "1px")
+          .style("stroke-width", `${OUTLINE_WIDTH}px`)
           .attr("fill", function (d): string {
             return color(d.data.toString()) as string;
           })

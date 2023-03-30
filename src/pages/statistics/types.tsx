@@ -7,7 +7,7 @@ import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
 import { DonutChart } from "../../components/donut-chart/donut-chart";
 import { SegmentChart } from "../../components/segment-chart/segment-chart";
-import { TDonutChartData } from "../../services/types"
+import { TChartData } from "../../services/types";
 
 type TSectionTypesProps = {
   setActiveSection: (value: string) => void;
@@ -22,11 +22,11 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
   const [typeBeer, setTypeBeer] = useState<string>("0");
   const [typeBar, setTypeBar] = useState<string>("0");
   const [typeOthers, setTypeOthers] = useState<string>("0");
-  const [typeOthersData, setTypeOthersData] = useState<TDonutChartData[]>([]);
+  const [typeOthersData, setTypeOthersData] = useState<TChartData[]>([]);
   const [showDetails, setShowDetails] = useState<boolean>(false);
 
-  const uniqueTypeParams = (): TDonutChartData[] => {
-    const dataset = [] as TDonutChartData[];
+  const uniqueTypeParams = (): TChartData[] => {
+    const dataset = [] as TChartData[];
     const othersQuantity = items.filter(
       (item) => item.type !== "Пиво" && item.type !== "Заведение"
     ).length;
