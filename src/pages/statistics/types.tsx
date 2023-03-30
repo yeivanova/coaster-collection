@@ -94,7 +94,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
             ? "scale(0)"
             : "translateX(-100%)",
           opacity: inView ? 1 : 0,
-          width: showDetails ? "25%" : "33%",
+          width: isDesktop ? "33%" : "45%",
           transition: `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
             isDesktop ? "0.2s" : "0s"
           }, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
@@ -133,7 +133,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
             ? "scale(0)"
             : "translateX(100%)",
           opacity: inView ? 1 : 0,
-          width: showDetails ? "25%" : "33%",
+          width: isDesktop ? "33%" : "45%",
           transition: `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
             isDesktop ? "0.4s" : "0s"
           }, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
@@ -172,7 +172,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
             ? "scale(0)"
             : "translateX(-100%)",
           opacity: inView ? 1 : 0,
-          width: showDetails ? "50%" : "33%",
+          width: isDesktop ? (showDetails ? "50%" : "33%") : (showDetails ? "80%" : "45%"),
           transition: `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
             isDesktop ? "0.6s" : "0s"
           }, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${

@@ -112,6 +112,9 @@ export const BarChart: FC<TBarChartProps> = ({
 
         prevElHeight = prevElHeight + el.value + outlineWidthInPercent;
       });
+
+      const rectElement = svgElement.selectAll(`.${styles.rect}`).node();
+      hightlightSector(rectElement as SVGPathElement);
     }
   }, [inView, percent, width, height]);
 

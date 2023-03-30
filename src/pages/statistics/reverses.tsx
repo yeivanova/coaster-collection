@@ -52,6 +52,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
         style={{
           transform: inView ? "none" : isDesktop ? "scale(0)" : "translateX(-100%)",
           opacity: inView ? 1 : 0,
+          width: isDesktop ? "33%" : "45%",
           transition:
             `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.2s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.2s" : "0s"}`,
         }}
@@ -75,6 +76,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
         style={{
           transform: inView ? "none" : isDesktop ? "scale(0)" : "translateX(100%)",
           opacity: inView ? 1 : 0,
+          width: isDesktop ? "33%" : "45%",
           transition:
             `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.4s" : "0s"}, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.4s" : "0s"}`,
         }}
