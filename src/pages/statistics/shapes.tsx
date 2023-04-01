@@ -5,8 +5,8 @@ import { DeviceContext } from "../../services/app-context";
 import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
-import { ShapeFill } from "../../components/shape-fill/shape-fill";
-import { BarChart } from "../../components/bar-chart/bar-chart";
+import { ShapeFill } from "../../components/statistics/shape-fill/shape-fill";
+import { BarChart } from "../../components/statistics/bar-chart/bar-chart";
 import { TChartData } from "../../services/types";
 
 type TSectionShapeProps = {
@@ -24,8 +24,6 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
   const [others, setOthers] = useState<string>("0");
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [shapeOthersData, setShapeOthersData] = useState<TChartData[]>([]);
-
-  console.log("showDetails=", showDetails);
 
   const uniqueTypeParams = (): TChartData[] => {
     const dataset = [] as TChartData[];

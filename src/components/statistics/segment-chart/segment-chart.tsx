@@ -2,7 +2,7 @@ import React, { FC, useRef, useEffect, ReactNode } from "react";
 import styles from "./segment-chart.module.scss";
 import { v4 as uuid } from "uuid";
 import * as d3 from "d3";
-import { COLOR } from "../../utils/constants";
+import { COLOR } from "../../../utils/constants";
 
 type TSegmentChartProps = {
   children: ReactNode;

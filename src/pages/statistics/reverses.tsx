@@ -5,7 +5,7 @@ import { DeviceContext } from "../../services/app-context";
 import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
-import { SegmentChart } from "../../components/segment-chart/segment-chart";
+import { SegmentChart } from "../../components/statistics/segment-chart/segment-chart";
 
 type TSectionReverseProps = {
   setActiveSection: (value: string) => void;

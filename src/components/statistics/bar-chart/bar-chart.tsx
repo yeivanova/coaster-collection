@@ -2,8 +2,8 @@ import React, { FC, useRef, useEffect, ReactNode } from "react";
 import styles from "./bar-chart.module.scss";
 import cn from "classnames";
 import * as d3 from "d3";
-import { COLOR, OUTLINE_WIDTH } from "../../utils/constants";
-import { TChartData } from "../../services/types";
+import { COLOR, OUTLINE_WIDTH } from "../../../utils/constants";
+import { TChartData } from "../../../services/types";
 
 type TBarChartProps = {
   children: ReactNode;

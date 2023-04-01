@@ -5,8 +5,8 @@ import { DeviceContext } from "../../services/app-context";
 import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
-import { DonutChart } from "../../components/donut-chart/donut-chart";
-import { SegmentChart } from "../../components/segment-chart/segment-chart";
+import { DonutChart } from "../../components/statistics/donut-chart/donut-chart";
+import { SegmentChart } from "../../components/statistics/segment-chart/segment-chart";
 import { TChartData } from "../../services/types";
 
 type TSectionTypesProps = {
