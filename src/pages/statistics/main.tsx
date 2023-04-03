@@ -4,11 +4,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { Link } from "react-router-dom";
 import { Preloader } from "../../components/preloader/preloader";
-import { StatisticsHeader } from "../../components/statistics-header/statistics-header";
+import { StatisticsHeader } from "../../components/statistics/statistics-header/statistics-header";
 import { SectionIntro } from "./intro";
 import { SectionTypes } from "./types";
 import { SectionReverse } from "./reverses";
 import { SectionShape } from "./shapes";
+import { SectionCountries } from "./countries";
 import { motion, AnimatePresence } from "framer-motion";
 
 const fadeUp = {
@@ -85,6 +86,7 @@ export const StatisticsPage: FC = () => {
               <SectionTypes setActiveSection={setActiveSection} />
               <SectionReverse setActiveSection={setActiveSection} />
               <SectionShape setActiveSection={setActiveSection} />
+              <SectionCountries setActiveSection={setActiveSection} />
             </>
           )}
         </div>

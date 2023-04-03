@@ -51,7 +51,7 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
 
   useEffect(() => {
     if (inView) {
-      setActiveSection("shape");
+      setActiveSection("shapes");
     }
   }, [inView, setActiveSection]);
 
@@ -84,7 +84,7 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
 
   return (
     <section
-      id="shape"
+      id="shapes"
       className={cn(styles.screen, styles.screen_3)}
       ref={ref}
     >

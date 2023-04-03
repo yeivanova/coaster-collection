@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import styles from "./statistics-header.module.scss";
 import cn from "classnames";
-import { DeviceContext } from "../../services/app-context";
+import { DeviceContext } from "../../../services/app-context";
 import { HashLink } from "react-router-hash-link";
 
 type TStatisticsHeaderProps = {
@@ -34,9 +34,9 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
               </li>
               <li>
                 <HashLink
-                  to="#reverse"
+                  to="#reverses"
                   className={
-                    activeSection === "reverse"
+                    activeSection === "reverses"
                       ? cn(styles.nav_link, styles.active)
                       : styles.nav_link
                   }
@@ -47,15 +47,28 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
               </li>
               <li>
                 <HashLink
-                  to="#shape"
+                  to="#shapes"
                   className={
-                    activeSection === "shape"
+                    activeSection === "shapes"
                       ? cn(styles.nav_link, styles.active)
                       : styles.nav_link
                   }
                   smooth
                 >
                   Форма
+                </HashLink>
+              </li>
+              <li>
+                <HashLink
+                  to="#countries"
+                  className={
+                    activeSection === "countries"
+                      ? cn(styles.nav_link, styles.active)
+                      : styles.nav_link
+                  }
+                  smooth
+                >
+                  Страна
                 </HashLink>
               </li>
             </ul>

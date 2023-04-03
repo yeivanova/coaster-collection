@@ -21,7 +21,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
 
   useEffect(() => {
     if (inView) {
-      setActiveSection("reverse");
+      setActiveSection("reverses");
     }
   }, [inView, setActiveSection]);
 
@@ -43,7 +43,7 @@ export const SectionReverse: FC<TSectionReverseProps> = ({ setActiveSection }) =
 
   return (
     <section
-      id="reverse"
+      id="reverses"
       className={cn(styles.screen, styles.screen_3)}
       ref={ref}
     >
