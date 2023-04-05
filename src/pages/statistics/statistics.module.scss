@@ -203,3 +203,32 @@
     margin: auto;
   }
 }
+
+.countries_col {
+  align-self: end;
+}
+
+.countries_list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: calc(100vh - 140px);
+  list-style: none;
+  text-align: left;
+}
+
+.country_item {
+  font-weight: 200;
+  font-size: 30px;
+  line-height: 1;
+  color: var(--lightColor);
+  padding: 5px 0;
+  margin: 0;
+  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--chartColor);
+  }
+}
