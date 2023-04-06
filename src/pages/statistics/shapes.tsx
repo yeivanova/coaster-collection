@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
 import { ShapeFill } from "../../components/statistics/shape-fill/shape-fill";
-import { BarChart } from "../../components/statistics/bar-chart/bar-chart";
+import { VerticalBarChart } from "../../components/statistics/vertical-bar-chart/vertical-bar-chart";
 import { TChartData } from "../../services/types";
 
 type TSectionShapeProps = {
@@ -192,7 +192,7 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
           onClick={() => setShowDetails(true)}
         >
           {showDetails ? (
-            <BarChart
+            <VerticalBarChart
               data={shapeOthersData}
               percent={+others}
               width={520}
@@ -213,7 +213,7 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
               >
                 Остальные формы
               </div>
-            </BarChart>
+            </VerticalBarChart>
           ) : (
             <ShapeFill
               shape="other"

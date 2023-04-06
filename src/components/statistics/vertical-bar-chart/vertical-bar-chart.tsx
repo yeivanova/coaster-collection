@@ -1,11 +1,11 @@
 import React, { FC, useRef, useEffect, ReactNode } from "react";
-import styles from "./bar-chart.module.scss";
+import styles from "./vertical-bar-chart.module.scss";
 import cn from "classnames";
 import * as d3 from "d3";
 import { COLOR, OUTLINE_WIDTH } from "../../../utils/constants";
 import { TChartData } from "../../../services/types";
 
-type TBarChartProps = {
+type TVerticalBarChartProps = {
   children: ReactNode;
   data: TChartData[];
   width: number;
@@ -20,7 +20,7 @@ function hightlightSector(thisPath: SVGPathElement) {
   d3.select(thisPath).classed(styles.active, true);
 }
 
-export const BarChart: FC<TBarChartProps> = ({
+export const VerticalBarChart: FC<TVerticalBarChartProps> = ({
   children,
   data,
   width,
