@@ -1,0 +1,39 @@
+.percent {
+  display: block;
+  font: 300 20px/1 "Rubik", sans-serif;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  fill: var(--lightColor);
+  transform: translate(-20px, 14px);
+}
+
+.svg {
+  margin: 0 auto 40px;
+  overflow: visible;
+
+  @media (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+}
+
+.rect {
+  opacity: 0.2;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.label_element {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.active {
+  .rect {
+    opacity: 1;
+  }
+
+  .label_element {
+    opacity: 1;
+  }
+}

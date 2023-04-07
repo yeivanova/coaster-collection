@@ -5,6 +5,7 @@ import { DeviceContext } from "../../services/app-context";
 import { useSelector } from "react-redux";
 import { RootState } from "../../services/store";
 import { useInView } from "react-intersection-observer";
+import { HorizontalBarChart } from "../../components/statistics/horizontal-bar-chart/horizontal-bar-chart";
 import { TChartData } from "../../services/types";
 
 type TSectionCountriesProps = {
@@ -20,6 +21,7 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
   const params = useSelector((state: RootState) => state.coasters.params);
   const quantity = items.length;
   const [countryData, setCountryData] = useState<TChartData[]>([]);
+  const [activeCountry, setActiveCountry] = useState<string>(params.country[0]);
 
   const uniqueCountryParams = (): TChartData[] => {
     const dataset = [] as TChartData[];
@@ -61,12 +63,25 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
         <ul className={styles.countries_list}>
           {countryData.map((country, index) => {
             return (
-              <li className={styles.country_item} key={index}>
+              <li
+                className={cn(
+                  styles.country_item,
+                  country.label === activeCountry && styles.country_item_active
+                )}
+                onClick={() => setActiveCountry(country.label)}
+                key={index}
+              >
                 {country.label}
               </li>
             );
           })}
         </ul>
+        <HorizontalBarChart
+          data={countryData}
+          width={1548}
+          height={73}
+          inView={inView}
+        ></HorizontalBarChart>
       </div>
     </section>
   );

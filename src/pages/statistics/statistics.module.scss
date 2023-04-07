@@ -65,6 +65,7 @@
 }
 
 .quantity {
+  font-weight: 900;
   font-family: "Rubik", sans-serif;
   margin-bottom: -50px;
 
@@ -166,6 +167,7 @@
 
 .col {
   width: 100%;
+  padding: 0 15px;
 }
 
 .col_3 {
@@ -213,8 +215,9 @@
   flex-wrap: wrap;
   flex-direction: column;
   align-items: flex-start;
-  max-height: calc(100vh - 140px);
+  max-height: calc(100vh - 200px);
   list-style: none;
+  padding-left: 0;
   text-align: left;
 }
 
@@ -229,6 +232,10 @@
   cursor: pointer;
 
   &:hover {
+    color: var(--chartColor);
+  }
+
+  &_active {
     color: var(--chartColor);
   }
 }
