@@ -1,8 +1,6 @@
 .percent {
   display: block;
-  font-size: 52px;
-  line-height: 1.2;
-  font-family: "Rubik", sans-serif;
+  font: 900 52px/1.2 "Rubik", sans-serif;
   letter-spacing: 0.05em;
   fill: var(--lightColor);
   transform: translateY(14px);
