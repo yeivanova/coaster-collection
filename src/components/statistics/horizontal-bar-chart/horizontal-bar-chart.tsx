@@ -10,6 +10,8 @@ type THorizontalBarChartProps = {
   width: number;
   height: number;
   inView: boolean;
+  activeCountry: string;
+  setActiveCountry: (value: string) => void;
 };
 
 function hightlightSector(thisPath: SVGPathElement) {
@@ -23,6 +25,8 @@ export const HorizontalBarChart: FC<THorizontalBarChartProps> = ({
   width,
   height,
   inView,
+  activeCountry,
+  setActiveCountry,
 }) => {
   const ref = useRef<SVGSVGElement>(null);
   const outlineWidthInPercent = (OUTLINE_WIDTH * 100) / width;
@@ -37,7 +41,10 @@ export const HorizontalBarChart: FC<THorizontalBarChartProps> = ({
       let prevElWidth = 0;
 
       data.forEach((el) => {
-        const group = svgElement.append("g").attr("class", styles.label_group);
+        const group = svgElement
+          .append("g")
+          .attr("class", styles.label_group)
+          .attr("data-country", el.label);
 
         group
           .append("rect")
@@ -49,6 +56,7 @@ export const HorizontalBarChart: FC<THorizontalBarChartProps> = ({
           .attr("fill", COLOR)
           .on("mouseover", function () {
             hightlightSector(this);
+            setActiveCountry(el.label);
           });
 
         group
@@ -74,6 +82,16 @@ export const HorizontalBarChart: FC<THorizontalBarChartProps> = ({
       hightlightSector(rectElement as SVGPathElement);
     }
   }, [inView, width, height]);
+
+  useEffect(() => {
+    if (ref.current) {
+      const svgElement = d3.select(ref.current);
+      const activeRect = svgElement
+        .selectAll(`[data-country=${activeCountry}] rect`)
+        .node();
+      hightlightSector(activeRect as SVGPathElement);
+    }
+  }, [activeCountry]);
 
   return (
     <svg

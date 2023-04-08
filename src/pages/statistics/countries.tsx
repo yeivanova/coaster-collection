@@ -68,7 +68,7 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
                   styles.country_item,
                   country.label === activeCountry && styles.country_item_active
                 )}
-                onClick={() => setActiveCountry(country.label)}
+                onMouseOver={() => setActiveCountry(country.label)}
                 key={index}
               >
                 {country.label}
@@ -81,6 +81,8 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
           width={1548}
           height={73}
           inView={inView}
+          activeCountry={activeCountry}
+          setActiveCountry={setActiveCountry}
         ></HorizontalBarChart>
       </div>
     </section>
