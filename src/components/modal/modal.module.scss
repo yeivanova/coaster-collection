@@ -21,6 +21,14 @@
   border-radius: 10px;
   text-align: left;
   z-index: 2;
+
+  @media (max-width: 767px) {
+    max-height: 96vh;
+    padding: 20px 15px;
+    background-position: bottom right 10px;
+    background-size: 53px auto;
+    overflow-y: auto;
+  }
 }
 
 .modal_content {
@@ -43,4 +51,9 @@
   background: transparent;
   cursor: pointer;
   z-index: 3;
+
+  @media (max-width: 767px) {
+    top: 20px;
+    right: 15px;
+  }
 }
