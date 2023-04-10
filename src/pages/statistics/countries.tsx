@@ -70,12 +70,27 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
                 )}
                 onMouseOver={() => setActiveCountry(country.label)}
                 key={index}
+                style={{
+                  transform: inView ? "none" : "translateY(-50px)",
+                  opacity: inView ? 1 : 0,
+                  transition: `transform 0.3s ease-in-out ${
+                    index / 100 + 0.5
+                  }s, opacity 0.3s ease-in-out  ${index / 100 + 0.5}s`,
+                }}
               >
                 {country.label}
               </li>
             );
           })}
         </ul>
+        <div
+        style={{
+          transform: inView ? "none" : "translateY(-50px)",
+          opacity: inView ? 1 : 0,
+          transition:
+            `transform 0.6s ease-in-out ${isDesktop ? "0.5s" : "0s"}, opacity 0.6s ease-in-out ${isDesktop ? "0.5s" : "0s"}`,
+        }}
+      >
         <HorizontalBarChart
           data={countryData}
           width={1548}
@@ -84,6 +99,7 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
           activeCountry={activeCountry}
           setActiveCountry={setActiveCountry}
         ></HorizontalBarChart>
+        </div>
       </div>
     </section>
   );

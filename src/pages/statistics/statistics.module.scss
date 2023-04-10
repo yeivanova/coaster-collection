@@ -231,6 +231,10 @@
   transition: color 0.2s ease-in-out;
   cursor: pointer;
 
+  @media (max-width: 767px) {
+    font-size: 20px;
+  }
+
   &:hover {
     color: var(--chartColor);
   }
