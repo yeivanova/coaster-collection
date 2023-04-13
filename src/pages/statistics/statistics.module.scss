@@ -1,3 +1,38 @@
+.h2 {
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--textLightColor);
+  margin: 15px 0;
+
+  @media (max-width: 1199px) {
+    font-size: 36px;
+    padding: 0 15px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 28px;
+  }
+}
+
+.h3 {
+  font-weight: 200;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: var(--textLightColor);
+
+  @media (max-width: 1199px) {
+    font-size: 28px;
+    padding: 0 15px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 22px;
+  }
+}
+
 .main {
   font: 200 48px/1 "Yanone Kaffeesatz", sans-serif;
   text-align: center;
@@ -169,9 +204,18 @@
   }
 }
 
+.screen_4 {
+  .col {
+    padding: 0 15px;
+  }
+}
+
+.screen_5 {
+  flex-wrap: wrap;
+}
+
 .col {
   width: 100%;
-  padding: 0 15px;
 }
 
 .col_3 {

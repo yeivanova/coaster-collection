@@ -10,6 +10,7 @@ import { SectionTypes } from "./types";
 import { SectionReverse } from "./reverses";
 import { SectionShape } from "./shapes";
 import { SectionCountries } from "./countries";
+import { SectionKinds } from "./kinds";
 import { motion, AnimatePresence } from "framer-motion";
 
 const fadeUp = {
@@ -87,6 +88,7 @@ export const StatisticsPage: FC = () => {
               <SectionReverse setActiveSection={setActiveSection} />
               <SectionShape setActiveSection={setActiveSection} />
               <SectionCountries setActiveSection={setActiveSection} />
+              <SectionKinds setActiveSection={setActiveSection} />
             </>
           )}
         </div>

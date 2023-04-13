@@ -97,6 +97,19 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
               Страна
             </HashLink>
           </li>
+          <li>
+            <HashLink
+              to="#kinds"
+              className={
+                activeSection === "kinds"
+                  ? cn(styles.nav_link, styles.active)
+                  : styles.nav_link
+              }
+              smooth
+            >
+              Сорт пива
+            </HashLink>
+          </li>
         </ul>
       </nav>
     </header>
