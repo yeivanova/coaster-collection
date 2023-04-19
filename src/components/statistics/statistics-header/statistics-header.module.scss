@@ -9,7 +9,7 @@
 .navbar {
   padding-top: 60px;
 
-  @media (max-width: 767px) {
+  @media (max-width: 1199px) {
     padding-top: 42px;
   }
 }
@@ -17,7 +17,7 @@
 .navigation_list {
   display: flex;
   flex-direction: row;
-  justify-content: end;
+  justify-content: center;
   align-items: center;
   gap: 40px;
   padding: 0;

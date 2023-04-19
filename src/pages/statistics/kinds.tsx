@@ -30,11 +30,19 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
       ref={ref}
     >
       <div className={styles.col}>
-        <h2  className={styles.h2}>
+        <h2 className={styles.h2} style={{
+                  transform: inView ? "none" : "translateY(-100px)",
+                  opacity: inView ? 1 : 0,
+                  transition: "transform 0.3s ease-in-out 0.3s, opacity 0.3s ease-in-out 0.3s",
+                }}>
           На этой странице статистика будет основываться только на пивных
           бирдекелях
         </h2>
-        <h3 className={styles.h3}>
+        <h3 className={styles.h3} style={{
+                  transform: inView ? "none" : "translateY(-50px)",
+                  opacity: inView ? 1 : 0,
+                  transition: "transform 0.3s ease-in-out 0.6s, opacity 0.3s ease-in-out 0.6s",
+                }}>
           Выше вы уже узнали, что пивные бирдикели составляют {(itemsBeer *100 /quantity).toFixed(1)}% коллекции или {itemsBeer} штук. <br/>Эту цифру мы и возмем за абсолютную величину.
         </h3>
       </div>
