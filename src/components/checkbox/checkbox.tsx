@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import styles from "./checkbox.module.scss";
 import cn from "classnames";
+import { v4 as uuid } from "uuid";
 
 type TCheckboxProps = {
   className?: string;
@@ -17,10 +18,11 @@ export const Checkbox: FC<TCheckboxProps> = ({
   label,
   ...props
 }) => {
+  const fieldId = `field-${uuid()}`;
   return (
     <div className={cn(styles.checkbox, className)}>
-      <label className={isDisabled ? styles.label_disabled : undefined}>
-        <input type="checkbox" checked={checked} {...props} disabled={isDisabled}/>
+      <label className={isDisabled ? styles.label_disabled : undefined} htmlFor={fieldId}>
+        <input id={fieldId} type="checkbox" checked={checked} {...props} disabled={isDisabled}/>
         {label}
       </label>
     </div>

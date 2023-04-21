@@ -60,6 +60,7 @@ export const Header: FC<THeaderProps> = ({
       >
         <div className={styles.logo_wrapper}>
           <Link to="/">
+            <span className="sr-only">MynyaCat Brewery, основана в 2018</span>
             <img className={styles.logo} src={logo} alt="На главную" />
           </Link>
         </div>
@@ -78,7 +79,10 @@ export const Header: FC<THeaderProps> = ({
                   <span className={cn(styles.line, styles.line2)}></span>
                   <span className={cn(styles.line, styles.line3)}></span>
                 </span>
-                {isDesktop && "Фильтр"}
+                <span className="sr-only">{sidebarIsOpened ? "Закрыть фильтр" : "Открыть фильтр"}</span>
+                <span aria-hidden="true">
+                  {isDesktop && "Фильтр"}
+                </span>
               </button>
             )}
           </div>

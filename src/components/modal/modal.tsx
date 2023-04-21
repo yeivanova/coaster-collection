@@ -68,8 +68,8 @@ export const Modal: FC<TModalProps> = ({ closeModal }) => {
         exit="exit"
         onClick={(e) => e.stopPropagation()}
       >
-        <button className={styles.modal_close} onClick={closeMe}>
-          <img className={styles.logo} src={close} alt="Закрыть" />
+        <button className={styles.modal_close} onClick={closeMe} aria-label="Закрыть">
+          <img className={styles.logo} src={close} alt="Закрыть"  aria-hidden="true" />
         </button>
         <div className={styles.modal_content}>
           <p>Привет!</p>
