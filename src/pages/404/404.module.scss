@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .main {
   display: flex;
   flex: 1;
@@ -10,11 +12,11 @@
   background-position: center center;
   background-size: cover;
 
-  @media (min-width: 768px) {
+  @include mixins.breakpoint-tablet-up {
     background-image: url("../../images/404.jpg");
   }
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     justify-content: flex-end;
     padding-top: 30px;
     background-image: url("../../images/404-mobile.jpg");
@@ -25,7 +27,7 @@
   margin-top: 20%;
   text-align: center;
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     margin: 0 auto 20%;
   }
 }
@@ -42,7 +44,7 @@
   border-radius: 5px;
   transition: color 0.3s ease, font-size 0.7s ease;
 
-  @media (max-width: 1199px) {
+  @include mixins.breakpoint-desktop-down {
     font-size: 24px;
     padding: 8px 20px 10px 20px;
   }

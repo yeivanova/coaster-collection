@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .percent {
   display: block;
   font: 900 60px/1.2 "Rubik", sans-serif;
@@ -7,15 +9,23 @@
 .label {
   font: 200 48px/1 "Yanone Kaffeesatz", sans-serif;
 
-  @media (max-width: 1199px) {
+  @include mixins.breakpoint-desktop_down {
     font-size: 36px;
   }
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     font-size: 24px;
   }
 }
 
 .donut_svg {
   margin: auto;
+
+  @include mixins.breakpoint-tablet-up {
+    max-width: 300px;
+  }
+
+  @include mixins.breakpoint-laptop-large-up {
+    max-width: 95%;
+  }
 }

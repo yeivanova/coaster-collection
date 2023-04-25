@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .overlay {
   position: fixed;
   width: 100%;
@@ -22,7 +24,7 @@
   text-align: left;
   z-index: 2;
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     max-height: 96vh;
     padding: 20px 15px;
     background-position: bottom right 10px;
@@ -52,7 +54,7 @@
   cursor: pointer;
   z-index: 3;
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     top: 20px;
     right: 15px;
   }

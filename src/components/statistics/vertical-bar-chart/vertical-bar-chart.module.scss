@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .percent {
   display: block;
   font: 900 52px/1.2 "Rubik", sans-serif;
@@ -5,7 +7,7 @@
   fill: var(--lightColor);
   transform: translateY(14px);
 
-  @media (max-width: 1199px) {
+  @include mixins.breakpoint-desktop-down {
     font-size: 45px;
   }
 }
@@ -16,11 +18,11 @@
   fill: var(--lightColor);
   transform: translateY(14px);
 
-  @media (max-width: 1199px) {
+  @include mixins.breakpoint-desktop-down {
     font-size: 36px;
   }
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     font-size: 24px;
   }
 }
@@ -29,7 +31,7 @@
   margin: 0 auto 40px;
   overflow: visible;
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     margin-bottom: 20px;
   }
 }

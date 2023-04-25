@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .up_button {
   display: flex;
   justify-content: center;
@@ -15,7 +17,7 @@
   z-index: -1;
   cursor: pointer;
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     width: 40px;
     height: 40px;
   }
@@ -28,7 +30,7 @@
     width: 35px;
     height: 20px;
 
-    @media (max-width: 767px) {
+    @include mixins.breakpoint-tablet-down {
       width: 14px;
       height: 8px;
     }

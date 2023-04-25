@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .container {
   display: flex;
   flex-flow: row wrap;
@@ -13,12 +15,11 @@
   justify-content: center;
   align-items: center;
   padding-top: 40px;
-  background: var(--backgroundColor) url("../../images/wood-bg.jpg") repeat top
-    center;
+  background: var(--backgroundColor) url("../../images/wood-bg.jpg") repeat top center;
   background-size: 512px auto;
   background-attachment: fixed;
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     padding-top: 30px;
   }
 }

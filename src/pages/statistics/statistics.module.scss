@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .h2 {
   font-weight: 400;
   font-size: 40px;
@@ -6,12 +8,12 @@
   color: var(--textLightColor);
   margin: 15px 0;
 
-  @media (max-width: 1199px) {
+   @include mixins.breakpoint-desktop-down {
     font-size: 36px;
     padding: 0 15px;
   }
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     font-size: 28px;
   }
 }
@@ -23,12 +25,12 @@
   letter-spacing: 0.05em;
   color: var(--textLightColor);
 
-  @media (max-width: 1199px) {
+   @include mixins.breakpoint-desktop-down {
     font-size: 28px;
     padding: 0 15px;
   }
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     font-size: 22px;
   }
 }
@@ -41,17 +43,17 @@
     repeat top center;
   background-attachment: fixed;
 
-  @media (max-width: 1199px) {
+   @include mixins.breakpoint-desktop-down {
     font-size: 36px;
   }
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     font-size: 24px;
   }
 }
 
 .scroll_wrapper {
-  @media (min-width: 768px) {
+   @include mixins.breakpoint-tablet-up {
     height: 100vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
@@ -75,12 +77,12 @@
   font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
   margin-bottom: 20px;
 
-  @media (max-width: 1199px) {
+   @include mixins.breakpoint-desktop-down {
     max-width: 540px;
     font-size: 36px;
   }
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     max-width: 300px;
     font-size: 24px;
   }
@@ -90,11 +92,11 @@
   font: 900 72px/1 "Rubik", sans-serif;
   text-transform: uppercase;
 
-  @media (max-width: 1199px) {
+   @include mixins.breakpoint-desktop-down {
     font-size: 48px;
   }
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     font-size: 26px;
   }
 }
@@ -104,7 +106,7 @@
   font-family: "Rubik", sans-serif;
   margin-bottom: -50px;
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     margin-bottom: -20px;
   }
 
@@ -113,11 +115,11 @@
     stroke-width: 6;
     stroke-linecap: round;
 
-    @media (max-width: 1199px) {
+     @include mixins.breakpoint-desktop-down {
       stroke-width: 5;
     }
 
-    @media (max-width: 767px) {
+     @include mixins.breakpoint-tablet-down {
       stroke-width: 4;
     }
   }
@@ -127,11 +129,15 @@
   position: fixed;
   top: 10px;
   left: 20px;
-  font-size: 20px;
+  font-size: 32px;
   color: var(--lightColor);
   z-index: 11;
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-desktop-down {
+    font-size: 20px;
+  }
+
+   @include mixins.breakpoint-tablet-down {
     font-size: 14px;
   }
 }
@@ -144,12 +150,12 @@
     animation: pulse 1.2s infinite;
     animation-timing-function: ease-in-out;
 
-    @media (max-width: 1199px) {
+     @include mixins.breakpoint-desktop-down {
       max-width: 150px;
       max-height: 150px;
     }
 
-    @media (max-width: 767px) {
+     @include mixins.breakpoint-tablet-down {
       max-width: 100px;
       max-height: 100px;
     }
@@ -181,15 +187,15 @@
   margin: auto;
   overflow: hidden;
 
-  @media (min-width: 768px) {
+   @include mixins.breakpoint-tablet-up {
     scroll-snap-align: start;
   }
 
-  @media (max-width: 1023px) {
+  @include mixins.breakpoint-laptop-large-down {
     flex-direction: column;
   }
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     padding-top: 114px;
   }
 }
@@ -199,7 +205,7 @@
 }
 
 .screen_2 {
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     justify-content: space-around;
   }
 }
@@ -221,7 +227,7 @@
 .col_3 {
   width: 100%;
 
-  @media (min-width: 1024px) {
+  @include mixins.breakpoint-laptop-large-up {
     max-width: 33%;
   }
 }
@@ -234,11 +240,11 @@
   font-size: 80px;
   color: var(--chartColor);
 
-  @media (max-width: 1199px) {
+   @include mixins.breakpoint-desktop-down {
     font-size: 60px;
   }
 
-  @media (max-width: 1023px) {
+  @include mixins.breakpoint-laptop-down {
     font-size: 42px;
   }
 }
@@ -248,7 +254,7 @@
 }
 
 .chart_wrapper_large {
-  @media (min-width: 1024px) {
+  @include mixins.breakpoint-laptop-large-up {
     max-width: 80%;
     margin: auto;
   }
@@ -279,7 +285,7 @@
   transition: color 0.2s ease-in-out;
   cursor: pointer;
 
-  @media (max-width: 767px) {
+   @include mixins.breakpoint-tablet-down {
     font-size: 20px;
   }
 

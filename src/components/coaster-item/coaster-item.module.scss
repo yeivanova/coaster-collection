@@ -1,18 +1,20 @@
+@use "/src/styles/mixins";
+
 .item {
 	position: relative;
 	flex-shrink: 0;
 	flex: 0 0 calc(16.66%);
 	overflow: hidden;
 
-	@media (max-width: 1199px) {
+	@include mixins.breakpoint-desktop_down {
 		flex: 0 0 calc(25%);
 	}
 
-	@media (max-width: 767px) {
+	@include mixins.breakpoint-tablet-down {
 		flex: 0 0 calc(50%);
 	}
 
-	@media (max-width: 480px) {
+	@include mixins.breakpoint-mobile-down {
 		flex: 0 0 100%;
 	}
 }

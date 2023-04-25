@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .header {
   position: fixed;
   width: 100%;
@@ -9,7 +11,7 @@
 .navbar {
   padding-top: 60px;
 
-  @media (max-width: 1199px) {
+  @include mixins.breakpoint-desktop-down {
     padding-top: 42px;
   }
 }
@@ -24,7 +26,7 @@
   margin: 0 30px;
   list-style-type: none;
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     justify-content: flex-start;
     margin: 0;
     overflow-y: hidden;
@@ -70,11 +72,11 @@
   white-space: nowrap;
   cursor: pointer;
 
-  @media (max-width: 1199px) {
+  @include mixins.breakpoint-desktop-down {
     font-size: 24px;
   }
 
-  @media (max-width: 767px) {
+  @include mixins.breakpoint-tablet-down {
     font-size: 18px;
   }
 
@@ -82,11 +84,11 @@
     font-size: 75px;
     opacity: 1;
 
-    @media (max-width: 1199px) {
+    @include mixins.breakpoint-desktop-down {
       font-size: 60px;
     }
   
-    @media (max-width: 767px) {
+    @include mixins.breakpoint-tablet-down {
       font-size: 45px;
     }
   }

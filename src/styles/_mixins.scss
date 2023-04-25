@@ -1,0 +1,52 @@
+@use "/src/styles/variables";
+
+@mixin breakpoint-mobile-down {
+  @media (max-width: variables.$mobile_down) {
+    @content;
+  }
+}
+@mixin breakpoint-mobile-up {
+  @media (min-width: variables.$mobile_up) {
+    @content;
+  }
+}
+@mixin breakpoint-tablet-down {
+  @media (max-width: variables.$tablet_down) {
+    @content;
+  }
+}
+@mixin breakpoint-tablet-up {
+  @media (min-width: variables.$tablet_up) {
+    @content;
+  }
+}
+@mixin breakpoint-laptop-down {
+  @media (max-width: variables.$laptop_down) {
+    @content;
+  }
+}
+@mixin breakpoint-laptop-up {
+  @media (min-width: variables.$laptop_up) {
+    @content;
+  }
+}
+@mixin breakpoint-laptop-large-down {
+  @media (max-width: variables.$laptop_large_down) {
+    @content;
+  }
+}
+@mixin breakpoint-laptop-large-up {
+  @media (min-width: variables.$laptop_large_up) {
+    @content;
+  }
+}
+@mixin breakpoint-desktop-down {
+  @media (max-width: variables.$desktop_down) {
+    @content;
+  }
+}
+@mixin breakpoint-desktop-up {
+  @media (min-width: variables.$desktop_up) {
+    @content;
+  }
+}
