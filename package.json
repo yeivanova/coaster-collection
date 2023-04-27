@@ -9,11 +9,14 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/d3": "^7.4.0",
+    "@types/geojson": "^7946.0.10",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-router-hash-link": "^2.4.5",
+    "@types/topojson-specification": "^1.0.2",
     "axios": "^1.2.1",
     "classnames": "^2.3.2",
     "d3": "^7.8.1",
+    "d3-geo": "^3.1.0",
     "framer-motion": "^7.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,6 +27,7 @@
     "react-router-hash-link": "^2.4.3",
     "react-scripts": "5.0.1",
     "sass": "^1.56.1",
+    "topojson-client": "^3.1.0",
     "typescript": "^4.8.4",
     "uuidv4": "^6.2.13",
     "web-vitals": "^2.1.4"
@@ -63,6 +67,7 @@
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
+    "@types/topojson-client": "^3.1.1",
     "gh-pages": "^4.0.0"
   }
 }
