@@ -10,7 +10,7 @@ export const useMapData = () => {
   const [countriesRUS, setCountriesRUS] = useState<TCountryRus[]>();
 
   useEffect(() => {
-    axios.get("/geo-map.json").then((res) => {
+    axios.get("https://yeivanova.github.io/coaster-collection/geo-map.json").then((res) => {
       const data = feature(
         res.data as Topology,
         (res.data as Topology).objects.countries
@@ -18,7 +18,7 @@ export const useMapData = () => {
       setGeographies(data.features);
     });
 
-    axios.get("/countries-rus.json").then((res) => {
+    axios.get("https://yeivanova.github.io/coaster-collection/countries-rus.json").then((res) => {
       const data = [] as TCountryRus[];
       res.data.map((el: TCountryJSON) =>
         data.push({ code: el.alpha3, name: el.name })
