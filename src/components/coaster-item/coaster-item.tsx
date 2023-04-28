@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState, useRef } from "react";
 import styles from "./coaster-item.module.scss";
 import cn from "classnames";
-import { baseUrl } from "../../utils/api";
+import { baseUrl } from "src/utils/api";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
 type TItemProps = {

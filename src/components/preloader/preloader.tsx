@@ -2,7 +2,7 @@
 
 import React, { FC, useEffect } from "react";
 import styles from "./preloader.module.scss";
-import { ReactComponent as Svg } from "../../images/glass-loader.svg";
+import { ReactComponent as Svg } from "src/images/glass-loader.svg";
 
 export const Preloader: FC = () => {
   useEffect(() => {

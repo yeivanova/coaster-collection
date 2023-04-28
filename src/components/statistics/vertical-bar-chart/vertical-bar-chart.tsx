@@ -2,8 +2,8 @@ import React, { FC, useRef, useEffect, ReactNode } from "react";
 import styles from "./vertical-bar-chart.module.scss";
 import cn from "classnames";
 import * as d3 from "d3";
-import { COLOR, OUTLINE_WIDTH } from "../../../utils/constants";
-import { TChartData } from "../../../services/types";
+import { COLOR, OUTLINE_WIDTH } from "src/utils/constants";
+import { TChartData } from "src/services/types";
 
 type TVerticalBarChartProps = {
   children: ReactNode;

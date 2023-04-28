@@ -2,8 +2,8 @@ import React, { FC, useRef, useEffect } from "react";
 import styles from "./map.module.scss";
 import * as d3 from "d3";
 import { geoEqualEarth, geoPath } from "d3-geo";
-import { COLOR } from "../../../utils/constants";
-import { TCountryRus } from "../../../services/types";
+import { COLOR } from "src/utils/constants";
+import { TCountryRus } from "src/services/types";
 
 type TMapProps = {
   geoData: [];

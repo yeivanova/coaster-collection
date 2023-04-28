@@ -110,7 +110,7 @@ export const SectionIntro: FC<TSectionIntroProps> = ({ quantity, setActiveSectio
       >
         <HashLink to="#types" smooth>
         <img
-          src={require("../../images/gagarin.png")}
+          src={require("src/images/gagarin.png")}
           width="200"
           height="200"
           alt="Поехали!"

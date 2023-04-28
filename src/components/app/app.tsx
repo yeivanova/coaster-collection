@@ -1,11 +1,11 @@
 import React, { FC, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HomePage } from "../../pages/home/home";
-import { StatisticsPage } from "../../pages/statistics/main";
-import { NotFoundPage } from "../../pages/404/404";
-import { DeviceContext } from "../../services/app-context";
-import { useAppDispatch } from "../../hooks/hooks";
-import { fetchCoasters } from "../../services/fetchCoasters";
+import { HomePage } from "src/pages/home/home";
+import { StatisticsPage } from "src/pages/statistics/main";
+import { NotFoundPage } from "src/pages/404/404";
+import { DeviceContext } from "src/services/app-context";
+import { useAppDispatch } from "src/hooks/hooks";
+import { fetchCoasters } from "src/services/fetchCoasters";
 
 export const Main: FC = () => {
   const dispatch = useAppDispatch();

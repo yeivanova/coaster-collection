@@ -1,12 +1,12 @@
 import React, { FC, useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "./modal.module.scss";
-import close from "../../images/close.svg";
+import close from "src/images/close.svg";
 import { Overlay } from "../overlay/overlay";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
-import { RootState } from "../../services/store";
-import { declension } from "../../utils/utils";
+import { RootState } from "src/services/store";
+import { declension } from "src/utils/utils";
 
 const modalRoot = document.getElementById("react-modals") as
   | Element

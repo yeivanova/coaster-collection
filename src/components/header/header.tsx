@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState, useContext, ReactNode } from "react";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../images/logo.svg";
+import logo from "src/images/logo.svg";
 import styles from "./header.module.scss";
 import cn from "classnames";
-import { DeviceContext } from "../../services/app-context";
+import { DeviceContext } from "src/services/app-context";
 import { AnimatePresence } from "framer-motion";
 import { Modal } from "../modal/modal";
 

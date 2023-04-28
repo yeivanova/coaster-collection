@@ -3,12 +3,12 @@ import styles from "./sidebar.module.scss";
 import { Checkbox } from "../checkbox/checkbox";
 import { Panel } from "../filer-panel/filer-panel";
 import { motion } from "framer-motion";
-import { DeviceContext } from "../../services/app-context";
+import { DeviceContext } from "src/services/app-context";
 import { useSelector } from "react-redux";
-import { RootState } from "../../services/store";
+import { RootState } from "src/services/store";
 import { Overlay } from "../overlay/overlay";
-import { TValues } from "../../slices/filterParamsSlice";
-import { TParams } from "../../services/types";
+import { TValues } from "src/slices/filterParamsSlice";
+import { TParams } from "src/services/types";
 
 type TSidebarProps = {
   isOpened: boolean;

@@ -3,7 +3,7 @@ import styles from "./shape-fill.module.scss";
 import cn from "classnames";
 import { v4 as uuid } from "uuid";
 import * as d3 from "d3";
-import { COLOR } from "../../../utils/constants";
+import { COLOR } from "src/utils/constants";
 
 type TShapeFillProps = {
   shape: "circle" | "square" | "other";

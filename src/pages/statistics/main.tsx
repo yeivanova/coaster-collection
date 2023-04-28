@@ -1,10 +1,10 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import { useSelector } from "react-redux";
-import { RootState } from "../../services/store";
+import { RootState } from "src/services/store";
 import { Link } from "react-router-dom";
-import { Preloader } from "../../components/preloader/preloader";
-import { StatisticsHeader } from "../../components/statistics/statistics-header/statistics-header";
+import { Preloader } from "src/components/preloader/preloader";
+import { StatisticsHeader } from "src/components/statistics/statistics-header/statistics-header";
 import { SectionIntro } from "./intro";
 import { SectionTypes } from "./types";
 import { SectionReverse } from "./reverses";

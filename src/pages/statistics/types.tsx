@@ -1,13 +1,13 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
-import { DeviceContext } from "../../services/app-context";
+import { DeviceContext } from "src/services/app-context";
 import { useSelector } from "react-redux";
-import { RootState } from "../../services/store";
+import { RootState } from "src/services/store";
 import { useInView } from "react-intersection-observer";
-import { DonutChart } from "../../components/statistics/donut-chart/donut-chart";
-import { SegmentChart } from "../../components/statistics/segment-chart/segment-chart";
-import { TChartData } from "../../services/types";
+import { DonutChart } from "src/components/statistics/donut-chart/donut-chart";
+import { SegmentChart } from "src/components/statistics/segment-chart/segment-chart";
+import { TChartData } from "src/services/types";
 
 type TSectionTypesProps = {
   setActiveSection: (value: string) => void;

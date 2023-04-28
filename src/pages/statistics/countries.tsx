@@ -1,14 +1,14 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
-import { DeviceContext } from "../../services/app-context";
+import { DeviceContext } from "src/services/app-context";
 import { useSelector } from "react-redux";
-import { RootState } from "../../services/store";
+import { RootState } from "src/services/store";
 import { useInView } from "react-intersection-observer";
-import { HorizontalBarChart } from "../../components/statistics/horizontal-bar-chart/horizontal-bar-chart";
-import { TChartData } from "../../services/types";
-import { useMapData } from "../../hooks/useMapData";
-import { Map } from "../../components/statistics/map/map";
+import { HorizontalBarChart } from "src/components/statistics/horizontal-bar-chart/horizontal-bar-chart";
+import { TChartData } from "src/services/types";
+import { useMapData } from "src/hooks/useMapData";
+import { Map } from "src/components/statistics/map/map";
 
 type TSectionCountriesProps = {
   setActiveSection: (value: string) => void;

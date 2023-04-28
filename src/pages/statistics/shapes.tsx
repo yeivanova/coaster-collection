@@ -1,13 +1,13 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
-import { DeviceContext } from "../../services/app-context";
+import { DeviceContext } from "src/services/app-context";
 import { useSelector } from "react-redux";
-import { RootState } from "../../services/store";
+import { RootState } from "src/services/store";
 import { useInView } from "react-intersection-observer";
-import { ShapeFill } from "../../components/statistics/shape-fill/shape-fill";
-import { VerticalBarChart } from "../../components/statistics/vertical-bar-chart/vertical-bar-chart";
-import { TChartData } from "../../services/types";
+import { ShapeFill } from "src/components/statistics/shape-fill/shape-fill";
+import { VerticalBarChart } from "src/components/statistics/vertical-bar-chart/vertical-bar-chart";
+import { TChartData } from "src/services/types";
 
 type TSectionShapeProps = {
   setActiveSection: (value: string) => void;

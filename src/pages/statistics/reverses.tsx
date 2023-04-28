@@ -1,11 +1,11 @@
 import React, { FC, useContext, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
-import { DeviceContext } from "../../services/app-context";
+import { DeviceContext } from "src/services/app-context";
 import { useSelector } from "react-redux";
-import { RootState } from "../../services/store";
+import { RootState } from "src/services/store";
 import { useInView } from "react-intersection-observer";
-import { SegmentChart } from "../../components/statistics/segment-chart/segment-chart";
+import { SegmentChart } from "src/components/statistics/segment-chart/segment-chart";
 
 type TSectionReverseProps = {
   setActiveSection: (value: string) => void;
