@@ -8,12 +8,12 @@
   color: var(--textLightColor);
   margin: 15px 0;
 
-   @include mixins.breakpoint-desktop-down {
+  @include mixins.breakpoint-desktop-down {
     font-size: 36px;
     padding: 0 15px;
   }
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     font-size: 28px;
   }
 }
@@ -25,12 +25,12 @@
   letter-spacing: 0.05em;
   color: var(--textLightColor);
 
-   @include mixins.breakpoint-desktop-down {
+  @include mixins.breakpoint-desktop-down {
     font-size: 28px;
     padding: 0 15px;
   }
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     font-size: 22px;
   }
 }
@@ -43,20 +43,22 @@
     repeat top center;
   background-attachment: fixed;
 
-   @include mixins.breakpoint-desktop-down {
+  @include mixins.breakpoint-desktop-down {
     font-size: 36px;
   }
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     font-size: 24px;
   }
 }
 
 .scroll_wrapper {
-   @include mixins.breakpoint-tablet-up {
+  @include mixins.breakpoint-tablet-up {
     height: 100vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
+
+    @include mixins.statistics-scrollbar;
   }
 }
 
@@ -77,12 +79,12 @@
   font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
   margin-bottom: 20px;
 
-   @include mixins.breakpoint-desktop-down {
+  @include mixins.breakpoint-desktop-down {
     max-width: 540px;
     font-size: 36px;
   }
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     max-width: 300px;
     font-size: 24px;
   }
@@ -92,11 +94,11 @@
   font: 900 72px/1 "Rubik", sans-serif;
   text-transform: uppercase;
 
-   @include mixins.breakpoint-desktop-down {
+  @include mixins.breakpoint-desktop-down {
     font-size: 48px;
   }
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     font-size: 26px;
   }
 }
@@ -106,7 +108,7 @@
   font-family: "Rubik", sans-serif;
   margin-bottom: -50px;
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     margin-bottom: -20px;
   }
 
@@ -115,11 +117,11 @@
     stroke-width: 6;
     stroke-linecap: round;
 
-     @include mixins.breakpoint-desktop-down {
+    @include mixins.breakpoint-desktop-down {
       stroke-width: 5;
     }
 
-     @include mixins.breakpoint-tablet-down {
+    @include mixins.breakpoint-tablet-down {
       stroke-width: 4;
     }
   }
@@ -133,11 +135,11 @@
   color: var(--lightColor);
   z-index: 11;
 
-   @include mixins.breakpoint-desktop-down {
+  @include mixins.breakpoint-desktop-down {
     font-size: 20px;
   }
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     font-size: 14px;
   }
 }
@@ -150,12 +152,12 @@
     animation: pulse 1.2s infinite;
     animation-timing-function: ease-in-out;
 
-     @include mixins.breakpoint-desktop-down {
+    @include mixins.breakpoint-desktop-down {
       max-width: 150px;
       max-height: 150px;
     }
 
-     @include mixins.breakpoint-tablet-down {
+    @include mixins.breakpoint-tablet-down {
       max-width: 100px;
       max-height: 100px;
     }
@@ -183,11 +185,11 @@
   max-width: 1180px;
   min-height: 100vh;
   gap: 30px;
-  padding: 50px 0 0;
+  padding: 120px 0 0;
   margin: auto;
   overflow: hidden;
 
-   @include mixins.breakpoint-tablet-up {
+  @include mixins.breakpoint-tablet-up {
     scroll-snap-align: start;
   }
 
@@ -195,7 +197,7 @@
     flex-direction: column;
   }
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     padding-top: 114px;
   }
 }
@@ -205,7 +207,7 @@
 }
 
 .screen_2 {
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-tablet-down {
     justify-content: space-around;
   }
 }
@@ -240,7 +242,7 @@
   font-size: 80px;
   color: var(--chartColor);
 
-   @include mixins.breakpoint-desktop-down {
+  @include mixins.breakpoint-desktop-down {
     font-size: 60px;
   }
 
@@ -267,25 +269,18 @@
 }
 
 .countries_wrapper {
-  width: 346px;
-  max-height: calc(100vh - 200px);
   overflow-y: auto;
+  @include mixins.breakpoint-laptop-large-down {
+    max-height: calc(50vh);
+    margin: 0 0 20px;
+  }
 
-  &::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 5px;
+  @include mixins.breakpoint-laptop-large-up {
+    width: 346px;
+    max-height: calc(100vh - 200px);
   }
-   
-  &::-webkit-scrollbar-track {
-    border-radius: 5px;
-    background-color: var(--statisricsScrollbarTrack);
-  }
-   
-  &::-webkit-scrollbar-thumb {
-    border: none;
-    background-color: var(--statisricsScrollbarThumb);
-    border-radius: 5px;
-  }
+
+  @include mixins.statistics-scrollbar;
 }
 
 .countries_list {
@@ -294,10 +289,14 @@
   list-style: none;
   padding-left: 0;
   text-align: left;
+
+  @include mixins.breakpoint-laptop-large-down {
+    justify-content: center;
+    gap: 5px 25px;
+  }
 }
 
 .country_item {
-  flex-basis: 50%;
   font-weight: 200;
   font-size: 30px;
   line-height: 1;
@@ -307,7 +306,11 @@
   transition: color 0.2s ease-in-out;
   cursor: pointer;
 
-   @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-laptop-large-up {
+    flex-basis: 50%;
+  }
+
+  @include mixins.breakpoint-tablet-down {
     font-size: 20px;
   }
 
@@ -322,5 +325,8 @@
 
 .map_wrapper {
   display: flex;
-  max-width: calc(100% - 346px);
+
+  @include mixins.breakpoint-laptop-large-up {
+    max-width: calc(100% - 346px);
+  }
 }
