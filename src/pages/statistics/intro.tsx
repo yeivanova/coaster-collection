@@ -8,9 +8,12 @@ import { HashLink } from "react-router-hash-link";
 type TSectionIntroProps = {
   quantity: number;
   setActiveSection: (value: string) => void;
-}
+};
 
-export const SectionIntro: FC<TSectionIntroProps> = ({ quantity, setActiveSection }) => {
+export const SectionIntro: FC<TSectionIntroProps> = ({
+  quantity,
+  setActiveSection,
+}) => {
   const [ref, inView] = useInView({ threshold: 0.5 });
 
   useEffect(() => {
@@ -85,18 +88,19 @@ export const SectionIntro: FC<TSectionIntroProps> = ({ quantity, setActiveSectio
         >
           бирдекелей
         </div>
+
+        <div
+          className={cn(styles.h1, styles.h1_bottom)}
+          style={{
+            transform: inView ? "none" : "translateY(-100px)",
+            opacity: inView ? 1 : 0,
+            transition:
+              "transform 0.3s ease-in-out 0.8s, opacity 0.3s ease-in-out 0.8s",
+          }}
+        >
+          и вся статистика на этой странице рассчитана из этого числа
+        </div>
       </h1>
-      <p
-        className={styles.h1}
-        style={{
-          transform: inView ? "none" : "translateY(-100px)",
-          opacity: inView ? 1 : 0,
-          transition:
-            "transform 0.3s ease-in-out 0.8s, opacity 0.3s ease-in-out 0.8s",
-        }}
-      >
-        и вся статистика на этой странице рассчитана из этого числа
-      </p>
       <div
         className={styles.go}
         style={{
@@ -109,12 +113,12 @@ export const SectionIntro: FC<TSectionIntroProps> = ({ quantity, setActiveSectio
         }}
       >
         <HashLink to="#types" smooth>
-        <img
-          src={require("src/images/gagarin.png")}
-          width="200"
-          height="200"
-          alt="Поехали!"
-        />
+          <img
+            src={require("src/images/gagarin.png")}
+            width="200"
+            height="200"
+            alt="Поехали!"
+          />
         </HashLink>
       </div>
     </section>

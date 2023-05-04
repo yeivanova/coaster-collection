@@ -85,31 +85,34 @@
   }
 
   @include mixins.breakpoint-tablet-down {
-    max-width: 300px;
-    font-size: 24px;
+    max-width: 340px;
+    font-size: 32px;
   }
 }
 
 .subtext {
   font: 900 72px/1 "Rubik", sans-serif;
   text-transform: uppercase;
+  margin-bottom: 20px;
 
   @include mixins.breakpoint-desktop-down {
     font-size: 48px;
   }
 
   @include mixins.breakpoint-tablet-down {
-    font-size: 26px;
+    font-size: 32px;
   }
 }
 
 .quantity {
   font-weight: 900;
   font-family: "Rubik", sans-serif;
-  margin-bottom: -50px;
+  margin: 0 auto -50px;
+  max-width: 772px;
 
-  @include mixins.breakpoint-tablet-down {
-    margin-bottom: -20px;
+  @include mixins.breakpoint-desktop-down {
+    margin-top: 30px;
+    margin-bottom: -17px;
   }
 
   .text {
@@ -124,6 +127,12 @@
     @include mixins.breakpoint-tablet-down {
       stroke-width: 4;
     }
+  }
+}
+
+.h1_bottom {
+  @include mixins.breakpoint-tablet-down {
+    font-size: 28px;
   }
 }
 
@@ -158,8 +167,8 @@
     }
 
     @include mixins.breakpoint-tablet-down {
-      max-width: 100px;
-      max-height: 100px;
+      max-width: 116px;
+      max-height: 116px;
     }
   }
 }
@@ -204,12 +213,22 @@
 
 .screen_1 {
   flex-direction: column;
+  padding-top: 30px;
+
+  @include mixins.breakpoint-tablet-down {
+    justify-content: space-around;
+    gap: 0;
+  }
 }
 
 .screen_2 {
   @include mixins.breakpoint-tablet-down {
     justify-content: space-around;
   }
+}
+
+.screen_3 {
+  justify-content: space-evenly;
 }
 
 .screen_4 {
