@@ -5,6 +5,7 @@ import { DeviceContext } from "src/services/app-context";
 import { useSelector } from "react-redux";
 import { RootState } from "src/services/store";
 import { useInView } from "react-intersection-observer";
+import { GlassFill } from "src/components/statistics/glass-fill/glass-fill";
 
 type TSectionKindsProps = {
   setActiveSection: (value: string) => void;
@@ -16,12 +17,29 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
   const items = useSelector((state: RootState) => state.coasters.items);
   const quantity = items.length;
   const itemsBeer = items.filter(item => item.type === "Пиво").length;
+  const [ales, setAles] = useState<string>("0");
+  const [lagers, setLagers] = useState<string>("0");
 
   useEffect(() => {
     if (inView) {
       setActiveSection("kinds");
     }
   }, [inView, setActiveSection]);
+
+  useEffect(() => {
+    setAles(
+      Number(
+        (items.filter((item) => item.beerType[0] === "Ale").length * 100) /
+        itemsBeer
+      ).toFixed(1)
+    );
+    setLagers(
+      Number(
+        (items.filter((item) => item.beerType[0] === "Lager").length * 100) /
+        itemsBeer
+      ).toFixed(1)
+    );
+  }, [items, itemsBeer]);
 
   return (
     <section
@@ -55,7 +73,7 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
             ? "scale(0)"
             : "translateX(-100%)",
           opacity: inView ? 1 : 0,
-          width: isDesktop ? "33%" : "45%",
+          width: "45%",
           transition: `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
             isDesktop ? "0.2s" : "0s"
           }, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
@@ -63,7 +81,28 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
           }`,
         }}
       >
-        Ale
+        <GlassFill
+          type="ale"
+          percent={+ales}
+          width={174}
+          height={296}
+          inView={inView}
+        >
+          <div
+            className={styles.label}
+            style={{
+              transform: inView ? "none" : "translateY(-100px)",
+              opacity: inView ? 1 : 0,
+              transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                isDesktop ? "0.9s" : "0s"
+              }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                isDesktop ? "0.9s" : "0s"
+              }`,
+            }}
+          >
+            Ale
+          </div>
+        </GlassFill>
       </div>
       <div
         className={styles.col_2}
@@ -74,7 +113,7 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
             ? "scale(0)"
             : "translateX(100%)",
           opacity: inView ? 1 : 0,
-          width: isDesktop ? "33%" : "45%",
+          width: "45%",
           transition: `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
             isDesktop ? "0.4s" : "0s"
           }, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
@@ -82,7 +121,28 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
           }`,
         }}
       >
-        Lager
+        <GlassFill
+          type="lager"
+          percent={+lagers}
+          width={174}
+          height={296}
+          inView={inView}
+        >
+          <div
+            className={styles.label}
+            style={{
+              transform: inView ? "none" : "translateY(-100px)",
+              opacity: inView ? 1 : 0,
+              transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                isDesktop ? "0.9s" : "0s"
+              }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                isDesktop ? "0.9s" : "0s"
+              }`,
+            }}
+          >
+            Lager
+          </div>
+        </GlassFill>
       </div>
     </section>
   );
