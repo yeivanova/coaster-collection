@@ -43,7 +43,7 @@
     repeat top center;
   background-attachment: fixed;
 
-  @include mixins.breakpoint-desktop-down {
+  @include mixins.breakpoint-laptop-down {
     font-size: 36px;
   }
 
@@ -229,6 +229,7 @@
 
 .screen_3 {
   justify-content: space-evenly;
+  overflow: visible;
 }
 
 .screen_4 {
@@ -272,13 +273,6 @@
 
 .chart_wrapper {
   cursor: pointer;
-}
-
-.chart_wrapper_large {
-  @include mixins.breakpoint-laptop-large-up {
-    max-width: 80%;
-    margin: auto;
-  }
 }
 
 .countries_col {

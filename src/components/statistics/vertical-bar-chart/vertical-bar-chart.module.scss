@@ -2,29 +2,21 @@
 
 .percent {
   display: block;
-  font: 900 52px/1.2 "Rubik", sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  font-family: "Rubik", sans-serif;
   letter-spacing: 0.05em;
   fill: var(--lightColor);
   transform: translateY(14px);
-
-  @include mixins.breakpoint-desktop-down {
-    font-size: 45px;
-  }
 }
 
 .label {
   position: relative;
-  font: 200 44px/1 "Yanone Kaffeesatz", sans-serif;
+  font-weight: 200;
+  line-height: 1;
+  font-family: "Yanone Kaffeesatz", sans-serif;
   fill: var(--lightColor);
   transform: translateY(14px);
-
-  @include mixins.breakpoint-desktop-down {
-    font-size: 36px;
-  }
-
-  @include mixins.breakpoint-tablet-down {
-    font-size: 24px;
-  }
 }
 
 .shape_svg {

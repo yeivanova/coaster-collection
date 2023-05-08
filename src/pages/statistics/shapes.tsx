@@ -186,9 +186,7 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
         }}
       >
         <div
-          className={cn(styles.chart_wrapper, {
-            [styles.chart_wrapper_large]: showDetails,
-          })}
+          className={styles.chart_wrapper}
           onClick={() => setShowDetails(true)}
         >
           {showDetails ? (

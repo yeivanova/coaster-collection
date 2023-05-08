@@ -173,7 +173,8 @@ export const ShapeFill: FC<TShapeFillProps> = ({
           id={elementId}
           className={styles.percent}
           x="50%"
-          y="33%"
+          y="35%"
+          fontSize="45"
           dominantBaseline="middle"
           textAnchor="middle"
         ></text>

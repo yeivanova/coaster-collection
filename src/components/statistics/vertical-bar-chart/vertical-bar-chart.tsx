@@ -61,6 +61,7 @@ export const VerticalBarChart: FC<TVerticalBarChartProps> = ({
         group
           .append("text")
           .attr("class", cn(styles.label, styles.label_element))
+          .style("font-size", "44px")
           .attr("x", `${(width - barWidth) / 2 + barWidth + 60}px`)
           .attr("y", `${prevElHeight + el.value / 2}%`)
           .text(el.label);
@@ -68,6 +69,7 @@ export const VerticalBarChart: FC<TVerticalBarChartProps> = ({
         group
           .append("text")
           .attr("class", cn(styles.percent, styles.label_element))
+          .style("font-size", "52px")
           .attr("x", "25px")
           .attr("y", `${prevElHeight + el.value / 2}%`)
           .text(`${el.value}%`);
