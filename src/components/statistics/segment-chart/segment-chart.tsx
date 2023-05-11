@@ -114,6 +114,7 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
           className={styles.percent}
           x="50%"
           y="50%"
+          fontSize="60"
           dominantBaseline="middle"
           textAnchor="middle"
         ></text>

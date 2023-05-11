@@ -1,6 +1,9 @@
 .percent {
   display: block;
-  font: 900 60px/1.2 "Rubik", sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  font-family: "Rubik", sans-serif;
+  letter-spacing: 0.05em;
   fill: var(--lightColor);
   transform: translateY(36px);
 }
@@ -11,7 +14,6 @@
 
 .percent_label {
   font-weight: 200;
-  font-size: 56px;
   line-height: 1;
   fill: var(--lightColor);
   transform: translateY(-36px);

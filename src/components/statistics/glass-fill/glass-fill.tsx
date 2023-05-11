@@ -118,6 +118,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
           className={styles.percent}
           x="50%"
           y="33%"
+          fontSize="34"
           dominantBaseline="middle"
           textAnchor="middle"
         ></text>

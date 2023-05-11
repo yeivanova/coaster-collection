@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import React, { FC, useContext, useEffect, useState, useMemo } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
 import { DeviceContext } from "src/services/app-context";
@@ -49,6 +49,8 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
     return dataset;
   };
 
+  const uniqueParams = useMemo(() => uniqueTypeParams(), []);
+
   useEffect(() => {
     if (inView) {
       setActiveSection("shapes");
@@ -78,7 +80,7 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
             quantity
         ).toFixed(1)
       );
-      setShapeOthersData(uniqueTypeParams());
+      setShapeOthersData(uniqueParams);
     }
   }, [items, quantity]);
 

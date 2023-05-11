@@ -2,20 +2,11 @@
 
 .percent {
   display: block;
-  font: 900 60px/1.2 "Rubik", sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  font-family: "Rubik", sans-serif;
+  letter-spacing: 0.05em;
   fill: var(--lightColor);
-}
-
-.label {
-  font: 200 48px/1 "Yanone Kaffeesatz", sans-serif;
-
-  @include mixins.breakpoint-desktop_down {
-    font-size: 36px;
-  }
-
-  @include mixins.breakpoint-tablet-down {
-    font-size: 24px;
-  }
 }
 
 .donut_svg {

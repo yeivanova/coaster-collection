@@ -64,6 +64,7 @@ export const HorizontalBarChart: FC<THorizontalBarChartProps> = ({
           .attr("class", cn(styles.percent, styles.label_element))
           .attr("x", `${prevElWidth + el.value / 2}%`)
           .attr("y", "20%")
+          .style("font-size", "20px")
           .text(`${el.value}%`);
 
         group

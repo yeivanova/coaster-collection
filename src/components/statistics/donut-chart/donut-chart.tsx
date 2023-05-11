@@ -106,6 +106,7 @@ export const DonutChart: FC<TDonutChartProps> = ({
           y="50%"
           dominantBaseline="middle"
           textAnchor="middle"
+          fontSize="56"
           id={elementLabelId}
           className={styles.percent_label}
         ></text>
@@ -114,6 +115,7 @@ export const DonutChart: FC<TDonutChartProps> = ({
           y="50%"
           dominantBaseline="middle"
           textAnchor="middle"
+          fontSize="60"
           id={elementId}
           className={styles.percent}
         ></text>

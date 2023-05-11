@@ -2,7 +2,9 @@
 
 .percent {
   display: block;
-  font: 900 34px/1.2 "Rubik", sans-serif;
+  font-weight: 900;
+  line-height: 1.2;
+  font-family:  "Rubik", sans-serif;
   fill: var(--lightColor);
 }
 

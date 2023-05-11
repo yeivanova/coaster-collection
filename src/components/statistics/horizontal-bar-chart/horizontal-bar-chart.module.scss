@@ -2,7 +2,9 @@
 
 .percent {
   display: block;
-  font: 300 20px/1 "Rubik", sans-serif;
+  font-weight: 300;
+  line-height: 1;
+  font-family: "Rubik", sans-serif;
   letter-spacing: 0.05em;
   display: flex;
   align-items: center;
