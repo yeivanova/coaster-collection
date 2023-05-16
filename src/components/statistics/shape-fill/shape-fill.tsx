@@ -38,7 +38,7 @@ export const ShapeFill: FC<TShapeFillProps> = ({
   percent,
   inView,
 }) => {
-  const elementId = `text-${uuid().slice(0, 8)}`;
+  const elementId = `shape-${uuid().slice(0, 8)}`;
   const ref = useRef<SVGSVGElement>(null);
   const [heightFilledArea, setHeightFilledArea] = useState(0);
 
@@ -48,7 +48,7 @@ export const ShapeFill: FC<TShapeFillProps> = ({
 
   useEffect(() => {
     if (inView) {
-      countToPercent("#" + elementId, percent);
+      countToPercent("#text-" + elementId, percent);
     }
   }, [inView, percent]);
 
@@ -124,7 +124,7 @@ export const ShapeFill: FC<TShapeFillProps> = ({
         }
       }
     }
-  }, [inView, percent, width, height, heightFilledArea, shape]);
+  }, [inView, percent, heightFilledArea]);
   return (
     <>
       <svg
@@ -170,7 +170,7 @@ export const ShapeFill: FC<TShapeFillProps> = ({
           />
         )}
         <text
-          id={elementId}
+          id={`text-${elementId}`}
           className={styles.percent}
           x="50%"
           y="35%"

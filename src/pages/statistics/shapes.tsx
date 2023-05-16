@@ -25,31 +25,28 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
   const [showDetails, setShowDetails] = useState<boolean>(false);
   const [shapeOthersData, setShapeOthersData] = useState<TChartData[]>([]);
 
-  const uniqueTypeParams = (): TChartData[] => {
-    const dataset = [] as TChartData[];
-    const othersQuantity = items.filter(
-      (item) => item.shape !== "Квадрат" && item.shape !== "Круг"
-    ).length;
+  const uniqueParams = useMemo(() => { 
+      const dataset = [] as TChartData[];
+      const othersQuantity = items.filter(
+        (item) => item.shape !== "Квадрат" && item.shape !== "Круг"
+      ).length;
 
-    params.shape.forEach((param) => {
-      if (param !== "Квадрат" && param !== "Круг") {
-        const value = Number(
-          (items.filter((item) => item.shape === param).length * 100) /
-            othersQuantity
-        ).toFixed(1);
+      params.shape.forEach((param) => {
+        if (param !== "Квадрат" && param !== "Круг") {
+          const value = Number(
+            (items.filter((item) => item.shape === param).length * 100) /
+              othersQuantity
+          ).toFixed(1);
 
-        dataset.push({
-          label: param,
-          value: +value,
-        });
-      }
-    });
-
-    dataset.sort((a, b) => (a < b) ? 1 : -1);
-    return dataset;
-  };
-
-  const uniqueParams = useMemo(() => uniqueTypeParams(), []);
+          dataset.push({
+            label: param,
+            value: +value,
+          });
+        }
+      });
+      dataset.sort((a, b) => (a < b) ? 1 : -1);
+      return dataset;
+  }, [items, params.shape]);
 
   useEffect(() => {
     if (inView) {
@@ -82,7 +79,7 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
       );
       setShapeOthersData(uniqueParams);
     }
-  }, [items, quantity]);
+  }, [items, quantity, uniqueParams]);
 
   return (
     <section
@@ -189,7 +186,8 @@ export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
       >
         <div
           className={styles.chart_wrapper}
-          onClick={() => setShowDetails(true)}
+          onMouseOver={() => setShowDetails(true)}
+          onMouseOut={() => setShowDetails(false)}
         >
           {showDetails ? (
             <VerticalBarChart

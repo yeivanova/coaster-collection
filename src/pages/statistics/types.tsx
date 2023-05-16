@@ -184,33 +184,34 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
           className={cn(styles.chart_wrapper, {
             [styles.chart_wrapper_large]: showDetails
           })}
-          onClick={() => setShowDetails(true)}
+          onMouseOver={() => setShowDetails(true)}
+          onMouseOut={() => setShowDetails(false)}
         >
           {showDetails ? (
             <DonutChart
-            percent={+typeOthers}
-            data={typeOthersData}
-            inView={inView}
-            radius={238}
-            strokeWidth={40}
-          >
-            <div
-              className={cn(styles.label, {
-                [styles.label_large]: showDetails
-              })}
-              style={{
-                transform: inView ? "none" : "translateY(-100px)",
-                opacity: inView ? 1 : 0,
-                transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                  isDesktop ? "1.3s" : "0s"
-                }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                  isDesktop ? "1.3s" : "0s"
-                }`,
-              }}
+              percent={+typeOthers}
+              data={typeOthersData}
+              inView={inView}
+              radius={238}
+              strokeWidth={40}
             >
-              Остальное
-            </div>
-          </DonutChart>
+              <div
+                className={cn(styles.label, {
+                  [styles.label_large]: showDetails
+                })}
+                style={{
+                  transform: inView ? "none" : "translateY(-100px)",
+                  opacity: inView ? 1 : 0,
+                  transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                    isDesktop ? "1.3s" : "0s"
+                  }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                    isDesktop ? "1.3s" : "0s"
+                  }`,
+                }}
+              >
+                Остальное
+              </div>
+            </DonutChart>
           ) : (
             <SegmentChart
               percent={+typeOthers}
