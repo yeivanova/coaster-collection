@@ -36,7 +36,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
   percent,
   inView,
 }) => {
-  const elementId = `text-${uuid().slice(0, 8)}`;
+  const elementId = uuid().slice(0, 8);
   const ref = useRef<SVGSVGElement>(null);
   const [heightFilledArea, setHeightFilledArea] = useState(0);
 
@@ -46,7 +46,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
 
   useEffect(() => {
     if (inView) {
-      countToPercent("#" + elementId, percent);
+      countToPercent("#text-" + elementId, percent);
     }
   }, [inView, percent]);
 
@@ -60,7 +60,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
           .append("g")
           .attr("class", "glass")
           .append("mask")
-          .attr("id", elementId)
+          .attr("id", `glass-${elementId}`)
           .attr("style", "mask-type:alpha")
           .attr("maskUnits", "userSpaceOnUse")
           .attr("x", strokeWidth / 2)
@@ -89,7 +89,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
       if (inView) {
         svgElement
           .selectAll(".glass")
-          .attr("mask", `url(#${elementId})`)
+          .attr("mask", `url(#glass-${elementId})`)
           .append("path")
           .attr(
             "d",
@@ -98,7 +98,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
           .attr("fill", type === "ale" ? ALE_COLOR : COLOR);
       }
     }
-  }, [inView, percent, width, height, heightFilledArea, type]);
+  }, [inView, percent, heightFilledArea, type]);
   return (
     <>
       <svg
@@ -114,7 +114,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
         />
         <path opacity="0.2" d="M36.3043 283.1C21.0043 109.5 23.1043 120.3 17.5043 106.7C3.40429 72.2 13.2043 64.6 14.8043 45.6H157.904C159.804 68 169.604 71.3 154.704 107.8C152.204 113.9 150.604 120.7 150.004 128C135.504 294.5 137.204 284.9 134.504 284.9C32.2043 284.9 36.5043 285.7 36.3043 283.1Z" fill={type === "ale" ? ALE_COLOR : COLOR}/>
         <text
-          id={elementId}
+          id={`text-${elementId}`}
           className={styles.percent}
           x="50%"
           y="33%"
