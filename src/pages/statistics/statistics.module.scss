@@ -343,3 +343,30 @@
     max-width: calc(100% - 346px);
   }
 }
+
+.subtypes_wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  column-gap: 15px;
+
+  @include mixins.breakpoint-mobile-down {
+    flex-wrap: wrap;
+  }
+}
+
+.subtypes_item {
+  flex-basis: 45px;
+  opacity: 0.4;
+
+  .label {
+    display: none;
+  }
+
+  svg {
+    @include mixins.breakpoint-mobile-down {
+      max-width: 45px;
+    }
+  }
+}

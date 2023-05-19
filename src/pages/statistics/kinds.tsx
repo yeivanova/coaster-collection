@@ -6,10 +6,18 @@ import { useSelector } from "react-redux";
 import { RootState } from "src/services/store";
 import { useInView } from "react-intersection-observer";
 import { GlassFill } from "src/components/statistics/glass-fill/glass-fill";
+import { TCoaster } from "src/services/types"
 
 type TSectionKindsProps = {
   setActiveSection: (value: string) => void;
 };
+
+const generateBeerObj = (entries: TCoaster[]) => {
+  const beerObj = {} as {[key: string]: number};
+  const particle = Number((100 / entries.length).toFixed(1));
+  entries.forEach((el) => beerObj[el.beerType[1]] = (!beerObj.hasOwnProperty(el.beerType[1])) ? particle : Number((beerObj[el.beerType[1]] + particle).toFixed(1)))
+  return beerObj;
+}
 
 export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
   const { isDesktop } = useContext(DeviceContext);
@@ -17,8 +25,11 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
   const items = useSelector((state: RootState) => state.coasters.items);
   const quantity = items.length;
   const itemsBeer = items.filter(item => item.type === "Пиво").length;
-  const [ales, setAles] = useState<string>("0");
-  const [lagers, setLagers] = useState<string>("0");
+  const [ales, setAles] = useState<number>(0);
+  const [alesSubtypes, setAlesSubtypes] = useState<{ [key: string]: number }>({});
+  const [lagersSubtypes, setLagersSubtypes] = useState<{ [key: string]: number }>({});
+  const [lagers, setLagers] = useState<number>(0);
+  const [showDetails, setShowDetails] = useState<boolean>(false);
 
   useEffect(() => {
     if (inView) {
@@ -27,18 +38,20 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
   }, [inView, setActiveSection]);
 
   useEffect(() => {
+    const alesEntries = items.filter((item) => item.beerType[0] === "Ale");
+    const lagerEntries = items.filter((item) => item.beerType[0] === "Lager");
+
     setAles(
-      Number(
-        (items.filter((item) => item.beerType[0] === "Ale").length * 100) /
-        itemsBeer
-      ).toFixed(1)
+      Number((alesEntries.length * 100 / itemsBeer).toFixed(1))
     );
+
     setLagers(
-      Number(
-        (items.filter((item) => item.beerType[0] === "Lager").length * 100) /
-        itemsBeer
-      ).toFixed(1)
+      Number((lagerEntries.length * 100 / itemsBeer).toFixed(1))
     );
+
+    setAlesSubtypes(generateBeerObj(alesEntries));
+    setLagersSubtypes(generateBeerObj(lagerEntries))
+    
   }, [items, itemsBeer]);
 
   return (
@@ -73,7 +86,7 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
             ? "scale(0)"
             : "translateX(-100%)",
           opacity: inView ? 1 : 0,
-          width: "45%",
+          width: isDesktop ? "45%" : "100%",
           transition: `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
             isDesktop ? "0.2s" : "0s"
           }, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
@@ -81,28 +94,60 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
           }`,
         }}
       >
-        <GlassFill
-          type="ale"
-          percent={+ales}
-          width={174}
-          height={296}
-          inView={inView}
-        >
-          <div
-            className={styles.label}
-            style={{
-              transform: inView ? "none" : "translateY(-100px)",
-              opacity: inView ? 1 : 0,
-              transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                isDesktop ? "0.9s" : "0s"
-              }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                isDesktop ? "0.9s" : "0s"
-              }`,
-            }}
+        <div className={styles.subtypes_wrapper}>
+          {Object.entries(alesSubtypes).map((entry, index) => {
+            return (
+              <div className={styles.subtypes_item}>
+                <GlassFill
+                  type="ale"
+                  percent={entry[1]}
+                  width={174}
+                  height={296}
+                  inView={inView}
+                  key={index}
+                >
+                  <div
+                    className={styles.label}
+                    style={{
+                      transform: inView ? "none" : "translateY(-100px)",
+                      opacity: inView ? 1 : 0,
+                      transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.9s" : "0s"
+                        }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.9s" : "0s"
+                        }`,
+                    }}
+                  >
+                    {entry[0]}
+                  </div>
+                </GlassFill>
+              </div>
+            );
+          })}
+        </div>
+        <div className={styles.chart_wrapper}
+          onClick={() => setShowDetails(true)}>
+          <GlassFill
+            type="ale"
+            percent={ales}
+            width={174}
+            height={296}
+            inView={inView}
           >
-            Ale
-          </div>
-        </GlassFill>
+            <div
+              className={styles.label}
+              style={{
+                transform: inView ? "none" : "translateY(-100px)",
+                opacity: inView ? 1 : 0,
+                transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                  isDesktop ? "0.9s" : "0s"
+                }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                  isDesktop ? "0.9s" : "0s"
+                }`,
+              }}
+            >
+              Ale
+            </div>
+          </GlassFill>
+        </div>
       </div>
       <div
         className={styles.col_2}
@@ -113,7 +158,7 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
             ? "scale(0)"
             : "translateX(100%)",
           opacity: inView ? 1 : 0,
-          width: "45%",
+          width: isDesktop ? "45%" : "100%",
           transition: `transform 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
             isDesktop ? "0.4s" : "0s"
           }, opacity 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) ${
@@ -121,9 +166,38 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
           }`,
         }}
       >
+        <div className={styles.subtypes_wrapper}>
+          {Object.entries(lagersSubtypes).map((entry, index) => {
+            return (
+              <div className={styles.subtypes_item}>
+                <GlassFill
+                  type="lager"
+                  percent={entry[1]}
+                  width={174}
+                  height={296}
+                  inView={inView}
+                  key={index}
+                >
+                  <div
+                    className={styles.label}
+                    style={{
+                      transform: inView ? "none" : "translateY(-100px)",
+                      opacity: inView ? 1 : 0,
+                      transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.9s" : "0s"
+                        }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${isDesktop ? "0.9s" : "0s"
+                        }`,
+                    }}
+                  >
+                    {entry[0]}
+                  </div>
+                </GlassFill>
+              </div>
+            );
+          })}
+        </div>
         <GlassFill
           type="lager"
-          percent={+lagers}
+          percent={lagers}
           width={174}
           height={296}
           inView={inView}
