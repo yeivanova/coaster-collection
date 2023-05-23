@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 import { RootState } from "src/services/store";
 import { useInView } from "react-intersection-observer";
 import { GlassFill } from "src/components/statistics/glass-fill/glass-fill";
-import { TCoaster } from "src/services/types"
+import { TCoaster } from "src/services/types";
+import { v4 as uuid } from "uuid";
 
 type TSectionKindsProps = {
   setActiveSection: (value: string) => void;
@@ -95,16 +96,15 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
         }}
       >
         <div className={styles.subtypes_wrapper}>
-          {Object.entries(alesSubtypes).map((entry, index) => {
+          {Object.entries(alesSubtypes).map((entry) => {
             return (
-              <div className={styles.subtypes_item}>
+              <div className={styles.subtypes_item} key={uuid()}>
                 <GlassFill
                   type="ale"
                   percent={entry[1]}
                   width={174}
                   height={296}
                   inView={inView}
-                  key={index}
                 >
                   <div
                     className={styles.label}
@@ -167,16 +167,15 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
         }}
       >
         <div className={styles.subtypes_wrapper}>
-          {Object.entries(lagersSubtypes).map((entry, index) => {
+          {Object.entries(lagersSubtypes).map((entry) => {
             return (
-              <div className={styles.subtypes_item}>
+              <div className={styles.subtypes_item} key={uuid()}>
                 <GlassFill
                   type="lager"
                   percent={entry[1]}
                   width={174}
                   height={296}
                   inView={inView}
-                  key={index}
                 >
                   <div
                     className={styles.label}
