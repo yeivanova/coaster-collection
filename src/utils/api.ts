@@ -1,1 +1,1 @@
-export const baseUrl = "https://coastercollectionapi.tk/api/coasters";
+export const baseUrl = "https://munyabrew.ru/api/coasters";

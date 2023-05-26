@@ -6,13 +6,15 @@ export const UpButton: FC = () => {
   const [showTopBtn, setShowTopBtn] = useState<boolean>(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    const scrollPage = () => {
       if (window.scrollY > 400) {
         setShowTopBtn(true);
       } else {
         setShowTopBtn(false);
       }
-    });
+    };
+    window.addEventListener("scroll", () => scrollPage);
+    return () => window.removeEventListener("scroll", scrollPage);
   }, []);
 
   const goToTop = () => {
