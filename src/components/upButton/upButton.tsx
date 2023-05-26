@@ -6,16 +6,14 @@ export const UpButton: FC = () => {
   const [showTopBtn, setShowTopBtn] = useState<boolean>(false);
 
   useEffect(() => {
-    const scrollPage = () => {
-      if (window.scrollY > 400) {
-        setShowTopBtn(true);
-      } else {
-        setShowTopBtn(false);
-      }
-    };
-    window.addEventListener("scroll", () => scrollPage);
-    return () => window.removeEventListener("scroll", scrollPage);
+    window.addEventListener("scroll", isUpButtonVisible);
+    return () => window.removeEventListener("scroll", isUpButtonVisible);
   }, []);
+
+  const isUpButtonVisible = () => {
+    const scrollTop = window.scrollY;
+    scrollTop >= 400 ? setShowTopBtn(true) : setShowTopBtn(false);
+  };
 
   const goToTop = () => {
     window.scrollTo({
@@ -28,7 +26,7 @@ export const UpButton: FC = () => {
     <div
       className={cn(
         styles.up_button,
-        showTopBtn ? styles.is_visible : undefined
+        showTopBtn && styles.is_visible
       )}
       onClick={goToTop}
     >
