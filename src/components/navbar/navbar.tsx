@@ -20,7 +20,7 @@ export const Navbar: FC = () => {
             <nav>
                 <ul className={styles.navigation_list}>
                     <li>
-                        <NavLink
+                        <NavLink onClick={() => document.body.classList.remove("no-scroll")}
                             to="/statistics"
                             className={({ isActive, isPending }) => {
                                 return isActive

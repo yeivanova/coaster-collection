@@ -42,6 +42,7 @@
   background: var(--backgroundColor) url("../../images/statistics-bg.jpg")
     repeat top center;
   background-attachment: fixed;
+  overflow: hidden;
 
   @include mixins.breakpoint-laptop-down {
     font-size: 36px;

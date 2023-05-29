@@ -16,8 +16,10 @@
 
 .is_sticky {
   .header_inner {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    @include mixins.breakpoint-mobile-up {
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
   }
 
   .logo_wrapper {
