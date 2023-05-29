@@ -1,11 +1,10 @@
-import React, { FC, useEffect, useState, useContext, ReactNode } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { FC, useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import logo from "src/images/logo.svg";
 import styles from "./header.module.scss";
 import cn from "classnames";
 import { DeviceContext } from "src/services/app-context";
-import { AnimatePresence } from "framer-motion";
-import { Modal } from "../modal/modal";
+import { Navbar } from "../navbar/navbar";
 
 type THeaderProps = {
   toggleSidebar?: () => void;
@@ -21,7 +20,6 @@ export const Header: FC<THeaderProps> = ({
   const { isDesktop } = useContext(DeviceContext);
   const [isSticky, setIsSticky] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
-  const [modalIsOpened, setModalIsOpened] = useState<boolean>(false);
 
   useEffect(() => {
     window.addEventListener("scroll", isHeaderSticky);
@@ -29,14 +27,6 @@ export const Header: FC<THeaderProps> = ({
       window.removeEventListener("scroll", isHeaderSticky);
     };
   }, []);
-
-  const openModal = () => {
-    setModalIsOpened(true);
-  };
-
-  const closeModal = () => {
-    setModalIsOpened(false);
-  };
 
   const isHeaderSticky = () => {
     const scrollTop = window.scrollY;
@@ -86,40 +76,9 @@ export const Header: FC<THeaderProps> = ({
               </button>
             )}
           </div>
-          {isDesktop && (
-            <nav className={styles.navbar}>
-              <ul className={styles.navigation_list}>
-                <li>
-                  <NavLink
-                    to="/statistics"
-                    className={({ isActive, isPending }) => {
-                      return isActive
-                        ? styles.active
-                        : isPending
-                        ? styles.pending
-                        : styles.link;
-                    }}
-                  >
-                    Статистика
-                  </NavLink>
-                </li>
-                <li>
-                  <button className={styles.link} onClick={openModal}>
-                    О проекте
-                  </button>
-                </li>
-              </ul>
-            </nav>
-          )}
+          {isDesktop && <Navbar />}
         </div>
       </header>
-      <AnimatePresence
-        initial={false}
-        mode='wait'
-        onExitComplete={() => null}
-      >
-        {modalIsOpened && <Modal closeModal={closeModal} />}
-      </AnimatePresence>
     </>
   );
 };

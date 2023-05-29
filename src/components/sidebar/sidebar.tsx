@@ -1,5 +1,6 @@
 import React, { FC, useState, useEffect, useContext } from "react";
 import styles from "./sidebar.module.scss";
+import { Navbar } from "../navbar/navbar";
 import { Checkbox } from "../checkbox/checkbox";
 import { Panel } from "../filer-panel/filer-panel";
 import { motion } from "framer-motion";
@@ -64,7 +65,7 @@ export const Sidebar: FC<TSidebarProps> = ({
       reverse: new Array(allParams.reverse.length).fill(true),
     });
     setLastParams(allParams);
-}
+  }
 
   useEffect(() => {
     if (allParams.type.length > 0) {
@@ -238,7 +239,12 @@ export const Sidebar: FC<TSidebarProps> = ({
           exit="exit"
           onClick={(e) => e.stopPropagation()}
         >
-          {!isDesktop && <h2 className={styles.h2}>Фильтр</h2>}
+          {!isDesktop && (
+            <>
+              <Navbar />
+              <h2 className={styles.h2}>Фильтр</h2>
+            </>
+          )}
           <button className={styles.clear_filter} onClick={clearFilter}>Очистить фильтр</button>
           <Panel isMultiple={false}>
             <Checkbox

@@ -85,17 +85,6 @@
   }
 }
 
-.navigation_list {
-  display: flex;
-  flex: 1;
-  justify-content: flex-end;
-  align-items: center;
-  list-style: none;
-  padding: 0;
-  column-gap: 30px;
-  min-width: 192px;
-}
-
 .logo {
   width: 138px;
   height: 141px;
@@ -108,35 +97,6 @@
     margin-top: -15px;
     margin-right: 0;
   }
-}
-
-.link {
-  padding: 0;
-  background: var(--lightColor);
-  border: none;
-  cursor: pointer;
-}
-
-.navigation_list a, .link {
-  font-size: 16px;
-  line-height: 1.2;
-  color: var(--textColor);
-  text-decoration: none;
-  transition: color 0.3s ease, font-size 0.7s ease;
-
-  &:hover,
-  &:focus,
-  &:active {
-    color: var(--activeColor);
-  }
-}
-
-.active {
-  color: var(--activeColor);
-}
-
-.button_wrapper {
-  min-width: 192px;
 }
 
 .filter_button {
