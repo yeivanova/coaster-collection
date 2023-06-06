@@ -1,6 +1,6 @@
 ## Частная коллекция бирдекелей
 
-Посмотреть демо: [GitHub Pages](https://yeivanova.github.io/coaster-collection/)
+Посмотреть сайт: [munyabrew.ru](https://munyabrew.ru/)
 
 ### Для запуска
 
