@@ -50,7 +50,7 @@ export const HomePage: FC = () => {
   };
 
   useEffect(() => {
-    setAllData([]);
+    if (!paramsStr) setAllData([]);
     fetchData();
   }, [paramsStr]);
 
@@ -72,6 +72,7 @@ export const HomePage: FC = () => {
 
   const closeSidebar = () => {
     setSidebarIsOpened(false);
+    document.body.classList.remove("no-scroll");
   };
 
   return (
@@ -86,6 +87,7 @@ export const HomePage: FC = () => {
         closeSidebar={closeSidebar}
         paramsStr={paramsStr}
         setParamsStr={setParamsStr}
+        visibleItemsQuantity={allData.length}
       />
       <main className={styles.main}>
         {(status === "loading" || isLoading) && allData.length > 0 ? (

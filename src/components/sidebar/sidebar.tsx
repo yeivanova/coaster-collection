@@ -16,6 +16,7 @@ type TSidebarProps = {
   closeSidebar: () => void;
   paramsStr: string;
   setParamsStr: (value: string) => void;
+  visibleItemsQuantity: number;
 };
 
 type TParamsActivity = {
@@ -27,14 +28,53 @@ type TParamsActivity = {
   reverse: boolean[];
 };
 
+const slideIn = {
+  hidden: {
+    x: "-100%",
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    transitionEnd: {
+      x: 0,
+    },
+    opacity: 1,
+    transition: {
+      delay: 0.25,
+      duration: 0.15,
+    },
+  },
+  exit: {
+    x: "-100%",
+    opacity: 0,
+  },
+};
+
+const fadeIn = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.15,
+    },
+  },
+  exit: {
+    opacity: 0,
+  },
+};
+
 export const Sidebar: FC<TSidebarProps> = ({
   isOpened,
   closeSidebar,
   paramsStr,
   setParamsStr,
+  visibleItemsQuantity
 }) => {
   const allParams = useSelector((state: RootState) => state.coasters.params);
   const currentParams = useSelector((state: RootState) => state.filterParams);
+  const coastersQuantity = useSelector((state: RootState) => state.coasters.items).length;
   const [reverse, setReverse] = useState(false);
   const [types, setTypes] = useState<boolean[]>();
   const [brands, setBrands] = useState<boolean[]>();
@@ -49,6 +89,7 @@ export const Sidebar: FC<TSidebarProps> = ({
   const [lastChangedParam, setLastChangedParam] = useState<TParams>();
   const [checkboxAction, setCheckboxAction] = useState<boolean>(false);
   const { isDesktop } = useContext(DeviceContext);
+  const [showItemsQuantity, setShowItemsQuantity] = useState<number>(0);
 
   const initParams = () => {
     setTypes(new Array(allParams.type.length).fill(false));
@@ -81,10 +122,17 @@ export const Sidebar: FC<TSidebarProps> = ({
     }
   }, [currentParams]);
 
+  useEffect(() => {
+    if (visibleItemsQuantity > 0 && visibleItemsQuantity < coastersQuantity) {
+      setShowItemsQuantity(visibleItemsQuantity);
+    }
+  }, [visibleItemsQuantity]);
+
   const clearFilter = () => {
     setParamsStr("");
     setReverse(false);
     initParams();
+    setShowItemsQuantity(0);
   }
 
   const compareParams = (category: TParams) => {
@@ -208,31 +256,18 @@ export const Sidebar: FC<TSidebarProps> = ({
       }
     });
     setParamsStr(currentParams.toString());
-  };
-
-  const slideIn = {
-    hidden: {
-      x: "-100%",
-      opacity: 0,
-    },
-    visible: {
-      x: "0",
-      opacity: 1,
-      transition: {
-        duration: 0.15,
-      },
-    },
-    exit: {
-      x: "-100%",
-      opacity: 0,
-    },
+    if (currentParams.toString() === "") {
+      setShowItemsQuantity(0);
+    };
   };
 
   if (isOpened) {
+    const paddedClass = (!isDesktop && showItemsQuantity > 0) ? styles.padded : '';
+
     return (
       <Overlay onClick={closeSidebar} transparent={true}>
         <motion.div
-          className={styles.sidebar}
+          className={`${styles.sidebar} ${paddedClass}`}
           variants={slideIn}
           initial="hidden"
           animate="visible"
@@ -245,7 +280,7 @@ export const Sidebar: FC<TSidebarProps> = ({
               <h2 className={styles.h2}>Фильтр</h2>
             </>
           )}
-          <button className={styles.clear_filter} onClick={clearFilter}>Очистить фильтр</button>
+          {isDesktop && <button className={styles.clear_filter} onClick={clearFilter}>Очистить фильтр</button>}
           <Panel isMultiple={false}>
             <Checkbox
               label={"Оборот"}
@@ -398,7 +433,20 @@ export const Sidebar: FC<TSidebarProps> = ({
               })}
             </Panel>
           )}
-        </motion.div>
+          {(!isDesktop && showItemsQuantity > 0) && (
+            <motion.div
+              className={styles.filter_handler_buttons}
+              variants={fadeIn}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className={styles.clear_filter} onClick={clearFilter}>Очистить фильтр</button>
+              <button className={styles.clear_filter} onClick={closeSidebar}>Показать бирдекели ({visibleItemsQuantity})</button>
+            </motion.div>
+            )}
+          </motion.div>
       </Overlay>
     );
   } else return <></>;
