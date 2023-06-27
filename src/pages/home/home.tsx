@@ -82,13 +82,6 @@ export const HomePage: FC = () => {
         sidebarIsOpened={sidebarIsOpened}
         withFilter={true}
       />
-      <Sidebar
-        isOpened={sidebarIsOpened}
-        closeSidebar={closeSidebar}
-        paramsStr={paramsStr}
-        setParamsStr={setParamsStr}
-        visibleItemsQuantity={allData.length}
-      />
       <main className={styles.main}>
         {(status === "loading" || isLoading) && allData.length > 0 ? (
           <Preloader />
@@ -119,6 +112,13 @@ export const HomePage: FC = () => {
         )}
       </main>
       <UpButton />
+      <Sidebar
+        isOpened={sidebarIsOpened}
+        closeSidebar={closeSidebar}
+        paramsStr={paramsStr}
+        setParamsStr={setParamsStr}
+        visibleItemsQuantity={allData.length}
+      />
     </>
   );
 };

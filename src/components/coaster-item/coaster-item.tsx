@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState, useRef } from "react";
+import React, { FC, useEffect, useState, useRef, useContext } from "react";
 import styles from "./coaster-item.module.scss";
 import cn from "classnames";
 import { baseUrl } from "src/utils/api";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { DeviceContext } from "src/services/app-context";
 
 type TItemProps = {
   id: number;
@@ -17,6 +18,92 @@ type TItemProps = {
 interface ValidRefTarget {
   contains(target: EventTarget | null): any;
 }
+
+const slideUp = {
+  hidden: {
+    y: "100%",
+    opacity: 0,
+  },
+  visible: {
+    y: "0",
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+    },
+  },
+  exit: {
+    y: "100%",
+    opacity: 0,
+  },
+};
+
+const frontVariants: Variants = {
+  flip: {
+    rotateY: 180,
+    opacity: 0,
+    transition: {
+      ease: "easeInOut",
+      duration: 1,
+      opacity: {
+        delay: 0.25,
+        duration: 0.5,
+      },
+      rotateY: {
+        duration: 1,
+      },
+    },
+  },
+  hidden: {
+    rotateY: 0,
+    opacity: 1,
+    transition: {
+      ease: "easeInOut",
+      duration: 1,
+      opacity: {
+        delay: 0.25,
+        duration: 0.5,
+      },
+      rotateY: {
+        duration: 1,
+      },
+    },
+  },
+};
+
+const backVariants: Variants = {
+  flip: {
+    rotateY: 0,
+    translateX: "-50%",
+    opacity: 1,
+    transition: {
+      ease: "easeInOut",
+      duration: 1,
+      opacity: {
+        delay: 0.25,
+        duration: 0.5,
+      },
+      rotateY: {
+        duration: 1,
+      },
+    },
+  },
+  hidden: {
+    rotateY: 180,
+    translateX: "-50%",
+    opacity: 0,
+    transition: {
+      ease: "easeInOut",
+      duration: 1,
+      opacity: {
+        delay: 0.25,
+        duration: 0.5,
+      },
+      rotateY: {
+        duration: 1,
+      },
+    },
+  },
+};
 
 function useOutsideAlerter(
   ref: React.RefObject<ValidRefTarget>,
@@ -47,6 +134,7 @@ export const Item: FC<TItemProps> = ({
   const [infoIsOpened, setInfoIsOpened] = useState(false);
   const [isFlip, setIsFlip] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const { isDesktop } = useContext(DeviceContext);
 
   const openInfo = () => {
     setInfoIsOpened(true);
@@ -72,95 +160,9 @@ export const Item: FC<TItemProps> = ({
     return () => window.removeEventListener("keydown", close);
   }, []);
 
-  const slideUp = {
-    hidden: {
-      y: "100%",
-      opacity: 0,
-    },
-    visible: {
-      y: "0",
-      opacity: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    exit: {
-      y: "100%",
-      opacity: 0,
-    },
-  };
-
-  const frontVariants: Variants = {
-    flip: {
-      rotateY: 180,
-      opacity: 0,
-      transition: {
-        ease: "easeInOut",
-        duration: 1,
-        opacity: {
-          delay: 0.25,
-          duration: 0.5,
-        },
-        rotateY: {
-          duration: 1,
-        },
-      },
-    },
-    hidden: {
-      rotateY: 0,
-      opacity: 1,
-      transition: {
-        ease: "easeInOut",
-        duration: 1,
-        opacity: {
-          delay: 0.25,
-          duration: 0.5,
-        },
-        rotateY: {
-          duration: 1,
-        },
-      },
-    },
-  };
-
-  const backVariants: Variants = {
-    flip: {
-      rotateY: 0,
-      translateX: "-50%",
-      opacity: 1,
-      transition: {
-        ease: "easeInOut",
-        duration: 1,
-        opacity: {
-          delay: 0.25,
-          duration: 0.5,
-        },
-        rotateY: {
-          duration: 1,
-        },
-      },
-    },
-    hidden: {
-      rotateY: 180,
-      translateX: "-50%",
-      opacity: 0,
-      transition: {
-        ease: "easeInOut",
-        duration: 1,
-        opacity: {
-          delay: 0.25,
-          duration: 0.5,
-        },
-        rotateY: {
-          duration: 1,
-        },
-      },
-    },
-  };
-
   return (
     <li className={styles.item}>
-      <motion.div className={styles.image_container}>
+      <motion.div className={styles.image_container} onClick={isDesktop ? (e) => e.preventDefault : turnSide}>
         <motion.img
           className={cn(styles.image, styles.front_image)}
           src={`${baseUrl}/${id}/image/`}
