@@ -1,373 +1,466 @@
 @use "/src/styles/mixins";
 
 .h2 {
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  color: var(--textLightColor);
-  margin: 15px 0;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    color: var(--textLightColor);
+    margin: 15px 0;
 
-  @include mixins.breakpoint-desktop-down {
-    font-size: 36px;
-    padding: 0 15px;
-  }
+    @include mixins.breakpoint-desktop-down {
+        font-size: 36px;
+        padding: 0 15px;
+    }
 
-  @include mixins.breakpoint-tablet-down {
-    font-size: 28px;
-  }
+    @include mixins.breakpoint-tablet-down {
+        font-size: 28px;
+    }
 }
 
 .h3 {
-  font-weight: 200;
-  font-size: 32px;
-  line-height: 1;
-  letter-spacing: 0.05em;
-  color: var(--textLightColor);
+    font-weight: 200;
+    font-size: 32px;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    color: var(--textLightColor);
 
-  @include mixins.breakpoint-desktop-down {
-    font-size: 28px;
-    padding: 0 15px;
-  }
+    @include mixins.breakpoint-desktop-down {
+        font-size: 28px;
+        padding: 0 15px;
+    }
 
-  @include mixins.breakpoint-tablet-down {
-    font-size: 22px;
-  }
+    @include mixins.breakpoint-tablet-down {
+        font-size: 22px;
+    }
 }
 
 .main {
-  font: 200 48px/1 "Yanone Kaffeesatz", sans-serif;
-  text-align: center;
-  color: var(--lightColor);
-  background: var(--backgroundColor) url("../../images/statistics-bg.jpg")
-    repeat top center;
-  background-attachment: fixed;
-  overflow: hidden;
+    font: 200 48px/1 "Yanone Kaffeesatz", sans-serif;
+    text-align: center;
+    color: var(--lightColor);
+    background: var(--backgroundColor) url("../../images/statistics-bg.jpg")
+        repeat top center;
+    background-attachment: fixed;
+    overflow: hidden;
 
-  @include mixins.breakpoint-laptop-down {
-    font-size: 36px;
-  }
+    @include mixins.breakpoint-laptop-down {
+        font-size: 36px;
+    }
 
-  @include mixins.breakpoint-tablet-down {
-    font-size: 24px;
-  }
+    @include mixins.breakpoint-tablet-down {
+        font-size: 24px;
+    }
 }
 
 .scroll_wrapper {
-  @include mixins.breakpoint-tablet-up {
-    height: 100vh;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    @include mixins.breakpoint-tablet-up {
+        height: 100vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
 
-    @include mixins.statistics-scrollbar;
-  }
+        @include mixins.statistics-scrollbar;
+    }
 }
 
 .container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .header {
-  width: 100%;
-  max-width: 1180px;
+    width: 100%;
+    max-width: 1180px;
 }
 
 .h1 {
-  font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
-  margin-bottom: 20px;
+    font: 300 48px/1 "Yanone Kaffeesatz", sans-serif;
+    margin-bottom: 20px;
 
-  @include mixins.breakpoint-desktop-down {
-    max-width: 540px;
-    font-size: 36px;
-  }
+    @include mixins.breakpoint-desktop-down {
+        max-width: 540px;
+        font-size: 36px;
+    }
 
-  @include mixins.breakpoint-tablet-down {
-    max-width: 340px;
-    font-size: 32px;
-  }
+    @include mixins.breakpoint-tablet-down {
+        max-width: 340px;
+        font-size: 32px;
+    }
 }
 
 .subtext {
-  font: 900 72px/1 "Rubik", sans-serif;
-  text-transform: uppercase;
-  margin-bottom: 20px;
+    font: 900 72px/1 "Rubik", sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 
-  @include mixins.breakpoint-desktop-down {
-    font-size: 48px;
-  }
+    @include mixins.breakpoint-desktop-down {
+        font-size: 48px;
+    }
 
-  @include mixins.breakpoint-tablet-down {
-    font-size: 32px;
-  }
+    @include mixins.breakpoint-tablet-down {
+        font-size: 32px;
+    }
 }
 
 .quantity {
-  font-weight: 900;
-  font-family: "Rubik", sans-serif;
-  margin: 0 auto -50px;
-  max-width: 772px;
-
-  @include mixins.breakpoint-desktop-down {
-    margin-top: 30px;
-    margin-bottom: -17px;
-  }
-
-  .text {
-    stroke: var(--lightColor);
-    stroke-width: 6;
-    stroke-linecap: round;
+    font-weight: 900;
+    font-family: "Rubik", sans-serif;
+    margin: 0 auto -50px;
+    max-width: 772px;
 
     @include mixins.breakpoint-desktop-down {
-      stroke-width: 5;
+        margin-top: 30px;
+        margin-bottom: -17px;
     }
 
-    @include mixins.breakpoint-tablet-down {
-      stroke-width: 4;
+    .text {
+        stroke: var(--lightColor);
+        stroke-width: 6;
+        stroke-linecap: round;
+
+        @include mixins.breakpoint-desktop-down {
+            stroke-width: 5;
+        }
+
+        @include mixins.breakpoint-tablet-down {
+            stroke-width: 4;
+        }
     }
-  }
 }
 
 .h1_bottom {
-  @include mixins.breakpoint-tablet-down {
-    font-size: 28px;
-  }
+    @include mixins.breakpoint-tablet-down {
+        font-size: 28px;
+    }
 }
 
 .back_home {
-  position: fixed;
-  top: 10px;
-  left: 20px;
-  font-size: 32px;
-  color: var(--lightColor);
-  z-index: 11;
-
-  @include mixins.breakpoint-desktop-down {
-    font-size: 20px;
-  }
-
-  @include mixins.breakpoint-tablet-down {
-    font-size: 14px;
-  }
-}
-
-.go {
-  margin: 20px auto 0;
-  cursor: pointer;
-
-  img {
-    animation: pulse 1.2s infinite;
-    animation-timing-function: ease-in-out;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    font-size: 32px;
+    color: var(--lightColor);
+    z-index: 11;
 
     @include mixins.breakpoint-desktop-down {
-      max-width: 150px;
-      max-height: 150px;
+        font-size: 20px;
     }
 
     @include mixins.breakpoint-tablet-down {
-      max-width: 116px;
-      max-height: 116px;
+        font-size: 14px;
     }
-  }
+}
+
+.go {
+    margin: 20px auto 0;
+    cursor: pointer;
+
+    img {
+        animation: pulse 1.2s infinite;
+        animation-timing-function: ease-in-out;
+
+        @include mixins.breakpoint-desktop-down {
+            max-width: 150px;
+            max-height: 150px;
+        }
+
+        @include mixins.breakpoint-tablet-down {
+            max-width: 116px;
+            max-height: 116px;
+        }
+    }
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 .screen {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 1180px;
-  min-height: 100vh;
-  gap: 30px;
-  padding: 120px 0 0;
-  margin: auto;
-  overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1180px;
+    min-height: 100vh;
+    gap: 30px;
+    padding: 120px 0 0;
+    margin: auto;
+    overflow: hidden;
 
-  @include mixins.breakpoint-tablet-up {
-    scroll-snap-align: start;
-  }
+    @include mixins.breakpoint-tablet-up {
+        scroll-snap-align: start;
+    }
 
-  @include mixins.breakpoint-laptop-large-down {
-    flex-direction: column;
-  }
+    @include mixins.breakpoint-laptop-large-down {
+        flex-direction: column;
+    }
 
-  @include mixins.breakpoint-tablet-down {
-    padding-top: 114px;
-  }
+    @include mixins.breakpoint-tablet-down {
+        padding-top: 114px;
+    }
 }
 
 .screen_1 {
-  flex-direction: column;
-  padding-top: 30px;
+    flex-direction: column;
+    padding-top: 30px;
 
-  @include mixins.breakpoint-tablet-down {
-    justify-content: space-around;
-    gap: 0;
-  }
+    @include mixins.breakpoint-tablet-down {
+        justify-content: space-around;
+        gap: 0;
+    }
 }
 
 .screen_2 {
-  @include mixins.breakpoint-tablet-down {
-    justify-content: space-around;
-  }
+    @include mixins.breakpoint-tablet-down {
+        justify-content: space-around;
+    }
 }
 
 .screen_3 {
-  justify-content: space-evenly;
-  overflow: visible;
+    justify-content: space-evenly;
+    overflow: visible;
 }
 
 .screen_4 {
-  .col {
-    padding: 0 15px;
-  }
+    .col {
+        padding: 0 15px;
+    }
 }
 
 .screen_5 {
-  flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 
 .col {
-  width: 100%;
+    width: 100%;
+}
+
+.wrap_col {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.col_2 {
+    width: 100%;
+
+    @include mixins.breakpoint-laptop-large-up {
+        width: 45%;
+    }
+}
+
+.initial_subtyps {
+    opacity: 0.4;
+}
+
+.shown {
+    width: 100%;
+    opacity: 1;
+    transition-delay: 0s;
+}
+
+.hidden {
+    width: 0;
+    height: 0;
+    transform: scale(0);
+    opacity: 0;
+    transition-delay: 0s;
+}
+
+.diminished {
+    opacity: 0.4;
+
+    .chart_wrapper svg {
+        width: 100px;
+        margin-bottom: 0;
+    }
+
+    .label {
+        font-size: 30px;
+    }
 }
 
 .col_3 {
-  width: 100%;
+    width: 100%;
 
-  @include mixins.breakpoint-laptop-large-up {
-    max-width: 33%;
-  }
+    @include mixins.breakpoint-laptop-large-up {
+        max-width: 33%;
+    }
 }
 
 .label {
-  margin-top: 15px;
+    margin-top: 15px;
+    word-break: break-word;
 }
 
 .label_large {
-  font-size: 80px;
-  color: var(--chartColor);
+    font-size: 80px;
+    color: var(--chartColor);
 
-  @include mixins.breakpoint-desktop-down {
-    font-size: 60px;
-  }
+    @include mixins.breakpoint-desktop-down {
+        font-size: 60px;
+    }
 
-  @include mixins.breakpoint-laptop-down {
-    font-size: 42px;
-  }
+    @include mixins.breakpoint-laptop-down {
+        font-size: 42px;
+    }
 }
 
 .chart_wrapper {
-  cursor: pointer;
+    cursor: pointer;
+
+    svg {
+        transition: width ease-in-out 0.4s;
+    }
+}
+
+.subtypes_ale {
+    @include mixins.breakpoint-laptop-large-down {
+        order: 1;
+    }
+}
+
+.subtypes_lager {
+    @include mixins.breakpoint-laptop-large-down {
+        order: 3;
+    }
+}
+
+.ale {
+    @include mixins.breakpoint-laptop-large-down {
+        order: 2;
+    }
+}
+
+.lager {
+    @include mixins.breakpoint-laptop-large-down {
+        order: 4;
+    }
 }
 
 .countries_col {
-  display: flex;
-  flex-wrap: wrap;
-  align-self: end;
+    display: flex;
+    flex-wrap: wrap;
+    align-self: end;
 }
 
 .countries_wrapper {
-  overflow-y: auto;
-  @include mixins.breakpoint-laptop-large-down {
-    max-height: calc(50vh);
-    margin: 0 0 20px;
-  }
+    overflow-y: auto;
+    @include mixins.breakpoint-laptop-large-down {
+        max-height: calc(50vh);
+        margin: 0 0 20px;
+    }
 
-  @include mixins.breakpoint-laptop-large-up {
-    width: 346px;
-    max-height: calc(100vh - 200px);
-  }
+    @include mixins.breakpoint-laptop-large-up {
+        width: 346px;
+        max-height: calc(100vh - 200px);
+    }
 
-  @include mixins.statistics-scrollbar;
+    @include mixins.statistics-scrollbar;
 }
 
 .countries_list {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding-left: 0;
-  text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0;
+    text-align: left;
 
-  @include mixins.breakpoint-laptop-large-down {
-    justify-content: center;
-    gap: 5px 25px;
-  }
+    @include mixins.breakpoint-laptop-large-down {
+        justify-content: center;
+        gap: 5px 25px;
+    }
 }
 
 .country_item {
-  font-weight: 200;
-  font-size: 30px;
-  line-height: 1;
-  color: var(--lightColor);
-  padding: 5px 0;
-  margin: 0;
-  transition: color 0.2s ease-in-out;
-  cursor: pointer;
+    font-weight: 200;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--lightColor);
+    padding: 5px 0;
+    margin: 0;
+    transition: color 0.2s ease-in-out;
+    cursor: pointer;
 
-  @include mixins.breakpoint-laptop-large-up {
-    flex-basis: 50%;
-  }
+    @include mixins.breakpoint-laptop-large-up {
+        flex-basis: 50%;
+    }
 
-  @include mixins.breakpoint-tablet-down {
-    font-size: 20px;
-  }
+    @include mixins.breakpoint-tablet-down {
+        font-size: 20px;
+    }
 
-  &:hover {
-    color: var(--chartColor);
-  }
+    &:hover {
+        color: var(--chartColor);
+    }
 
-  &_active {
-    color: var(--chartColor);
-  }
+    &_active {
+        color: var(--chartColor);
+    }
 }
 
 .map_wrapper {
-  display: flex;
+    display: flex;
 
-  @include mixins.breakpoint-laptop-large-up {
-    max-width: calc(100% - 346px);
-  }
+    @include mixins.breakpoint-laptop-large-up {
+        max-width: calc(100% - 346px);
+    }
 }
 
 .subtypes_wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  column-gap: 15px;
-
-  @include mixins.breakpoint-mobile-down {
+    display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-  }
+    justify-content: center;
+    align-items: flex-start;
+    column-gap: 15px;
+
+    @include mixins.breakpoint-mobile-down {
+        flex-wrap: wrap;
+    }
+}
+
+.subtypes_wrapper_active {
+    justify-content: space-evenly;
 }
 
 .subtypes_item {
-  flex-basis: 45px;
-  opacity: 0.4;
+    flex-basis: 45px;
+    margin-bottom: 50px;
+    overflow: hidden;
+    transition: flex-basis 0.2 ease-in-out;
 
-  .label {
-    display: none;
-  }
-
-  svg {
-    @include mixins.breakpoint-mobile-down {
-      max-width: 45px;
+    .label {
+        font-size: 10px;
     }
-  }
+
+    svg {
+        margin-bottom: 0;
+
+        @include mixins.breakpoint-mobile-down {
+            max-width: 45px;
+        }
+    }
+}
+
+.subtypes_active {
+    flex-basis: auto;
+    max-width: 100px;
+
+    .label {
+        font-size: 28px;
+    }
 }
