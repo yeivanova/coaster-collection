@@ -12,6 +12,7 @@ import { SectionShape } from "./shapes";
 import { SectionCountries } from "./countries";
 import { SectionKinds } from "./kinds";
 import { motion, AnimatePresence } from "framer-motion";
+import logo_white from "src/images/logo_white.svg";
 
 const fadeUp = {
   hidden: {
@@ -61,7 +62,8 @@ export const StatisticsPage: FC = () => {
           ) : (
             <>
               <Link to="/" className={styles.back_home}>
-                На главную
+                <span className="sr-only">Вернуться на главную страницу</span>
+                <img className={styles.logo} src={logo_white} alt="На главную" />
               </Link>
               <AnimatePresence
                 initial={false}

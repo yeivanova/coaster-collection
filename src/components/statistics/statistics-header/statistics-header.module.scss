@@ -26,6 +26,10 @@
   margin: 0 30px;
   list-style-type: none;
 
+  @include mixins.breakpoint-laptop-down {
+    gap: 30px;
+  }
+
   @include mixins.breakpoint-tablet-down {
     justify-content: flex-start;
     margin: 0;
@@ -36,10 +40,18 @@
 
   li:first-child {
     margin-left: 40px;
+
+    @include mixins.breakpoint-laptop-large-down {
+      margin-left: 100px;
+    }
   }
 
   li:last-child {
     margin-right: 40px;
+
+    @include mixins.breakpoint-laptop-down {
+      margin-right: 30px;
+    }
   }
 
   &::-webkit-scrollbar {
@@ -76,7 +88,7 @@
     font-size: 24px;
   }
 
-  @include mixins.breakpoint-tablet-down {
+  @include mixins.breakpoint-laptop-down {
     font-size: 18px;
   }
 
@@ -88,7 +100,7 @@
       font-size: 60px;
     }
   
-    @include mixins.breakpoint-tablet-down {
+    @include mixins.breakpoint-laptop-down {
       font-size: 45px;
     }
   }
