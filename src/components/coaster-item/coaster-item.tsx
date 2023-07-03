@@ -162,7 +162,7 @@ export const Item: FC<TItemProps> = ({
 
   return (
     <li className={styles.item}>
-      <motion.div className={styles.image_container} onClick={isDesktop ? (e) => e.preventDefault : turnSide}>
+      <motion.div className={styles.image_container} onClick={(!isDesktop && reverse) ? turnSide : (e) => e.preventDefault}>
         <motion.img
           className={cn(styles.image, styles.front_image)}
           src={`${baseUrl}/${id}/image/`}
