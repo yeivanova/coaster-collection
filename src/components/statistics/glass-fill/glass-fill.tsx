@@ -64,7 +64,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
           .attr("style", "mask-type:alpha")
           .attr("maskUnits", "userSpaceOnUse")
           .attr("x", strokeWidth / 2)
-          .attr("y", height - heightFilledArea)
+          .attr("y", height - heightFilledArea + height * 0.1)
           .attr("width", width - strokeWidth)
           .attr("height", heightFilledArea)
           .append("rect")
