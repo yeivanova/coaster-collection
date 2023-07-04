@@ -9,14 +9,30 @@
 }
 
 .navbar {
+  position: relative;
   padding-top: 60px;
 
   @include mixins.breakpoint-desktop-down {
     padding-top: 42px;
   }
+
+  &:before {
+    @include mixins.breakpoint-laptop-large-down {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 10px;
+      height: 180px;
+      background: linear-gradient(180deg, #181818 54.69%, rgba(0, 0, 0, 0.00) 100%);
+      z-index: 0;
+    }
+  }
 }
 
 .navigation_list {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -25,7 +41,8 @@
   padding: 0;
   margin: 0 30px;
   list-style-type: none;
-
+  z-index: 1;
+  
   @include mixins.breakpoint-laptop-down {
     gap: 30px;
   }
@@ -102,6 +119,10 @@
   
     @include mixins.breakpoint-laptop-down {
       font-size: 45px;
+    }
+
+    @include mixins.breakpoint-tablet-down {
+      font-size: 18px;
     }
   }
 }
