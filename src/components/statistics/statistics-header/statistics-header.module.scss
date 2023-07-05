@@ -28,6 +28,10 @@
       background: linear-gradient(180deg, #181818 54.69%, rgba(0, 0, 0, 0.00) 100%);
       z-index: 0;
     }
+
+    @include mixins.breakpoint-tablet-down {
+      right: 0;
+    }
   }
 }
 

@@ -381,17 +381,14 @@
 .countries_list {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     list-style: none;
     padding-left: 0;
     text-align: left;
-
-    @include mixins.breakpoint-laptop-large-down {
-        justify-content: center;
-        gap: 5px 25px;
-    }
 }
 
 .country_item {
+    flex-basis: 200px;
     font-weight: 200;
     font-size: 30px;
     line-height: 1;
@@ -406,7 +403,8 @@
     }
 
     @include mixins.breakpoint-tablet-down {
-        font-size: 20px;
+        flex-basis: 135px;
+        font-size: 18px;
     }
 
     &:hover {
