@@ -248,16 +248,23 @@
     flex-wrap: wrap;
 }
 
-.col {
+.common_col {
     width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
 }
 
 .wrap_col {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+}
+
+.col {
+    width: 100%;
 }
 
 .col_2 {
@@ -266,6 +273,11 @@
     @include mixins.breakpoint-laptop-large-up {
         width: 45%;
     }
+}
+
+.col_auto {
+    width: auto;
+    flex: 1;
 }
 
 .initial_subtyps {
@@ -323,6 +335,13 @@
     @include mixins.breakpoint-laptop-down {
         font-size: 42px;
     }
+}
+
+.chart_inner {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    gap: 10px;
 }
 
 .chart_wrapper {
@@ -445,7 +464,7 @@
     flex-basis: 45px;
     margin-bottom: 50px;
     overflow: hidden;
-    transition: flex-basis 0.2 ease-in-out;
+    transition: flex-basis 0.2s ease-in-out;
 
     .label {
         font-size: 10px;
