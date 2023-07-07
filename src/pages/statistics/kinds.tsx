@@ -131,7 +131,6 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
     const [ref, inView] = useInView({ threshold: 0.1 });
     const items = useSelector((state: RootState) => state.coasters.items);
     const quantity = items.length;
-    // const [ales, setAles] = useState<number>(0);
     const [beerTree, setBeerTree] = useState<Tbeer[]>();
     const [beerProjection, setBeerProjection] = useState<TBeerProjection>();
     const itemsBeer = items.filter(
@@ -139,8 +138,6 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
             item.type === "Пиво" &&
             (item.beerType[0] === "Ale" || item.beerType[0] === "Lager")
     );
-    const [showAleSubtypes, setShowAleSubtypes] = useState<boolean>(false);
-    // const [showLagerSubtypes, setShowLagerSubtypes] = useState<boolean>(false);
     const [path, setPath] = useState<string[]>([]);
 
     useEffect(() => {
@@ -156,17 +153,6 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
     useEffect(() => {
         setBeerProjection(getBeerTreeProjection(beerTree, path));
     }, [beerTree, path]);
-
-    // const ales = beerTree?.find((el) => el.name === "Ale");
-    // const lagers = beerTree?.find((el) => el.name === "Lager");
-
-    // const hiddenClass = (condition: boolean) =>
-    //     condition ? styles.hidden : styles.default;
-    // const shownClass = (condition: boolean) => (condition ? styles.shown : "");
-    // const diminishClass =
-    //     showAleSubtypes || showLagerSubtypes ? styles.diminished : "";
-
-    // console.log(beerProjection);
 
     return (
         <section
@@ -223,7 +209,6 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                                     >
                                         <div
                                             className={`${styles.chart_inner}`}
-                                            // onClick={() => setShowAleSubtypes(!showAleSubtypes)}
                                         >
                                             <div>
                                                 <GlassFill
@@ -263,19 +248,14 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                             </div>
                             <div className={styles.wrap_col}>
                                 {beerProjection.next.map((item) => (
-                                    // <div
-                                    //     className={`${styles.col_auto}`}
-                                    //     key={uuid()}
-                                    // >
                                     <div
                                         className={`${styles.chart_inner}`}
                                         key={uuid()}
-                                        // onClick={() => setShowAleSubtypes(!showAleSubtypes)}
                                     >
                                         {item.map((el) => (
                                             <div
-                                            className={styles.subtypes_item}
-                                            key={uuid()}
+                                                className={styles.subtypes_item}
+                                                key={uuid()}
                                             >
                                                 <GlassFill
                                                     type={el.type!}
@@ -310,7 +290,6 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                                             </div>
                                         ))}
                                     </div>
-                                    // </div>
                                 ))}
                             </div>
                         </>
