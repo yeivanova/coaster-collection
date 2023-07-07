@@ -96,6 +96,7 @@ export const GlassFill: FC<TGlassFillProps> = ({
             "M36.3043 283.1C21.0043 109.5 23.1043 120.3 17.5043 106.7C3.40429 72.2 13.2043 64.6 14.8043 45.6H157.904C159.804 68 169.604 71.3 154.704 107.8C152.204 113.9 150.604 120.7 150.004 128C135.504 294.5 137.204 284.9 134.504 284.9C32.2043 284.9 36.5043 285.7 36.3043 283.1Z"
           )
           .attr("fill", type === "ale" ? ALE_COLOR : COLOR);
+          d3.select(`#text-${elementId}`).raise(); 
       }
     }
   }, [inView, percent, heightFilledArea, type]);

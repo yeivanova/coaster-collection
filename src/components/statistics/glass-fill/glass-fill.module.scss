@@ -23,6 +23,6 @@
 
 .glass_svg {
   @include mixins.breakpoint-mobile-down {
-    max-width: 130px;
+    max-width: 115px;
   }
 }
