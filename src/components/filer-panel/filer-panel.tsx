@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 type TPanelProps = {
   children: ReactNode;
   title?: string;
-  isMultiple?: boolean;
   isOpen?: boolean;
   setIsOpen?: (value: boolean) => void
 };
@@ -35,9 +34,9 @@ const collapse = {
   },
 };
 
-export const Panel: FC<TPanelProps> = ({ children, title, isMultiple = true, isOpen, setIsOpen }) => {
+export const Panel: FC<TPanelProps> = ({ children, title, isOpen, setIsOpen }) => {
   return (
-    <div className={cn(styles.panel, isMultiple ? styles.is_multiple : styles.is_single)}>
+    <div className={styles.panel}>
       {title && (typeof setIsOpen !== "undefined") && (
         <button
           className={cn(
@@ -59,9 +58,8 @@ export const Panel: FC<TPanelProps> = ({ children, title, isMultiple = true, isO
           </svg>
         </button>
       )}
-      {isMultiple ? (
-      <motion.div
-        className={cn(styles.panel_inner, styles.multiple)}
+     <motion.div
+        className={styles.panel_inner}
         variants={collapse}
         initial="hidden"
         animate={isOpen ? "visible" : "hidden"}
@@ -69,9 +67,6 @@ export const Panel: FC<TPanelProps> = ({ children, title, isMultiple = true, isO
       >
         {children}
       </motion.div>
-      ) : (
-        <div className={cn(styles.panel_inner, styles.single)}>{children}</div>
-      )}
     </div>
   );
 };

@@ -1,66 +1,57 @@
 .panel {
-  flex-shrink: 0;
-  padding: 0;
-  margin-bottom: 4px;
-  border: 1px solid var(--borderColor);
-  border-radius: 3px;
-  overflow: hidden;
+    flex-shrink: 0;
+    padding: 0;
+    margin-bottom: 4px;
+    border: 1px solid var(--borderColor);
+    border-radius: 3px;
+    overflow: hidden;
 }
 
 .h3 {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
 }
 
 .button {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 7px 10px 14px;
-  border: none;
-  background-color: var(--lightColor);
-  transform: none;
-  transition: transform 0.2s ease;
-  cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 7px 10px 14px;
+    border: none;
+    background-color: var(--lightColor);
+    transform: none;
+    transition: transform 0.2s ease;
+    cursor: pointer;
 }
 
 .button_opened svg {
-  transform: translateY(-2px) rotateX(180deg);
-  transform-origin: center;
+    transform: translateY(-2px) rotateX(180deg);
+    transform-origin: center;
 }
 
 .panel_inner {
-  max-height: 128px;
-  padding: 0 4px 0 14px;
-  margin-right: 4px;
-  overflow-y: auto;
+    max-height: 128px;
+    padding: 0 4px 0 14px;
+    margin-right: 4px;
+    font-size: 12px;
+    line-height: 14px;
+    overflow-y: auto;
 
-  &::-webkit-scrollbar {
-    width: 5px;
-    border-radius: 3px;
-  }
-   
-  &::-webkit-scrollbar-track {
-    border-radius: 3px;
-    background-color: var(--scrollbarTrack);
-  }
-   
-  &::-webkit-scrollbar-thumb {
-    border: 1px solid var(--scrollbarTrack);
-    background-color: var(--scrollbarThumb);
-    border-radius: 3px;
-  }
-}
+    &::-webkit-scrollbar {
+        width: 5px;
+        border-radius: 3px;
+    }
 
-.single {
-  font-size: 16px;
-  line-height: 1;
-  padding: 8px 4px 8px 14px;
-}
+    &::-webkit-scrollbar-track {
+        border-radius: 3px;
+        background-color: var(--scrollbarTrack);
+    }
 
-.multiple {
-  font-size: 12px;
-  line-height: 14px;
+    &::-webkit-scrollbar-thumb {
+        border: 1px solid var(--scrollbarTrack);
+        background-color: var(--scrollbarThumb);
+        border-radius: 3px;
+    }
 }
