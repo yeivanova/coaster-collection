@@ -8,6 +8,7 @@ import { useInView } from "react-intersection-observer";
 import { GlassFill } from "src/components/statistics/glass-fill/glass-fill";
 import { TCoaster } from "src/services/types";
 import { v4 as uuid } from "uuid";
+import { motion } from "framer-motion";
 
 type TSectionKindsProps = {
     setActiveSection: (value: string) => void;
@@ -17,6 +18,7 @@ type Tbeer = {
     name: string;
     number: number;
     type?: "ale" | "lager";
+    from?: string;
     percent?: number;
     subtypes?: Tbeer[];
 };
@@ -117,6 +119,7 @@ const getBeerTreeProjection = (tree: Tbeer[] | undefined, route: string[]) => {
                             ((subtype.number * 100) / sum).toFixed(1)
                         ),
                         type: subtype.type,
+                        from: el.name,
                     });
                 });
                 beerProjection.next.push(currentElementSubtypes);
@@ -124,6 +127,30 @@ const getBeerTreeProjection = (tree: Tbeer[] | undefined, route: string[]) => {
         });
     }
     return beerProjection;
+};
+
+const findbyFieldName = (arr: Tbeer[][], fieldName: string) => {
+    const arrSpreaded = [] as Tbeer[];
+    arr.forEach((item) => arrSpreaded.push(...item));
+    return arrSpreaded.find((obj) => obj.from === fieldName);
+};
+
+const fadeUp = {
+    hidden: {
+        opacity: 0,
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            duration: 0.7,
+        },
+    },
+    exit: {
+        opacity: 0,
+        transition: {
+            duration: 0.3,
+        },
+    },
 };
 
 export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
@@ -198,19 +225,194 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                     }, opacity 0.6s ease-in-out ${isDesktop ? "0.5s" : "0s"}`,
                 }}
             >
-                {beerProjection !== undefined &&
+                {!isDesktop ? (
+                    <>
+                        {beerTree !== undefined &&
+                            Object.keys(beerTree).length !== 0 && (
+                                <div className={styles.wrap_col}>
+                                    {beerTree.map((item) => (
+                                        <motion.div
+                                            key={uuid()}
+                                            className={`${styles.col_auto}`}
+                                            variants={fadeUp}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
+                                        >
+                                            <GlassFill
+                                                type={item.type!}
+                                                percent={
+                                                    (item.number * 100) /
+                                                    itemsBeer.length
+                                                }
+                                                width={174}
+                                                height={296}
+                                                inView={inView}
+                                            >
+                                                <div
+                                                    className={styles.label}
+                                                    style={{
+                                                        transform: inView
+                                                            ? "none"
+                                                            : "translateY(-100px)",
+                                                        opacity: inView ? 1 : 0,
+                                                        transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                            isDesktop
+                                                                ? "0.9s"
+                                                                : "0s"
+                                                        }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                            isDesktop
+                                                                ? "0.9s"
+                                                                : "0s"
+                                                        }`,
+                                                    }}
+                                                >
+                                                    {item.name}
+                                                </div>
+                                            </GlassFill>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            )}
+                        <p className={styles.mobile_hint}>
+                            <svg
+                                width="42"
+                                height="42"
+                                viewBox="0 0 42 42"
+                                fill="none"
+                            >
+                                <path
+                                    d="M3.5 24.5V28C3.5 32.949 3.5 35.4253 5.03825 36.9618C6.57475 38.5 9.051 38.5 14 38.5H15.75C20.699 38.5 23.1753 38.5 24.7118 36.9618C26.25 35.4253 26.25 32.949 26.25 28V14C26.25 9.051 26.25 6.57475 24.7118 5.03825C23.1753 3.5 20.699 3.5 15.75 3.5H14C9.051 3.5 6.57475 3.5 5.03825 5.03825C3.5 6.57475 3.5 9.051 3.5 14V17.5M30.625 17.5123C33.88 17.5595 35.7245 17.801 36.9618 19.0383C38.5 20.5765 38.5 23.051 38.5 28C38.5 32.9508 38.5 35.4253 36.9618 36.9635C35.7245 38.2008 33.88 38.4423 30.625 38.4895M19.25 8.75H10.5M33.25 31.5V24.5"
+                                    stroke="#F7AD2A"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                />
+                                <path
+                                    d="M17.5 30.625C17.5 31.3212 17.2234 31.9889 16.7312 32.4812C16.2389 32.9734 15.5712 33.25 14.875 33.25C14.1788 33.25 13.5111 32.9734 13.0188 32.4812C12.5266 31.9889 12.25 31.3212 12.25 30.625C12.25 29.9288 12.5266 29.2611 13.0188 28.7688C13.5111 28.2766 14.1788 28 14.875 28C15.5712 28 16.2389 28.2766 16.7312 28.7688C17.2234 29.2611 17.5 29.9288 17.5 30.625Z"
+                                    stroke="#F7AD2A"
+                                    strokeWidth="1.5"
+                                />
+                                <path
+                                    d="M35.875 12.2255L38.5 14C38.5 8.72375 34.7165 4.34525 29.75 3.5"
+                                    stroke="#F7AD2A"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                            <span>
+                                Для удобства навигации по сортам <br />
+                                пива советую перевернуть телефон
+                            </span>
+                        </p>
+                    </>
+                ) : (
+                    beerProjection !== undefined &&
                     Object.keys(beerProjection).length !== 0 && (
                         <>
+                            {beerProjection.prev !== undefined && (
+                                <div
+                                    className={styles.wrap_col}
+                                    style={{ cursor: "pointer" }}
+                                >
+                                    {beerProjection.prev.map((item) => (
+                                        <motion.div
+                                            key={uuid()}
+                                            className={`${styles.col_auto}`}
+                                            variants={fadeUp}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
+                                            onClick={() => {
+                                                path.pop();
+                                                setPath([...path]);
+                                            }}
+                                        >
+                                            <div className={styles.chart_inner}>
+                                                <div
+                                                    className={
+                                                        styles.subtypes_item
+                                                    }
+                                                >
+                                                    <GlassFill
+                                                        type={item.type!}
+                                                        percent={item.percent!}
+                                                        width={174}
+                                                        height={296}
+                                                        inView={inView}
+                                                    >
+                                                        <div
+                                                            className={
+                                                                styles.label
+                                                            }
+                                                            style={{
+                                                                transform:
+                                                                    inView
+                                                                        ? "none"
+                                                                        : "translateY(-100px)",
+                                                                opacity: inView
+                                                                    ? 1
+                                                                    : 0,
+                                                                transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                                    isDesktop
+                                                                        ? "0.9s"
+                                                                        : "0s"
+                                                                }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                                    isDesktop
+                                                                        ? "0.9s"
+                                                                        : "0s"
+                                                                }`,
+                                                            }}
+                                                        >
+                                                            {item.name}
+                                                        </div>
+                                                    </GlassFill>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            )}
                             <div className={styles.wrap_col}>
                                 {beerProjection.current.map((item) => (
-                                    <div
-                                        className={`${styles.col_auto}`}
+                                    <motion.div
+                                        className={`${styles.col_auto} ${
+                                            path.length > 0
+                                                ? styles.col_subtype
+                                                : ""
+                                        }`}
                                         key={uuid()}
+                                        variants={fadeUp}
+                                        initial="hidden"
+                                        animate="visible"
+                                        exit="exit"
                                     >
                                         <div
-                                            className={`${styles.chart_inner}`}
+                                            className={styles.chart_inner}
+                                            style={{ cursor: "pointer" }}
+                                            onClick={
+                                                findbyFieldName(
+                                                    beerProjection.next,
+                                                    item.name
+                                                )
+                                                    ? () =>
+                                                          setPath([
+                                                              ...path,
+                                                              item.name,
+                                                          ])
+                                                    : (e) => e.preventDefault
+                                            }
                                         >
-                                            <div>
+                                            <div className={`${
+                                                findbyFieldName(
+                                                    beerProjection.next,
+                                                    item.name
+                                                ) &&
+                                                beerProjection.prev !==
+                                                    undefined
+                                                    ? styles.clickable
+                                                    : ""
+                                            }`}>
                                                 <GlassFill
                                                     type={item.type!}
                                                     percent={item.percent!}
@@ -243,10 +445,12 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                                                 </GlassFill>
                                             </div>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
-                            <div className={styles.wrap_col}>
+                            <div
+                                className={`${styles.wrap_col} ${styles.next}`}
+                            >
                                 {beerProjection.next.map((item) => (
                                     <div
                                         className={`${styles.chart_inner}`}
@@ -293,7 +497,8 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                                 ))}
                             </div>
                         </>
-                    )}
+                    )
+                )}
             </div>
         </section>
     );

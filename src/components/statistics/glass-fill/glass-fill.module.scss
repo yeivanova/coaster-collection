@@ -9,7 +9,7 @@
 }
 
 .glass_svg {
-  margin: 0 auto 40px;
+  margin: 0 auto 20px;
 
   @include mixins.breakpoint-tablet-down {
     margin-bottom: 20px;

@@ -14,7 +14,7 @@
     }
 
     @include mixins.breakpoint-tablet-down {
-        font-size: 28px;
+        font-size: 22px;
     }
 }
 
@@ -31,7 +31,7 @@
     }
 
     @include mixins.breakpoint-tablet-down {
-        font-size: 22px;
+        font-size: 19px;
     }
 }
 
@@ -253,14 +253,15 @@
     display: flex;
     flex-direction: column-reverse;
     flex-wrap: wrap;
+    gap: 30px
 }
 
 .wrap_col {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: space-around;
+    align-items: flex-start;
 }
 
 .col {
@@ -277,11 +278,7 @@
 
 .col_auto {
     width: auto;
-    flex: 1;
-}
-
-.initial_subtyps {
-    opacity: 0.4;
+    flex: 1 1;
 }
 
 .shown {
@@ -322,6 +319,10 @@
 .label {
     margin-top: 15px;
     word-break: break-word;
+
+    @include mixins.breakpoint-mobile-down {
+        font-size: 30px;
+    }
 }
 
 .label_large {
@@ -344,35 +345,21 @@
     gap: 10px;
 }
 
+.clickable {
+    transform: none;
+    transition: transform ease-in-out 0.4s;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
 .chart_wrapper {
     cursor: pointer;
 
     svg {
         transition: width ease-in-out 0.4s;
-    }
-}
-
-.subtypes_ale {
-    @include mixins.breakpoint-laptop-large-down {
-        order: 1;
-    }
-}
-
-.subtypes_lager {
-    @include mixins.breakpoint-laptop-large-down {
-        order: 3;
-    }
-}
-
-.ale {
-    @include mixins.breakpoint-laptop-large-down {
-        order: 2;
-    }
-}
-
-.lager {
-    @include mixins.breakpoint-laptop-large-down {
-        order: 4;
     }
 }
 
@@ -443,28 +430,11 @@
     }
 }
 
-.subtypes_wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    column-gap: 15px;
-
-    @include mixins.breakpoint-mobile-down {
-        flex-wrap: wrap;
-    }
-}
-
-.subtypes_wrapper_active {
-    justify-content: space-evenly;
-}
-
 .subtypes_item {
     flex-basis: 45px;
-    margin-bottom: 50px;
+    opacity: 0.3;
     overflow: hidden;
-    transition: flex-basis 0.2s ease-in-out;
+    transition: flex-basis 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
     .label {
         font-size: 10px;
@@ -479,11 +449,28 @@
     }
 }
 
-.subtypes_active {
-    flex-basis: auto;
-    max-width: 100px;
+.col_subtype {
+    svg {
+        max-width: 100px;
+        margin: 0 5px;
+    }
 
     .label {
-        font-size: 28px;
+        font-size: 20px;
+    }
+}
+
+.mobile_hint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font: 400 19px/1.2 'Yanone Kaffeesatz';
+    letter-spacing: 0.95px;
+    color: var(--chartColor);
+    margin: 0 auto 50px;
+
+    svg {
+        margin-top: -5px;
     }
 }
