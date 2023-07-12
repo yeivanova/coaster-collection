@@ -10,6 +10,48 @@ import { TCoaster } from "src/services/types";
 import { v4 as uuid } from "uuid";
 import { motion } from "framer-motion";
 
+const fadeUp = {
+    hidden: {
+        opacity: 0,
+    },
+    visible: {
+        opacity: 1,
+        transition: {
+            duration: 0.7,
+        },
+    },
+    exit: {
+        opacity: 0,
+        transition: {
+            duration: 0.3,
+        },
+    },
+};
+
+const zoomIn = {
+    hidden: {
+        y: "100vh",
+        scale: 0.5,
+        opacity: 0,
+    },
+    visible: {
+        y: "0",
+        scale: 1,
+        opacity: 1,
+        transition: {
+            duration: 0.7,
+            type: "spring",
+            damping: 50,
+            stiffness: 500,
+        },
+    },
+    exit: {
+        y: "-100vh",
+        scale: 0.5,
+        opacity: 0,
+    },
+};
+
 type TSectionKindsProps = {
     setActiveSection: (value: string) => void;
 };
@@ -135,24 +177,6 @@ const findbyFieldName = (arr: Tbeer[][], fieldName: string) => {
     return arrSpreaded.find((obj) => obj.from === fieldName);
 };
 
-const fadeUp = {
-    hidden: {
-        opacity: 0,
-    },
-    visible: {
-        opacity: 1,
-        transition: {
-            duration: 0.7,
-        },
-    },
-    exit: {
-        opacity: 0,
-        transition: {
-            duration: 0.3,
-        },
-    },
-};
-
 export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
     const { isDesktop } = useContext(DeviceContext);
     const [ref, inView] = useInView({ threshold: 0.1 });
@@ -181,6 +205,233 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
         setBeerProjection(getBeerTreeProjection(beerTree, path));
     }, [beerTree, path]);
 
+    const mobileCurrentBeerTreeItems = (
+        <>
+            {beerTree !== undefined && Object.keys(beerTree).length !== 0 && (
+                <div className={styles.wrap_col}>
+                    {beerTree.map((item) => (
+                        <motion.div
+                            key={uuid()}
+                            className={styles.col_auto}
+                            variants={zoomIn}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                        >
+                            <GlassFill
+                                type={item.type!}
+                                percent={(item.number * 100) / itemsBeer.length}
+                                width={174}
+                                height={296}
+                                inView={inView}
+                            >
+                                <div
+                                    className={styles.label}
+                                    style={{
+                                        transform: inView
+                                            ? "none"
+                                            : "translateY(-100px)",
+                                        opacity: inView ? 1 : 0,
+                                        transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                            isDesktop ? "0.9s" : "0s"
+                                        }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                            isDesktop ? "0.9s" : "0s"
+                                        }`,
+                                    }}
+                                >
+                                    {item.name}
+                                </div>
+                            </GlassFill>
+                        </motion.div>
+                    ))}
+                </div>
+            )}
+        </>
+    );
+
+    let previousBeerProjectionItems,
+        currentBeerProjectionItems,
+        nextBeerProjectionItems;
+
+    if (
+        beerProjection !== undefined &&
+        Object.keys(beerProjection).length !== 0
+    ) {
+        previousBeerProjectionItems = (
+            <>
+                {beerProjection.prev !== undefined && (
+                    <div
+                        className={`${styles.wrap_col} ${
+                            path.length > 1 ? styles.inner_step : ""
+                        }`}
+                        style={{ cursor: "pointer" }}
+                    >
+                        {beerProjection.prev.map((item) => (
+                            <motion.div
+                                key={uuid()}
+                                variants={fadeUp}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                                onClick={() => {
+                                    path.pop();
+                                    setPath([...path]);
+                                }}
+                            >
+                                <div
+                                    className={cn(
+                                        styles.chart_inner,
+                                        styles.subtypes_item
+                                    )}
+                                >
+                                    <GlassFill
+                                        type={item.type!}
+                                        percent={item.percent!}
+                                        width={174}
+                                        height={296}
+                                        inView={inView}
+                                    >
+                                        <div
+                                            className={styles.label}
+                                            style={{
+                                                transform: inView
+                                                    ? "none"
+                                                    : "translateY(-100px)",
+                                                opacity: inView ? 1 : 0,
+                                                transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                    isDesktop ? "0.9s" : "0s"
+                                                }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                    isDesktop ? "0.9s" : "0s"
+                                                }`,
+                                            }}
+                                        >
+                                            {item.name}
+                                        </div>
+                                    </GlassFill>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                )}
+            </>
+        );
+
+        currentBeerProjectionItems = (
+            <div className={styles.wrap_col}>
+                {beerProjection.current.map((item) => (
+                    <motion.div
+                        className={`${styles.col_auto} ${
+                            path.length > 0 ? styles.col_subtype : ""
+                        }`}
+                        key={uuid()}
+                        variants={zoomIn}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                    >
+                        <div
+                            className={styles.chart_inner}
+                            style={{
+                                cursor: `${
+                                    findbyFieldName(
+                                        beerProjection.next,
+                                        item.name
+                                    )
+                                        ? "pointer"
+                                        : "default"
+                                }`,
+                            }}
+                            onClick={
+                                findbyFieldName(beerProjection.next, item.name)
+                                    ? () => setPath([...path, item.name])
+                                    : (e) => e.preventDefault
+                            }
+                        >
+                            <div
+                                className={`${
+                                    findbyFieldName(
+                                        beerProjection.next,
+                                        item.name
+                                    ) && beerProjection.prev !== undefined
+                                        ? styles.clickable
+                                        : ""
+                                } ${styles.inner}`}
+                            >
+                                <GlassFill
+                                    type={item.type!}
+                                    percent={item.percent!}
+                                    width={174}
+                                    height={296}
+                                    inView={inView}
+                                >
+                                    <div
+                                        className={styles.label}
+                                        style={{
+                                            transform: inView
+                                                ? "none"
+                                                : "translateY(-100px)",
+                                            opacity: inView ? 1 : 0,
+                                            transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                isDesktop ? "0.9s" : "0s"
+                                            }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                isDesktop ? "0.9s" : "0s"
+                                            }`,
+                                        }}
+                                    >
+                                        {item.name}
+                                    </div>
+                                </GlassFill>
+                            </div>
+                        </div>
+                    </motion.div>
+                ))}
+            </div>
+        );
+
+        nextBeerProjectionItems = (
+            <div className={cn(styles.wrap_col, styles.next)}>
+                {beerProjection.next.map((item) => (
+                    <motion.div
+                        className={styles.chart_inner}
+                        key={uuid()}
+                        variants={fadeUp}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                    >
+                        {item.map((el) => (
+                            <div className={styles.subtypes_item} key={uuid()}>
+                                <GlassFill
+                                    type={el.type!}
+                                    percent={el.percent!}
+                                    width={174}
+                                    height={296}
+                                    inView={inView}
+                                >
+                                    <div
+                                        className={styles.label}
+                                        style={{
+                                            transform: inView
+                                                ? "none"
+                                                : "translateY(-100px)",
+                                            opacity: inView ? 1 : 0,
+                                            transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                isDesktop ? "0.9s" : "0s"
+                                            }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
+                                                isDesktop ? "0.9s" : "0s"
+                                            }`,
+                                        }}
+                                    >
+                                        {el.name}
+                                    </div>
+                                </GlassFill>
+                            </div>
+                        ))}
+                    </motion.div>
+                ))}
+            </div>
+        );
+    }
     return (
         <section
             id="kinds"
@@ -227,53 +478,7 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
             >
                 {!isDesktop ? (
                     <>
-                        {beerTree !== undefined &&
-                            Object.keys(beerTree).length !== 0 && (
-                                <div className={styles.wrap_col}>
-                                    {beerTree.map((item) => (
-                                        <motion.div
-                                            key={uuid()}
-                                            className={`${styles.col_auto}`}
-                                            variants={fadeUp}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                        >
-                                            <GlassFill
-                                                type={item.type!}
-                                                percent={
-                                                    (item.number * 100) /
-                                                    itemsBeer.length
-                                                }
-                                                width={174}
-                                                height={296}
-                                                inView={inView}
-                                            >
-                                                <div
-                                                    className={styles.label}
-                                                    style={{
-                                                        transform: inView
-                                                            ? "none"
-                                                            : "translateY(-100px)",
-                                                        opacity: inView ? 1 : 0,
-                                                        transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                                                            isDesktop
-                                                                ? "0.9s"
-                                                                : "0s"
-                                                        }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                                                            isDesktop
-                                                                ? "0.9s"
-                                                                : "0s"
-                                                        }`,
-                                                    }}
-                                                >
-                                                    {item.name}
-                                                </div>
-                                            </GlassFill>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            )}
+                        {mobileCurrentBeerTreeItems}
                         <p className={styles.mobile_hint}>
                             <svg
                                 width="42"
@@ -310,192 +515,9 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                     beerProjection !== undefined &&
                     Object.keys(beerProjection).length !== 0 && (
                         <>
-                            {beerProjection.prev !== undefined && (
-                                <div
-                                    className={styles.wrap_col}
-                                    style={{ cursor: "pointer" }}
-                                >
-                                    {beerProjection.prev.map((item) => (
-                                        <motion.div
-                                            key={uuid()}
-                                            className={`${styles.col_auto}`}
-                                            variants={fadeUp}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                            onClick={() => {
-                                                path.pop();
-                                                setPath([...path]);
-                                            }}
-                                        >
-                                            <div className={styles.chart_inner}>
-                                                <div
-                                                    className={
-                                                        styles.subtypes_item
-                                                    }
-                                                >
-                                                    <GlassFill
-                                                        type={item.type!}
-                                                        percent={item.percent!}
-                                                        width={174}
-                                                        height={296}
-                                                        inView={inView}
-                                                    >
-                                                        <div
-                                                            className={
-                                                                styles.label
-                                                            }
-                                                            style={{
-                                                                transform:
-                                                                    inView
-                                                                        ? "none"
-                                                                        : "translateY(-100px)",
-                                                                opacity: inView
-                                                                    ? 1
-                                                                    : 0,
-                                                                transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                                                                    isDesktop
-                                                                        ? "0.9s"
-                                                                        : "0s"
-                                                                }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                                                                    isDesktop
-                                                                        ? "0.9s"
-                                                                        : "0s"
-                                                                }`,
-                                                            }}
-                                                        >
-                                                            {item.name}
-                                                        </div>
-                                                    </GlassFill>
-                                                </div>
-                                            </div>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            )}
-                            <div className={styles.wrap_col}>
-                                {beerProjection.current.map((item) => (
-                                    <motion.div
-                                        className={`${styles.col_auto} ${
-                                            path.length > 0
-                                                ? styles.col_subtype
-                                                : ""
-                                        }`}
-                                        key={uuid()}
-                                        variants={fadeUp}
-                                        initial="hidden"
-                                        animate="visible"
-                                        exit="exit"
-                                    >
-                                        <div
-                                            className={styles.chart_inner}
-                                            style={{ cursor: "pointer" }}
-                                            onClick={
-                                                findbyFieldName(
-                                                    beerProjection.next,
-                                                    item.name
-                                                )
-                                                    ? () =>
-                                                          setPath([
-                                                              ...path,
-                                                              item.name,
-                                                          ])
-                                                    : (e) => e.preventDefault
-                                            }
-                                        >
-                                            <div className={`${
-                                                findbyFieldName(
-                                                    beerProjection.next,
-                                                    item.name
-                                                ) &&
-                                                beerProjection.prev !==
-                                                    undefined
-                                                    ? styles.clickable
-                                                    : ""
-                                            }`}>
-                                                <GlassFill
-                                                    type={item.type!}
-                                                    percent={item.percent!}
-                                                    width={174}
-                                                    height={296}
-                                                    inView={inView}
-                                                >
-                                                    <div
-                                                        className={styles.label}
-                                                        style={{
-                                                            transform: inView
-                                                                ? "none"
-                                                                : "translateY(-100px)",
-                                                            opacity: inView
-                                                                ? 1
-                                                                : 0,
-                                                            transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                                                                isDesktop
-                                                                    ? "0.9s"
-                                                                    : "0s"
-                                                            }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                                                                isDesktop
-                                                                    ? "0.9s"
-                                                                    : "0s"
-                                                            }`,
-                                                        }}
-                                                    >
-                                                        {item.name}
-                                                    </div>
-                                                </GlassFill>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                            <div
-                                className={`${styles.wrap_col} ${styles.next}`}
-                            >
-                                {beerProjection.next.map((item) => (
-                                    <div
-                                        className={`${styles.chart_inner}`}
-                                        key={uuid()}
-                                    >
-                                        {item.map((el) => (
-                                            <div
-                                                className={styles.subtypes_item}
-                                                key={uuid()}
-                                            >
-                                                <GlassFill
-                                                    type={el.type!}
-                                                    percent={el.percent!}
-                                                    width={174}
-                                                    height={296}
-                                                    inView={inView}
-                                                >
-                                                    <div
-                                                        className={styles.label}
-                                                        style={{
-                                                            transform: inView
-                                                                ? "none"
-                                                                : "translateY(-100px)",
-                                                            opacity: inView
-                                                                ? 1
-                                                                : 0,
-                                                            transition: `transform 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                                                                isDesktop
-                                                                    ? "0.9s"
-                                                                    : "0s"
-                                                            }, opacity 0.5s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                                                                isDesktop
-                                                                    ? "0.9s"
-                                                                    : "0s"
-                                                            }`,
-                                                        }}
-                                                    >
-                                                        {el.name}
-                                                    </div>
-                                                </GlassFill>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ))}
-                            </div>
+                            {previousBeerProjectionItems}
+                            {currentBeerProjectionItems}
+                            {nextBeerProjectionItems}
                         </>
                     )
                 )}

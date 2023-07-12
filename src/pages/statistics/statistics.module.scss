@@ -253,7 +253,8 @@
     display: flex;
     flex-direction: column-reverse;
     flex-wrap: wrap;
-    gap: 30px
+    gap: 30px;
+    margin-bottom: 50px;
 }
 
 .wrap_col {
@@ -262,6 +263,11 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-start;
+}
+
+.inner_step {
+    justify-content: center;
+    gap: 20px;
 }
 
 .col {
@@ -431,7 +437,9 @@
 }
 
 .subtypes_item {
-    flex-basis: 45px;
+    flex-direction: column;
+    gap: 0;
+    max-width: 45px;
     opacity: 0.3;
     overflow: hidden;
     transition: flex-basis 0.2s ease-in-out, opacity 0.2s ease-in-out;
@@ -452,7 +460,7 @@
 .col_subtype {
     svg {
         max-width: 100px;
-        margin: 0 5px;
+        margin: 0 auto;
     }
 
     .label {
