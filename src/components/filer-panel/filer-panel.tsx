@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./filer-panel.module.scss";
 import cn from "classnames";
 import { motion } from "framer-motion";

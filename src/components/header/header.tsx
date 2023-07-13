@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useContext } from "react";
+import { FC, useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "src/images/logo.svg";
 import styles from "./header.module.scss";

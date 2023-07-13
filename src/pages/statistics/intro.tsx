@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
 import * as d3 from "d3";

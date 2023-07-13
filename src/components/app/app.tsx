@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "src/pages/home/home";
 import { StatisticsPage } from "src/pages/statistics/main";

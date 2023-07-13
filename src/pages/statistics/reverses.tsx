@@ -1,4 +1,4 @@
-import React, { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
 import { DeviceContext } from "src/services/app-context";

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC, ChangeEvent } from "react";
 import styles from "./checkbox.module.scss";
 import cn from "classnames";
 import { v4 as uuid } from "uuid";
@@ -8,7 +8,7 @@ type TCheckboxProps = {
   label: string;
   checked: boolean;
   isDisabled?: boolean;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const Checkbox: FC<TCheckboxProps> = ({

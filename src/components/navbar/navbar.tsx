@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import styles from './navbar.module.scss';
 import { NavLink } from 'react-router-dom';
 import { Modal } from '../modal/modal';

@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect } from "react";
+import { FC, useRef, useEffect } from "react";
 import styles from "./horizontal-bar-chart.module.scss";
 import cn from "classnames";
 import * as d3 from "d3";

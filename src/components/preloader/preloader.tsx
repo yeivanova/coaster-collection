@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import React, { FC, useEffect } from "react";
+import { FC, useEffect } from "react";
 import styles from "./preloader.module.scss";
 import { ReactComponent as Svg } from "src/images/glass-loader.svg";
 

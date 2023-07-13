@@ -1,7 +1,6 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./statistics-header.module.scss";
 import cn from "classnames";
-import { DeviceContext } from "src/services/app-context";
 import { HashLink } from "react-router-hash-link";
 
 type TStatisticsHeaderProps = {

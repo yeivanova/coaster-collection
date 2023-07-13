@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect } from "react";
+import { FC, useCallback, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styles from "./modal.module.scss";
 import close from "src/images/close.svg";

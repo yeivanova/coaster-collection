@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, ReactNode } from "react";
+import { FC, useRef, useEffect, ReactNode } from "react";
 import styles from "./donut-chart.module.scss";
 import { v4 as uuid } from "uuid";
 import * as d3 from "d3";

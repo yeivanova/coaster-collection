@@ -1,7 +1,7 @@
-import React, { FC, useEffect, useState, useRef, useContext } from "react";
+import { FC, useEffect, useState, useRef, useContext, RefObject } from "react";
 import styles from "./coaster-item.module.scss";
 import cn from "classnames";
-import { baseUrl } from "src/utils/api";
+import { APIUrl } from "src/utils/api";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { DeviceContext } from "src/services/app-context";
 
@@ -106,7 +106,7 @@ const backVariants: Variants = {
 };
 
 function useOutsideAlerter(
-  ref: React.RefObject<ValidRefTarget>,
+  ref: RefObject<ValidRefTarget>,
   callback: () => void
 ) {
   useEffect(() => {
@@ -165,7 +165,7 @@ export const Item: FC<TItemProps> = ({
       <motion.div className={styles.image_container} onClick={(!isDesktop && reverse) ? turnSide : (e) => e.preventDefault}>
         <motion.img
           className={cn(styles.image, styles.front_image)}
-          src={`${baseUrl}/${id}/image/`}
+          src={`${APIUrl}/${id}/image/`}
           variants={frontVariants}
           initial="hidden"
           animate={isFlip ? "flip" : "hidden"}
@@ -176,7 +176,7 @@ export const Item: FC<TItemProps> = ({
         {reverse && (
           <motion.img
             className={cn(styles.image, styles.back_image)}
-            src={`${baseUrl}/${id}/image/?reverse=true`}
+            src={`${APIUrl}/${id}/image/?reverse=true`}
             variants={backVariants}
             initial="hidden"
             animate={isFlip ? "flip" : "hidden"}

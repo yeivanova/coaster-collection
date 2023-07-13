@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, ReactNode, useState } from "react";
+import { FC, useRef, useEffect, ReactNode, useState } from "react";
 import styles from "./shape-fill.module.scss";
 import cn from "classnames";
 import { v4 as uuid } from "uuid";

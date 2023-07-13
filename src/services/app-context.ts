@@ -1,4 +1,4 @@
-import React from "react";
+import { createContext } from "react";
 
 export type TContextType = {
   isDesktop: boolean;
@@ -12,4 +12,4 @@ const initialContext: TContextType = {
   },
 };
 
-export const DeviceContext = React.createContext<TContextType>(initialContext);
+export const DeviceContext = createContext<TContextType>(initialContext);

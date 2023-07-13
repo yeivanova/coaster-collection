@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
 import { App } from "./components/app/app";
@@ -8,11 +8,11 @@ import { store } from "./services/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
+  </StrictMode>
 );
 
 reportWebVitals();

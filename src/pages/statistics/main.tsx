@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./statistics.module.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "src/services/store";

@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, ReactNode } from "react";
+import { FC, useCallback, useEffect, ReactNode } from "react";
 import styles from "./overlay.module.scss";
 import { motion } from "framer-motion";
 import cn from "classnames";

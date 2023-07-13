@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, ReactNode } from "react";
+import { FC, useRef, useEffect, ReactNode } from "react";
 import styles from "./vertical-bar-chart.module.scss";
 import cn from "classnames";
 import * as d3 from "d3";

@@ -1,15 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../services/store";
-import { TCoaster } from "../services/types";
+import { TCoaster, TParams } from "../services/types";
 import { fetchCoasters } from "../services/fetchCoasters";
-
-type TParams =
-  | "type"
-  | "brand"
-  | "kind"
-  | "country"
-  | "shape"
-  | "reverse";
 
 export interface CoastersState {
   status: "loading" | "idle";

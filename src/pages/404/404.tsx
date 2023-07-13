@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Header } from "src/components/header/header";
 import styles from "./404.module.scss";

@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect } from "react";
+import { FC, useRef, useEffect } from "react";
 import styles from "./map.module.scss";
 import * as d3 from "d3";
 import { geoEqualEarth, geoPath } from "d3-geo";

@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useState, useContext } from "react";
-import styles from "./home.module.scss";
+import { FC, useEffect, useState, useContext } from "react";
 import { Header } from "src/components/header/header";
 import { Sidebar } from "src/components/sidebar/sidebar";
 import { Preloader } from "src/components/preloader/preloader";
@@ -7,11 +6,12 @@ import { Item } from "src/components/coaster-item/coaster-item";
 import { UpButton } from "src/components/upButton/upButton";
 import { DeviceContext } from "src/services/app-context";
 import { TCoaster } from "src/services/types";
-import { baseUrl } from "src/utils/api";
+import { APIUrl } from "src/utils/api";
 import { selectStatus } from "src/slices/coastersSlice";
 import { fillParams } from "src/slices/filterParamsSlice";
 import { useTypedSelector } from "src/services/store";
 import { useAppDispatch } from "src/hooks/hooks";
+import styles from "./home.module.scss";
 import InfiniteScroll from "react-infinite-scroll-component";
 import axios from "axios";
 
@@ -32,7 +32,7 @@ export const HomePage: FC = () => {
     setPage(1);
     setData([]);
     const params = new URLSearchParams(paramsStr);
-    axios.get(`${baseUrl}?${params.toString()}`).then((res) => {
+    axios.get(`${APIUrl}?${params.toString()}`).then((res) => {
       setAllData(res.data);
       sliceData(res.data, [], 1);
       fillParameters(res.data);

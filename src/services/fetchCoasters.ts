@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { baseUrl } from "../utils/api";
+import { APIUrl } from "../utils/api";
 import { TCoaster } from "./types";
 
 type FetchCoastersError = {
@@ -11,7 +11,7 @@ export const fetchCoasters = createAsyncThunk<
   number,
   { rejectValue: FetchCoastersError }
 >("coasters/fetch", async (limit: number, thunkApi) => {
-  const response = await fetch(`${baseUrl}`);
+  const response = await fetch(`${APIUrl}`);
   const data: TCoaster[] = await response.json();
   if (response.status !== 200) {
     return thunkApi.rejectWithValue({
