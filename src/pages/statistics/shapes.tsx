@@ -15,7 +15,7 @@ type TSectionShapeProps = {
 
 export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
   const { isDesktop } = useContext(DeviceContext);
-  const [ref, inView] = useInView({ threshold: 0.1 });
+  const { ref, inView } = useInView({ threshold: 0.5 });
   const items = useSelector((state: RootState) => state.coasters.items);
   const params = useSelector((state: RootState) => state.coasters.params);
   const quantity = items.length;

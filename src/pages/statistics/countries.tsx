@@ -18,7 +18,7 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
     setActiveSection,
 }) => {
     const { isDesktop } = useContext(DeviceContext);
-    const [ref, inView] = useInView({ threshold: 0.1 });
+    const { ref, inView } = useInView({ threshold: 0.5 });
     const items = useSelector((state: RootState) => state.coasters.items);
     const params = useSelector((state: RootState) => state.coasters.params);
     const quantity = items.length;
@@ -71,9 +71,9 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
                         transform: inView ? "none" : "translateY(-50px)",
                         opacity: inView ? 1 : 0,
                         transition: `transform 0.6s ease-in-out ${
-                            isDesktop ? "0.5s" : "0s"
+                            isDesktop ? "0.2s" : "0s"
                         }, opacity 0.6s ease-in-out ${
-                            isDesktop ? "0.5s" : "0s"
+                            isDesktop ? "0.2s" : "0s"
                         }`,
                     }}
                     className={styles.countries_wrapper}

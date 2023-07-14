@@ -7,6 +7,8 @@ type TStatisticsHeaderProps = {
   activeSection: string;
 };
 
+const onScroll = (el: HTMLElement) => el.scrollIntoView({ behavior: 'auto', block: "start", inline: "nearest" });
+
 export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
   activeSection,
 }) => {
@@ -38,7 +40,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
       menu.style.scrollBehavior = "smooth";
       menu.scrollLeft = myScrollPos;
     }
-  }, [activeSection]);
+  }, [activeSection, activeLink]);
 
   return (
     <header className={styles.header}>
@@ -65,7 +67,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              smooth
+              scroll={onScroll}
             >
               Оборот
             </HashLink>
@@ -78,7 +80,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              smooth
+              scroll={onScroll}
             >
               Форма
             </HashLink>
@@ -91,7 +93,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              smooth
+              scroll={onScroll}
             >
               Страна
             </HashLink>
@@ -104,7 +106,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              smooth
+              scroll={onScroll}
             >
               Сорт пива
             </HashLink>

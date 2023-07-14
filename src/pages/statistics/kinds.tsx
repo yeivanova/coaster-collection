@@ -179,7 +179,7 @@ const findbyFieldName = (arr: Tbeer[][], fieldName: string) => {
 
 export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
     const { isDesktop } = useContext(DeviceContext);
-    const [ref, inView] = useInView({ threshold: 0.1 });
+    const { ref, inView } = useInView({ threshold: 0.5 });
     const items = useSelector((state: RootState) => state.coasters.items);
     const quantity = items.length;
     const [beerTree, setBeerTree] = useState<Tbeer[]>();

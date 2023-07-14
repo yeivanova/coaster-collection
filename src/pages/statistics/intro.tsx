@@ -14,7 +14,7 @@ export const SectionIntro: FC<TSectionIntroProps> = ({
   quantity,
   setActiveSection,
 }) => {
-  const [ref, inView] = useInView({ threshold: 0.5 });
+  const { ref, inView } = useInView({ threshold: 0.1 });
 
   useEffect(() => {
     if (inView) {
@@ -112,7 +112,9 @@ export const SectionIntro: FC<TSectionIntroProps> = ({
             "transform 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s, opacity 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s",
         }}
       >
-        <HashLink to="#types" smooth>
+        <HashLink to="#types" smooth
+          // scroll={(el: HTMLElement) => el.scrollIntoView({ behavior: 'auto', block: "start", inline: "nearest" })}
+        >
           <img
             src={require("src/images/gagarin.png")}
             width="200"
