@@ -14,6 +14,7 @@ import { TParams } from "src/services/types";
 type TSidebarProps = {
     isOpened: boolean;
     closeSidebar: () => void;
+    openModal: () => void;
     paramsStr: string;
     setParamsStr: (value: string) => void;
     visibleItemsQuantity: number;
@@ -68,6 +69,7 @@ const fadeIn = {
 export const Sidebar: FC<TSidebarProps> = ({
     isOpened,
     closeSidebar,
+    openModal,
     paramsStr,
     setParamsStr,
     visibleItemsQuantity,
@@ -282,7 +284,7 @@ export const Sidebar: FC<TSidebarProps> = ({
                 >
                     {!isDesktop && (
                         <>
-                            <Navbar />
+                            <Navbar openModal={openModal} />
                             <h2 className={styles.h2}>Фильтр</h2>
                         </>
                     )}
