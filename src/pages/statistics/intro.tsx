@@ -1,7 +1,8 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useContext } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
 import * as d3 from "d3";
+import { DeviceContext } from "src/services/app-context";
 import { useInView } from "react-intersection-observer";
 import { HashLink } from "react-router-hash-link";
 
@@ -15,6 +16,7 @@ export const SectionIntro: FC<TSectionIntroProps> = ({
   setActiveSection,
 }) => {
   const { ref, inView } = useInView({ threshold: 0.1 });
+  const { isDesktop } = useContext(DeviceContext);
 
   useEffect(() => {
     if (inView) {
@@ -112,9 +114,7 @@ export const SectionIntro: FC<TSectionIntroProps> = ({
             "transform 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s, opacity 0.7s cubic-bezier(0.17, 0.55, 0.55, 1) 1.5s",
         }}
       >
-        <HashLink to="#types" smooth
-          // scroll={(el: HTMLElement) => el.scrollIntoView({ behavior: 'auto', block: "start", inline: "nearest" })}
-        >
+        <HashLink to="#types" smooth={isDesktop}>
           <img
             src={require("src/images/gagarin.png")}
             width="200"

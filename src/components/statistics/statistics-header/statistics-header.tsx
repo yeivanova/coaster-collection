@@ -1,18 +1,18 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useState, useContext } from "react";
 import styles from "./statistics-header.module.scss";
 import cn from "classnames";
+import { DeviceContext } from "src/services/app-context";
 import { HashLink } from "react-router-hash-link";
 
 type TStatisticsHeaderProps = {
   activeSection: string;
 };
 
-const onScroll = (el: HTMLElement) => el.scrollIntoView({ behavior: 'auto', block: "start", inline: "nearest" });
-
 export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
   activeSection,
 }) => {
   const [activeLink, setActiveLink] = useState<Element>();
+  const { isDesktop } = useContext(DeviceContext);
 
   useEffect(() => {
     const listItems = document.querySelectorAll("#statistics_menu li a");
@@ -67,7 +67,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              scroll={onScroll}
+              smooth={isDesktop}
             >
               Оборот
             </HashLink>
@@ -80,7 +80,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              scroll={onScroll}
+              smooth={isDesktop}
             >
               Форма
             </HashLink>
@@ -93,7 +93,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              scroll={onScroll}
+              smooth={isDesktop}
             >
               Страна
             </HashLink>
@@ -106,7 +106,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              scroll={onScroll}
+              smooth={isDesktop}
             >
               Сорт пива
             </HashLink>

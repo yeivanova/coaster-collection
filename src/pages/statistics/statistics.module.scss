@@ -145,6 +145,7 @@
     position: fixed;
     top: 40px;
     left: 35px;
+    font-size: 18px;
     z-index: 11;
     
     @include mixins.breakpoint-laptop-down {
