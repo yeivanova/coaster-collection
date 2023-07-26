@@ -18,7 +18,7 @@ export const SectionCountries: FC<TSectionCountriesProps> = ({
     setActiveSection,
 }) => {
     const { isDesktop } = useContext(DeviceContext);
-    const { ref, inView } = useInView({ threshold: 0.5 });
+    const { ref, inView } = useInView({ threshold: isDesktop ? 0.1 : 0.5 });
     const items = useSelector((state: RootState) => state.coasters.items);
     const params = useSelector((state: RootState) => state.coasters.params);
     const quantity = items.length;
