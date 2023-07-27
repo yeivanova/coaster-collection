@@ -209,11 +209,8 @@
         scroll-snap-align: start;
     }
 
-    @include mixins.breakpoint-laptop-large-down {
-        flex-direction: column;
-    }
-
     @include mixins.breakpoint-tablet-down {
+        flex-direction: column;
         padding-top: 114px;
     }
 }

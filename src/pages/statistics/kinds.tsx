@@ -355,7 +355,7 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                                     ) && beerProjection.prev !== undefined
                                         ? styles.clickable
                                         : ""
-                                } ${styles.inner}`}
+                                }`}
                             >
                                 <GlassFill
                                     type={item.type!}
@@ -479,7 +479,17 @@ export const SectionKinds: FC<TSectionKindsProps> = ({ setActiveSection }) => {
                 {!isDesktop ? (
                     <>
                         {mobileCurrentBeerTreeItems}
-                        <p className={styles.mobile_hint}>
+                        <p
+                            className={styles.mobile_hint}
+                            style={{
+                                transform: inView
+                                    ? "none"
+                                    : "translateY(-50px)",
+                                opacity: inView ? 1 : 0,
+                                transition:
+                                    "transform 0.3s ease-in-out 0.9s, opacity 0.3s ease-in-out 0.9s",
+                            }}
+                        >
                             <svg
                                 width="42"
                                 height="42"

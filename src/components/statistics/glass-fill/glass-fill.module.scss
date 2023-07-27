@@ -11,6 +11,10 @@
 .glass_svg {
   margin: 0 auto 20px;
 
+  @include mixins.breakpoint-tablet-up {
+    max-height: 50vh;
+  }
+
   @include mixins.breakpoint-tablet-down {
     margin-bottom: 20px;
   }

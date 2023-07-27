@@ -1,3 +1,5 @@
+@use "/src/styles/mixins";
+
 .percent {
   display: block;
   font-weight: 900;
@@ -10,6 +12,10 @@
 
 .donut_svg {
   margin: auto;
+
+  @include mixins.breakpoint-tablet-up {
+    max-height: 60vh;
+  }
 }
 
 .percent_label {
