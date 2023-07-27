@@ -26,6 +26,10 @@
   @include mixins.breakpoint-tablet-down {
     margin-bottom: 20px;
   }
+
+  @include mixins.breakpoint-mobile-up {
+    max-height: 50vh;
+  }
 }
 
 .rect {

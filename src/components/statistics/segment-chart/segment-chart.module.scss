@@ -12,12 +12,12 @@
 .donut_svg {
   margin: auto;
 
-  @include mixins.breakpoint-tablet-up {
-    max-width: 300px;
-    max-height: 50vh;
-  }
-
   @include mixins.breakpoint-laptop-large-up {
     max-width: 95%;
+  }
+
+  @include mixins.breakpoint-mobile-up {
+    max-width: 300px;
+    max-height: 50vh;
   }
 }

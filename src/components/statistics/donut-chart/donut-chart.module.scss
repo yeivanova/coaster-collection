@@ -13,8 +13,8 @@
 .donut_svg {
   margin: auto;
 
-  @include mixins.breakpoint-tablet-up {
-    max-height: 60vh;
+  @include mixins.breakpoint-mobile-up {
+    max-height: 70vh;
   }
 }
 

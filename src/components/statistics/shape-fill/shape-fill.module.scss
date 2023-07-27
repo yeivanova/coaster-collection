@@ -15,38 +15,39 @@
   @include mixins.breakpoint-tablet-down {
     margin-bottom: 20px;
   }
+  
 }
 
 .square {
-  @include mixins.breakpoint-tablet-up {
-    max-width: 220px;
-    max-height: 47vh;
-  }
-
   @include mixins.breakpoint-laptop-large-up {
     max-width: 90%;
+  }
+
+  @include mixins.breakpoint-mobile-up {
+    max-width: 220px;
+    max-height: 47vh;
   }
 }
 
 .circle {
-  @include mixins.breakpoint-tablet-up {
-    max-width: 230px;
-    max-height: 50vh;
-  }
-
   @include mixins.breakpoint-laptop-large-up {
     max-width: 95%;
+  }
+
+  @include mixins.breakpoint-mobile-up {
+    max-width: 230px;
+    max-height: 50vh;
   }
 }
 
 .other {
-  @include mixins.breakpoint-tablet-up {
-    max-width: 250px;
-    max-height: 50vh;
-  }
-
   @include mixins.breakpoint-laptop-large-up {
     max-width: 100%;
+  }
+
+  @include mixins.breakpoint-mobile-up {
+    max-width: 250px;
+    max-height: 50vh;
   }
 }
 

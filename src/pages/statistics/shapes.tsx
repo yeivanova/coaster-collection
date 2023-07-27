@@ -2,6 +2,7 @@ import { FC, useContext, useEffect, useState, useMemo } from "react";
 import styles from "./statistics.module.scss";
 import cn from "classnames";
 import { DeviceContext } from "src/services/app-context";
+import { useOrientation } from "react-use";
 import { useSelector } from "react-redux";
 import { RootState } from "src/services/store";
 import { useInView } from "react-intersection-observer";
@@ -15,7 +16,10 @@ type TSectionShapeProps = {
 
 export const SectionShape: FC<TSectionShapeProps> = ({ setActiveSection }) => {
   const { isDesktop } = useContext(DeviceContext);
-  const { ref, inView } = useInView({ threshold: isDesktop ? 0.1 : 0.5 });
+  const { type } = useOrientation();
+    const [ref, inView] = useInView({
+        threshold: isDesktop || type === "landscape-primary" ? 0.1 : 0.5,
+    });
   const items = useSelector((state: RootState) => state.coasters.items);
   const params = useSelector((state: RootState) => state.coasters.params);
   const quantity = items.length;

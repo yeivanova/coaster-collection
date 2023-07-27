@@ -11,22 +11,20 @@
 .glass_svg {
   margin: 0 auto 20px;
 
-  @include mixins.breakpoint-tablet-up {
+  @include mixins.breakpoint-tablet-down {
+    margin-bottom: 20px;
+  }
+
+  @include mixins.breakpoint-mobile-up {
     max-height: 50vh;
   }
 
-  @include mixins.breakpoint-tablet-down {
-    margin-bottom: 20px;
+  @include mixins.breakpoint-mobile-down {
+    max-width: 115px;
   }
 }
 
 .masked_area {
   transform: scaleY(-1);
   transform-origin: center;
-}
-
-.glass_svg {
-  @include mixins.breakpoint-mobile-down {
-    max-width: 115px;
-  }
 }
