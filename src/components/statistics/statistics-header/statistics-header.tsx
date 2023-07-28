@@ -54,7 +54,7 @@ export const StatisticsHeader: FC<TStatisticsHeaderProps> = ({
                   ? cn(styles.nav_link, styles.active)
                   : styles.nav_link
               }
-              smooth
+              smooth={isDesktop}
             >
               Тип
             </HashLink>
