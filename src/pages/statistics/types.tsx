@@ -114,7 +114,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
                     percent={+typeBeer}
                     inView={inView}
                     radius={238}
-                    strokeWidth={40}
+                    strokeWidth={50}
                 >
                     <div
                         className={styles.label}
@@ -153,7 +153,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
                     percent={+typeBar}
                     inView={inView}
                     radius={238}
-                    strokeWidth={40}
+                    strokeWidth={50}
                 >
                     <div
                         className={styles.label}
@@ -207,7 +207,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
                             data={typeOthersData}
                             inView={inView}
                             radius={238}
-                            strokeWidth={40}
+                            strokeWidth={50}
                         >
                             <div
                                 className={cn(styles.label, {
@@ -233,7 +233,7 @@ export const SectionTypes: FC<TSectionTypesProps> = ({ setActiveSection }) => {
                             percent={+typeOthers}
                             inView={inView}
                             radius={238}
-                            strokeWidth={40}
+                            strokeWidth={50}
                         >
                             <div
                                 className={styles.label}

@@ -35,6 +35,8 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
   const ref = useRef<SVGSVGElement>(null);
   const innerRadius = radius - strokeWidth / 2;
   const diameter = radius * 2 + strokeWidth;
+  const circleStrokeWidth = Math.min(radius / 40, 5);
+  const circleRadius = innerRadius + circleStrokeWidth;
   const elementId = `text-${uuid().slice(0, 8)}`;
 
   useEffect(() => {
@@ -58,21 +60,19 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
         .append("circle")
         .attr("cx", 0)
         .attr("cy", 0)
-        .attr("r", innerRadius)
+        .attr("r", circleRadius)
         .attr("stroke", COLOR)
-        .style("stroke-width", `${Math.min(radius / 40, 5)}px`)
+        .style("stroke-width", `${circleStrokeWidth}px`)
         .attr("fill", "transparent");
 
       const color = d3.scaleOrdinal().range([COLOR, "transparent"]);
-      const pie = d3.pie().value(function (d) {
-        return +d;
-      });
+      const pie = d3.pie().value((d) => +d);
 
       const data_ready = pie([percent, 100 - percent]);
       const arc = d3
         .arc<d3.PieArcDatum<number | { valueOf(): number }>>()
-        .innerRadius(innerRadius * 0.85)
-        .outerRadius(radius + strokeWidth / 2)
+        .innerRadius(radius - strokeWidth - circleStrokeWidth)
+        .outerRadius(diameter / 2)
         .startAngle(0);
 
       if (inView) {
@@ -100,9 +100,7 @@ export const SegmentChart: FC<TSegmentChartProps> = ({
             };
           })
 
-          .attr("fill", function (d): string {
-            return color(d.data.toString()) as string;
-          });
+          .attr("fill", (d): string => color(d.data.toString()) as string);
       }
     }
   }, [inView, percent]);
