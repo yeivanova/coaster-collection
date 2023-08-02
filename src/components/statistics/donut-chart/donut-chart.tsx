@@ -36,7 +36,6 @@ export const DonutChart: FC<TDonutChartProps> = ({
   inView,
 }) => {
   const ref = useRef<SVGSVGElement>(null);
-  const innerRadius = radius - strokeWidth / 2;
   const diameter = radius * 2 + strokeWidth;
   const dataValues = [] as number[];
   Object.values(data).map((el) => dataValues.push(+el.value));
@@ -67,7 +66,7 @@ export const DonutChart: FC<TDonutChartProps> = ({
       const data_ready = pie(data);
       const arc = d3
         .arc<d3.PieArcDatum<TChartData>>()
-        .innerRadius(innerRadius * 0.85)
+        .innerRadius(radius - strokeWidth)
         .outerRadius(radius + strokeWidth / 2);
 
       if (inView) {
